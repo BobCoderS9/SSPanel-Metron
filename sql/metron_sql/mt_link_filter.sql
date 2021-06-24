@@ -1,0 +1,1 @@
+ALTER TABLE `link` ADD COLUMN `filter` TEXT NULL DEFAULT NULL COMMENT '节点筛选' AFTER `method`;

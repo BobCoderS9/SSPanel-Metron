@@ -1,0 +1,25 @@
+INSERT INTO `help_class` VALUES (1, '开始使用', 0, 'fa fa-list-ul', 1, 0);
+INSERT INTO `help_class` VALUES (2, 'Windows', 0, 'fab fa-windows', 1, 0);
+INSERT INTO `help_class` VALUES (3, 'Android', 0, 'fab fa-android', 1, 0);
+INSERT INTO `help_class` VALUES (4, 'iOS', 0, 'fab fa-apple', 1, 0);
+INSERT INTO `help_class` VALUES (5, 'Mac OS', 0, 'metron-finder', 1, 0);
+INSERT INTO `help_class` VALUES (6, 'Linux', 0, 'fab fa-linux', 1, 0);
+INSERT INTO `help_class` VALUES (8, '套餐相关', 1, 'fa fa-shopping-bag', 1, 0);
+INSERT INTO `help_class` VALUES (9, '账号相关', 1, 'fa fa-user-cog', 1, 0);
+INSERT INTO `help_class` VALUES (12, 'Clash', 2, 'metron-clash', 1, 10);
+INSERT INTO `help_class` VALUES (13, 'SSR', 2, 'metron-ssr1', 1, 8);
+INSERT INTO `help_class` VALUES (14, 'V2rayN', 2, 'metron-v2rayng', 1, 7);
+INSERT INTO `help_class` VALUES (15, 'SSTap', 2, 'metron-sstap', 1, 6);
+INSERT INTO `help_class` VALUES (17, '节点说明', 1, 'fa fa-globe-americas', 1, 0);
+INSERT INTO `help_class` VALUES (18, 'Clash', 5, 'metron-clash', 1, 5);
+INSERT INTO `help_class` VALUES (19, 'Shadowrocket', 4, 'metron-shadowrocket', 1, 0);
+INSERT INTO `help_class` VALUES (20, 'Quantumult', 4, 'metron-quantumult', 1, 0);
+INSERT INTO `help_class` VALUES (21, 'Clash', 3, 'metron-clash', 1, 9);
+INSERT INTO `help_class` VALUES (22, 'SSR', 3, 'metron-ssr1', 1, 0);
+INSERT INTO `help_class` VALUES (23, 'V2rayNG', 3, 'metron-v2rayng', 1, 0);
+INSERT INTO `help_class` VALUES (24, 'Quantumult X', 4, 'metron-quantumultx', 1, 0);
+INSERT INTO `help_class` VALUES (25, '其他问题', 1, 'fa fa-info-circle', 1, 0);
+INSERT INTO `help_class` VALUES (27, 'SSR', 5, 'metron-ssr1', 1, 2);
+INSERT INTO `help_class` VALUES (28, '测试', 1, '', 1, 0);
+
+SET FOREIGN_KEY_CHECKS = 1;

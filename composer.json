@@ -1,0 +1,36 @@
+{
+    "require": {
+        "slim/slim": "~3.0",
+        "smarty/smarty": "3.*",
+        "mailgun/mailgun-php": "^2.6.0",
+        "predis/predis": "~1.0",
+        "phpmailer/phpmailer": "~6.0",
+        "zeuxisoo/slim-whoops": "0.5.*",
+        "firebase/php-jwt": "~3.0",
+        "aws/aws-sdk-php": "3.*",
+        "gregwar/captcha": "1.*",
+        "voku/anti-xss": "^1.2",
+        "paymentwall/paymentwall-php": "^2.1",
+        "telegram-bot/api": "^2.2",
+        "illuminate/pagination": "5.2.*",
+        "illuminate/database": "5.2.*",
+        "sendgrid/sendgrid": "~7",
+        "esdeathlove/datatables": "^1.6",
+        "ramsey/uuid": "^3.0@dev",
+        "cloudflare/sdk": "1.1.1",
+        "chen-see/chen-pay": "^1.0@dev",
+        "league/omnipay": "^3",
+        "lokielse/omnipay-alipay": "*",
+        "khanamiryan/qrcode-detector-decoder": "*",
+        "symfony/yaml": "^4.4@dev",
+        "irazasyed/telegram-bot-sdk": "^2.0",
+        "endroid/qr-code": "^3.7",
+        "stripe/stripe-php": "7.0.0",
+        "geerlingguy/ping": "^1.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    }
+}
