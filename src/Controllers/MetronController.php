@@ -2,22 +2,63 @@
 
 namespace App\Controllers;
 
-use App\Services\{Auth, Mail, Config, Payment, BitPayment, MetronSetting };
-use App\Models\{Ip, Ann, Code, Node, Shop, User, Help, Link, Helpc, Token, Relay, Bought, Coupon, Ticket, Paylist, Payback, BlockIp, LoginIp, UnblockIp, Speedtest, DetectLog, DetectRule, TrafficLog, InviteCode, EmailVerify, UserSubscribeLog };
-use App\Utils\{ GA, Pay, URL, Hash, QQWry, Check, Tools, Radius, Cookie, Geetest, Telegram, ClientProfiles, DatatablesHelper, TelegramSessionManager };
+use App\Services\{Auth, Mail, Config, Payment, BitPayment, MetronSetting};
+use App\Models\{Ip,
+    Ann,
+    Code,
+    Node,
+    Shop,
+    User,
+    Help,
+    Link,
+    Helpc,
+    Token,
+    Relay,
+    Bought,
+    Coupon,
+    Ticket,
+    Paylist,
+    Payback,
+    BlockIp,
+    LoginIp,
+    UnblockIp,
+    Speedtest,
+    DetectLog,
+    DetectRule,
+    TrafficLog,
+    InviteCode,
+    EmailVerify,
+    UserSubscribeLog
+};
+use App\Utils\{GA,
+    Pay,
+    URL,
+    Hash,
+    QQWry,
+    Check,
+    Tools,
+    Radius,
+    Cookie,
+    Geetest,
+    Telegram,
+    ClientProfiles,
+    DatatablesHelper,
+    TelegramSessionManager
+};
 use App\Metron\{Metron, MtAuth, MtHttp, MtEmail};
 use voku\helper\AntiXSS;
 use TelegramBot\Api\BotApi;
 use Exception;
+use Ramsey\Uuid\Uuid;
 
 class MetronController extends BaseController
 {
     /**
      * Metron List
      *
-     * @param \Slim\Http\Request    $request
-     * @param \Slim\Http\Response   $response
-     * @param array                 $args
+     * @param \Slim\Http\Request $request
+     * @param \Slim\Http\Response $response
+     * @param array $args
      *
      * @return \Slim\Http\Response
      */
@@ -44,10 +85,10 @@ class MetronController extends BaseController
     {
         $mt = MtAuth::Auth();
         if (!$mt['ret']) {
-            die($mt['msg'] . ' | ' .$_SESSION['authcode']);
+            die($mt['msg'] . ' | ' . $_SESSION['authcode']);
         }
 
-        $classList_L1 = Helpc::where('upid', 0)->where('pageshow',1)->orderBy('sort', 'desc')->get();     /* 列出所有一级分类 */
+        $classList_L1 = Helpc::where('upid', 0)->where('pageshow', 1)->orderBy('sort', 'desc')->get();     /* 列出所有一级分类 */
 
         /* 所有分类 */
         $classs_list = Helpc::all();
@@ -57,7 +98,7 @@ class MetronController extends BaseController
         }
 
         /* 如果是搜索关键字 */
-        if ($Keywords = $request->getParam('Keywords')){
+        if ($Keywords = $request->getParam('Keywords')) {
             $arrs = explode(" ", $Keywords);
             $arrs = array_filter($arrs);
             foreach ($arrs as $arr) {
@@ -92,12 +133,12 @@ class MetronController extends BaseController
 
         $pageDoc = [];
         $classList_L2 = Helpc::where('upid', $typeId)->where('pageshow', 1)->orderBy('sort', 'DESC')->get();   /* 获取指定页面的所有二级分类 */
-        if (count($classList_L2) > 0){
+        if (count($classList_L2) > 0) {
             foreach ($classList_L2 as $class_L2) {
                 $list_L2ID[] = $class_L2->id;
-                $tutorial_url = BASE_PATH . '/resources/views/metron/user/tutorial/' . str_replace(' ','',$classs[$class_L2->upid]['name']) . '/' . str_replace(' ','',$class_L2->name) . '.tpl';
-                if (file_exists($tutorial_url)){
-                    $class_L2->url = '/user/tutorial?os=' . str_replace(' ','',$classs[$class_L2->upid]['name']) . '&amp;client=' . str_replace(' ','',$class_L2->name);
+                $tutorial_url = BASE_PATH . '/resources/views/metron/user/tutorial/' . str_replace(' ', '', $classs[$class_L2->upid]['name']) . '/' . str_replace(' ', '', $class_L2->name) . '.tpl';
+                if (file_exists($tutorial_url)) {
+                    $class_L2->url = '/user/tutorial?os=' . str_replace(' ', '', $classs[$class_L2->upid]['name']) . '&amp;client=' . str_replace(' ', '', $class_L2->name);
                 }
             }
             $pageDoc = Help::whereIn('class', $list_L2ID)->orderBy('ontop', 'desc')->orderBy('sort', 'desc')->get();
@@ -147,12 +188,12 @@ class MetronController extends BaseController
         $newname = $request->getParam('newname');
         $regname = '#[^\x{4e00}-\x{9fa5}A-Za-z0-9]#u';
 
-        if ($newname==''){
+        if ($newname == '') {
             $res['ret'] = 0;
             $res['msg'] = '昵称不允许留空';
             return $response->getBody()->write(json_encode($res));
         }
-        if (preg_match($regname,$newname)){
+        if (preg_match($regname, $newname)) {
             $res['ret'] = 0;
             $res['msg'] = '不能包含符号';
             return $response->getBody()->write(json_encode($res));
@@ -169,10 +210,10 @@ class MetronController extends BaseController
         }
         $user->user_name = $newname;
 
-        if ($user->save()){
+        if ($user->save()) {
             $res['ret'] = 1;
-                $res['msg'] = '修改成功';
-                return $response->getBody()->write(json_encode($res));
+            $res['msg'] = '修改成功';
+            return $response->getBody()->write(json_encode($res));
         }
 
         $res['ret'] = 0;
@@ -194,8 +235,8 @@ class MetronController extends BaseController
 
         switch ($page) {
             case 'profile':
-                $name       = trim($request->getParam('user_name'));
-                $email      = trim($request->getParam('email'));
+                $name = trim($request->getParam('user_name'));
+                $email = trim($request->getParam('email'));
                 $email_code = trim($request->getParam('email_code'));
 
                 /* 昵称检验 */
@@ -204,12 +245,12 @@ class MetronController extends BaseController
                         return $response->getBody()->write(json_encode(['ret' => 0, 'msg' => '管理员设置禁止修改昵称']));
                     }
                     $regname = '/^[0-9a-zA-Z_\x{4e00}-\x{9fa5}]+$/u';
-                    if ($name == ''){
+                    if ($name == '') {
                         $res['ret'] = 0;
                         $res['msg'] = '昵称不允许留空';
                         return $response->getBody()->write(json_encode($res));
                     }
-                    if (!preg_match($regname,$name)){
+                    if (!preg_match($regname, $name)) {
                         $res['ret'] = 0;
                         $res['msg'] = '昵称仅支持中文、数字、字母和下划线的组合';
                         return $response->getBody()->write(json_encode($res));
@@ -220,7 +261,7 @@ class MetronController extends BaseController
                         return $response->getBody()->write(json_encode($res));
                     }
                     $user->user_name = $name;
-                    if (!$user->save()){
+                    if (!$user->save()) {
                         $res['ret'] = 0;
                         $res['msg'] = '昵称修改失败';
                         return $response->getBody()->write(json_encode($res));
@@ -239,7 +280,7 @@ class MetronController extends BaseController
                         return $response->getBody()->write(json_encode(['ret' => 0, 'msg' => '邮箱无效']));
                     }
                     $metron = new MtEmail();
-                    if (!$metron->checkEmailSuffix($email)){
+                    if (!$metron->checkEmailSuffix($email)) {
                         return $response->getBody()->write(json_encode(['ret' => 0, 'msg' => '不支持的邮箱后缀']));
                     }
                     $checkemail = User::where('email', '=', $email)->first();
@@ -254,7 +295,7 @@ class MetronController extends BaseController
                     }
 
                     $user->email = $email;
-                    if (!$user->save()){
+                    if (!$user->save()) {
                         return $response->getBody()->write(json_encode(['ret' => 0, 'msg' => '邮箱修改失败']));
                     }
                 }
@@ -266,7 +307,7 @@ class MetronController extends BaseController
                 $old_passwd = $request->getParam('old_passwd');
                 $new_passwd = $request->getParam('new_passwd');
                 $ret_passwd = $request->getParam('ret_passwd');
-                $user       = $this->user;
+                $user = $this->user;
 
                 if (!Hash::checkPassword($user->pass, $old_passwd)) {
                     return $response->getBody()->write(json_encode(['ret' => 0, 'msg' => '旧密码错误']));
@@ -286,6 +327,11 @@ class MetronController extends BaseController
                 $res['msg'] = '更新成功';
                 return $response->getBody()->write(json_encode($res));
             case 'sublink':
+                $user->uuid = Uuid::uuid3(
+                    Uuid::NAMESPACE_DNS,
+                    $user->pass . '|' . time()
+                )->toString();
+                $user->save();
                 $user->clean_link();
                 $res['ret'] = 1;
                 $res['msg'] = '重置成功';
@@ -313,7 +359,9 @@ class MetronController extends BaseController
     {
         $type = $args['type'];
         $user = $this->user;
-        if ($user == null || !$user->isLogin) { return 0; }
+        if ($user == null || !$user->isLogin) {
+            return 0;
+        }
 
         switch ($type) {
             case 'email_name':
@@ -406,8 +454,8 @@ class MetronController extends BaseController
             return $response->getBody()->write(json_encode($res));
         }
         $resetFlow_maxValue = MetronSetting::get('resetFlow_maxValue');
-        if ($resetFlow_maxValue !== -1 && $user->transfer_enable - ($user->u + $user->d) > $resetFlow_maxValue*1024*1024*1024) {
-            $res = ['ret' => 0, 'msg' => '流量大于 ' . $resetFlow_maxValue . 'GB 无法重置'. PHP_EOL . '您当前剩余' . round(($user->transfer_enable - ($user->u + $user->d))/1024/1024/1024, 2) . 'GB'];
+        if ($resetFlow_maxValue !== -1 && $user->transfer_enable - ($user->u + $user->d) > $resetFlow_maxValue * 1024 * 1024 * 1024) {
+            $res = ['ret' => 0, 'msg' => '流量大于 ' . $resetFlow_maxValue . 'GB 无法重置' . PHP_EOL . '您当前剩余' . round(($user->transfer_enable - ($user->u + $user->d)) / 1024 / 1024 / 1024, 2) . 'GB'];
             return $response->getBody()->write(json_encode($res, JSON_UNESCAPED_UNICODE));
         }
 
@@ -431,7 +479,7 @@ class MetronController extends BaseController
             return $response->getBody()->write(json_encode($res));
         }
 
-        $id   = $args['id'];
+        $id = $args['id'];
         $node = Node::find($id);
         if ($node == null) {
             $res = ['ret' => 0, 'msg' => '节点错误,请刷新页面重新获取'];
@@ -452,7 +500,7 @@ class MetronController extends BaseController
                     if (URL::SSRCanConnect($user, $mu_user)) {
                         $nodeinfo = $node->getItem($user, $mu_user, 0, 0);
                         $url = URL::getItemUrl($nodeinfo, 0);
-                    } else if (URL::SSCanConnect($user, $mu_user)){
+                    } else if (URL::SSCanConnect($user, $mu_user)) {
                         $nodeinfo = $node->getItem($user, $mu_user, 0, 1);
                         $url = URL::getItemUrl($nodeinfo, 1);
                     }
@@ -467,14 +515,14 @@ class MetronController extends BaseController
                     if (URL::SSRCanConnect($user, $mu_user)) {
                         $nodeinfo = $node->getItem($user, $mu_user, 0, 0);
                         $url = URL::getItemUrl($nodeinfo, 0);
-                    } else if (URL::SSCanConnect($user, $mu_user)){
+                    } else if (URL::SSCanConnect($user, $mu_user)) {
                         $nodeinfo = $node->getItem($user, $mu_user, 0, 1);
                         $url = URL::getItemUrl($nodeinfo, 1);
                     }
                 }
                 $res = [
                     'ret' => 1,
-                    'sort' => (int) $node->sort,
+                    'sort' => (int)$node->sort,
                     'info' => $nodeinfo,
                     'mu_user' => $mu_user,
                     'mu_only' => $node->mu_only,
@@ -486,7 +534,7 @@ class MetronController extends BaseController
                 $info = $node->getV2RayItem($user);
                 $res = [
                     'ret' => 1,
-                    'sort' => (int) $node->sort,
+                    'sort' => (int)$node->sort,
                     'info' => $info,
                     'url' => URL::getV2Url($user, $node),
                 ];
@@ -533,14 +581,16 @@ class MetronController extends BaseController
      */
     public function ajax_datatable($request, $response, $args)
     {
-        $name       = $args['name'];                        # 得到表名
-        $user       = $this->user;                          # 得到用户
-        $getMeta    = $request->getQueryParams();           # 获取所有请求数据
-        $page       = $getMeta['pagination']['page'];       # 得到当前页码
-        $sort       = $getMeta['sort']['sort'];             # 得到排序方法
-        $field      = $getMeta['sort']['field'];            # 得到排序字段
-        $perpage    = $getMeta['pagination']['perpage'];    # 得到每页数量
-        if ($user == null || !$user->isLogin) { return 0; }
+        $name = $args['name'];                        # 得到表名
+        $user = $this->user;                          # 得到用户
+        $getMeta = $request->getQueryParams();           # 获取所有请求数据
+        $page = $getMeta['pagination']['page'];       # 得到当前页码
+        $sort = $getMeta['sort']['sort'];             # 得到排序方法
+        $field = $getMeta['sort']['field'];            # 得到排序字段
+        $perpage = $getMeta['pagination']['perpage'];    # 得到每页数量
+        if ($user == null || !$user->isLogin) {
+            return 0;
+        }
 
         switch ($name) {
             case 'code':
@@ -548,18 +598,18 @@ class MetronController extends BaseController
                 $total = $query->count();
 
                 $codes = [];
-                $data  = [];
+                $data = [];
                 if ($perpage != -1) {
-                    $codes = $query->skip(($page - 1)*$perpage)->limit($perpage)->get();
+                    $codes = $query->skip(($page - 1) * $perpage)->limit($perpage)->get();
                 } else {
                     $codes = $query->get();
                 }
                 foreach ($codes as $code) {
-                    $dataarr['id']          = $code->id;
-                    $dataarr['code']        = $code->code;
-                    $dataarr['number']      = $code->number . '元';
+                    $dataarr['id'] = $code->id;
+                    $dataarr['code'] = $code->code;
+                    $dataarr['number'] = $code->number . '元';
                     $dataarr['usedatetime'] = $code->usedatetime;
-                    $data[]                 = $dataarr;
+                    $data[] = $dataarr;
                 }
                 break;
             case 'shop':
@@ -573,9 +623,9 @@ class MetronController extends BaseController
                 $total = $query->count();
 
                 $shops = [];
-                $data  = [];
+                $data = [];
                 if ($perpage != -1) {
-                    $shops = $query->skip(($page - 1)*$perpage)->limit($perpage)->get();
+                    $shops = $query->skip(($page - 1) * $perpage)->limit($perpage)->get();
                 } else {
                     $shops = $query->get();
                 }
@@ -586,16 +636,16 @@ class MetronController extends BaseController
                         $shop_info = $metron->getConversionInfo($user, $shop);
                         $shop_pkcs = $shop_info['ret'];
                     }
-                    $dataarr['id']         = $shop->id;
-                    $dataarr['shopid']     = $shop->shopid;
-                    $dataarr['shopname']   = $shop->shop()->name;
-                    $dataarr['datetime']   = date('Y-m-d H:i:s', $shop->datetime);
-                    $dataarr['renew']      = $shop->renew != 0 ? : '不自动续费';
-                    $dataarr['auto_reset'] = $shop->shop()->auto_reset_bandwidth!=0 ? '自动重置' : '不自动重置';
-                    $dataarr['price']      = $shop->price;
-                    $dataarr['usedd']      = $shop->usedd;
-                    $dataarr['shop_pkcs']  = ($shop_conversion === true ? $shop_pkcs : 0);
-                    $dataarr['caozuo']     =    '<div class="dropdown dropdown-inline">
+                    $dataarr['id'] = $shop->id;
+                    $dataarr['shopid'] = $shop->shopid;
+                    $dataarr['shopname'] = $shop->shop()->name;
+                    $dataarr['datetime'] = date('Y-m-d H:i:s', $shop->datetime);
+                    $dataarr['renew'] = $shop->renew != 0 ?: '不自动续费';
+                    $dataarr['auto_reset'] = $shop->shop()->auto_reset_bandwidth != 0 ? '自动重置' : '不自动重置';
+                    $dataarr['price'] = $shop->price;
+                    $dataarr['usedd'] = $shop->usedd;
+                    $dataarr['shop_pkcs'] = ($shop_conversion === true ? $shop_pkcs : 0);
+                    $dataarr['caozuo'] = '<div class="dropdown dropdown-inline">
                                                     <a href="javascript:;" class="btn btn-sm btn-clean btn-icon" data-toggle="dropdown">
                                                         <span class="svg-icon svg-icon-md">
                                                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
@@ -617,17 +667,17 @@ class MetronController extends BaseController
                                                                     <span class="navi-text">关闭自动续费</span>
                                                                 </a>
                                                             </li>
-                                                            '.($shop_conversion ?
-                                                            '<li class="navi-item">
-                                                                <a href="javascript:;" class="navi-link" onclick="code.PackageConversion(\''. $shop->id . '\')">
+                                                            ' . ($shop_conversion ?
+                            '<li class="navi-item">
+                                                                <a href="javascript:;" class="navi-link" onclick="code.PackageConversion(\'' . $shop->id . '\')">
                                                                     <span class="navi-icon"><i class="la la-leaf"></i></span>
                                                                     <span class="navi-text">折算返还余额</span>
                                                                 </a>
-                                                            </li>' : '').
-                                                        '</ul>
+                                                            </li>' : '') .
+                        '</ul>
                                                     </div>
                                                 </div>';
-                    $data[]                = $dataarr;
+                    $data[] = $dataarr;
                 }
                 break;
             case 'ticket':
@@ -643,24 +693,24 @@ class MetronController extends BaseController
                 $logs = [];
                 $data = [];
                 if ($perpage != -1) {
-                    $logs = $query->skip(($page - 1)*$perpage)->limit($perpage)->get();
+                    $logs = $query->skip(($page - 1) * $perpage)->limit($perpage)->get();
                 } else {
                     $logs = $query->get();
                 }
                 foreach ($logs as $log) {
-                    $replyUser = User::find( Ticket::where('rootid', '=', $log->id)->orderBy('datetime', 'desc')->value('userid') );
+                    $replyUser = User::find(Ticket::where('rootid', '=', $log->id)->orderBy('datetime', 'desc')->value('userid'));
                     if ($replyUser === null) {
                         $replyUser = User::find($log->userid);
                     }
 
-                    $dataarr['id']          = $log->id;
-                    $dataarr['title']       = $log->title;
-                    $dataarr['user_name']   = $replyUser->user_name;
-                    $dataarr['user_pic']    = $replyUser->gravatar;
-                    $dataarr['datetime']    = $log->datetime;
-                    $dataarr['status']      = $log->status;
-                    $dataarr['caozuo']      = 0;
-                    $data[]                 = $dataarr;
+                    $dataarr['id'] = $log->id;
+                    $dataarr['title'] = $log->title;
+                    $dataarr['user_name'] = $replyUser->user_name;
+                    $dataarr['user_pic'] = $replyUser->gravatar;
+                    $dataarr['datetime'] = $log->datetime;
+                    $dataarr['status'] = $log->status;
+                    $dataarr['caozuo'] = 0;
+                    $data[] = $dataarr;
                 }
                 break;
             case 'paylist':
@@ -677,7 +727,7 @@ class MetronController extends BaseController
                 $pays = [];
                 $data = [];
                 if ($perpage != -1) {
-                    $pays = $query->skip(($page - 1)*$perpage)->limit($perpage)->get();
+                    $pays = $query->skip(($page - 1) * $perpage)->limit($perpage)->get();
                 } else {
                     $pays = $query->get();
                 }
@@ -692,7 +742,7 @@ class MetronController extends BaseController
                         } elseif ($shopinfo['id'] == 0) {
                             $shop_data = '钱包充值';
                         } else {
-                            $shop_data = '购买【'.Shop::where('id', $shopinfo['id'])->value('name').'】';
+                            $shop_data = '购买【' . Shop::where('id', $shopinfo['id'])->value('name') . '】';
                         }
 
                         if ($pay->status === 1) {
@@ -711,14 +761,14 @@ class MetronController extends BaseController
                         }
                     }
 
-                    $dataarr['id']          = $pay->id;
-                    $dataarr['total']       = $pay->total . '元';
-                    $dataarr['status']      = $pay->status;
+                    $dataarr['id'] = $pay->id;
+                    $dataarr['total'] = $pay->total . '元';
+                    $dataarr['status'] = $pay->status;
                     $dataarr['shop_status'] = $shop_status;
-                    $dataarr['tradeno']     = $pay->tradeno;
-                    $dataarr['datetime']    = date('Y-m-d H:i:s', $pay->datetime);
-                    $dataarr['shop']        = $shop_data;
-                    $dataarr['caozuo']      =   '<div class="dropdown dropdown-inline">
+                    $dataarr['tradeno'] = $pay->tradeno;
+                    $dataarr['datetime'] = date('Y-m-d H:i:s', $pay->datetime);
+                    $dataarr['shop'] = $shop_data;
+                    $dataarr['caozuo'] = '<div class="dropdown dropdown-inline">
                                                     <a href="javascript:;" class="btn btn-sm btn-clean btn-icon" data-toggle="dropdown">
                                                         <span class="svg-icon svg-icon-md">
                                                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
@@ -763,17 +813,17 @@ class MetronController extends BaseController
                 $data = [];
                 $iplocation = new QQWry();
                 foreach ($logs as $log) {
-                    $logIp                  = $log->ip;
+                    $logIp = $log->ip;
                     if (isset($data[$logIp])) {
                         continue;
                     }
-                    $location               = $iplocation->getlocation($logIp);
-                    $dataarr['id']          = $log->id;
-                    $dataarr['ip']          = $logIp;
-                    $dataarr['location']    = iconv("gbk", "utf-8//IGNORE", $location['country']) . iconv("gbk", "utf-8//IGNORE", $location['area']);;
-                    $dataarr['datetime']    = $log->datetime;
-                    $data[$logIp]           = $dataarr;
-                    if ( count($data) === 3) {
+                    $location = $iplocation->getlocation($logIp);
+                    $dataarr['id'] = $log->id;
+                    $dataarr['ip'] = $logIp;
+                    $dataarr['location'] = iconv("gbk", "utf-8//IGNORE", $location['country']) . iconv("gbk", "utf-8//IGNORE", $location['area']);;
+                    $dataarr['datetime'] = $log->datetime;
+                    $data[$logIp] = $dataarr;
+                    if (count($data) === 3) {
                         break;
                     }
                 }
@@ -784,17 +834,17 @@ class MetronController extends BaseController
                 $data = [];
                 $iplocation = new QQWry();
                 foreach ($logs as $log) {
-                    $logIp                  = $log->ip;
+                    $logIp = $log->ip;
                     if (isset($data[$logIp])) {
                         continue;
                     }
-                    $location               = $iplocation->getlocation($logIp);
-                    $dataarr['id']          = $log->id;
-                    $dataarr['ip']          = $logIp;
-                    $dataarr['location']    = iconv("gbk", "utf-8//IGNORE", $location['country']) . iconv("gbk", "utf-8//IGNORE", $location['area']);;
-                    $dataarr['datetime']    = $log->datetime;
-                    $data[$logIp]           = $dataarr;
-                    if ( count($data) === 3) {
+                    $location = $iplocation->getlocation($logIp);
+                    $dataarr['id'] = $log->id;
+                    $dataarr['ip'] = $logIp;
+                    $dataarr['location'] = iconv("gbk", "utf-8//IGNORE", $location['country']) . iconv("gbk", "utf-8//IGNORE", $location['area']);;
+                    $dataarr['datetime'] = $log->datetime;
+                    $data[$logIp] = $dataarr;
+                    if (count($data) === 3) {
                         break;
                     }
                 }
@@ -812,7 +862,7 @@ class MetronController extends BaseController
                 $logs = [];
                 $data = [];
                 if ($perpage != -1) {
-                    $logs = $query->skip(($page - 1)*$perpage)->limit($perpage)->get();
+                    $logs = $query->skip(($page - 1) * $perpage)->limit($perpage)->get();
                 } else {
                     $logs = $query->get();
                 }
@@ -843,17 +893,17 @@ class MetronController extends BaseController
                 $logs = [];
                 $data = [];
                 if ($perpage != -1) {
-                    $logs = $query->skip(($page - 1)*$perpage)->limit($perpage)->get();
+                    $logs = $query->skip(($page - 1) * $perpage)->limit($perpage)->get();
                 } else {
                     $logs = $query->get();
                 }
                 foreach ($logs as $log) {
-                    $dataarr['id']          = $log->id;
-                    $dataarr['node_id']     = $log->node_id;
-                    $dataarr['node_name']   = $log->node()->name;
-                    $dataarr['rate']        = $log->rate;
-                    $dataarr['traffic']     = $log->traffic;
-                    $dataarr['log_time']    = $log->log_time;
+                    $dataarr['id'] = $log->id;
+                    $dataarr['node_id'] = $log->node_id;
+                    $dataarr['node_name'] = $log->node()->name;
+                    $dataarr['rate'] = $log->rate;
+                    $dataarr['traffic'] = $log->traffic;
+                    $dataarr['log_time'] = $log->log_time;
                     $data[] = $dataarr;
                 }
                 break;
@@ -864,20 +914,20 @@ class MetronController extends BaseController
                 $logs = [];
                 $data = [];
                 if ($perpage != -1) {
-                    $logs = $query->skip(($page - 1)*$perpage)->limit($perpage)->get();
+                    $logs = $query->skip(($page - 1) * $perpage)->limit($perpage)->get();
                 } else {
                     $logs = $query->get();
                 }
                 foreach ($logs as $log) {
-                    $dataarr['id']          = $log->id;
-                    $dataarr['node_id']     = $log->node_id;
-                    $dataarr['node_name']   = $log->Node()->name;
-                    $dataarr['list_id']     = $log->list_id;
-                    $dataarr['rule_name']   = $log->DetectRule()->name;
-                    $dataarr['rule_text']   = $log->DetectRule()->text;
-                    $dataarr['rule_regex']  = $log->DetectRule()->regex;
-                    $dataarr['rule_type']   = ($log->DetectRule()->type === 1 ? '数据包明文匹配' : ($log->DetectRule()->type === 2 ? '数据包 hex 匹配' : '未知'));
-                    $dataarr['datetime']    = $log->datetime;
+                    $dataarr['id'] = $log->id;
+                    $dataarr['node_id'] = $log->node_id;
+                    $dataarr['node_name'] = $log->Node()->name;
+                    $dataarr['list_id'] = $log->list_id;
+                    $dataarr['rule_name'] = $log->DetectRule()->name;
+                    $dataarr['rule_text'] = $log->DetectRule()->text;
+                    $dataarr['rule_regex'] = $log->DetectRule()->regex;
+                    $dataarr['rule_type'] = ($log->DetectRule()->type === 1 ? '数据包明文匹配' : ($log->DetectRule()->type === 2 ? '数据包 hex 匹配' : '未知'));
+                    $dataarr['datetime'] = $log->datetime;
                     $data[] = $dataarr;
                 }
                 break;
@@ -887,16 +937,16 @@ class MetronController extends BaseController
                 $logs = [];
                 $data = [];
                 if ($perpage != -1) {
-                    $logs = $query->skip(($page - 1)*$perpage)->limit($perpage)->get();
+                    $logs = $query->skip(($page - 1) * $perpage)->limit($perpage)->get();
                 } else {
                     $logs = $query->get();
                 }
                 foreach ($logs as $log) {
-                    $dataarr['id']      = $log->id;
-                    $dataarr['name']    = $log->name;
-                    $dataarr['text']    = $log->text;
-                    $dataarr['regex']   = $log->regex;
-                    $dataarr['type']    = ($log->type === 1 ? '数据包明文匹配' : ($log->type === 2 ? '数据包 hex 匹配' : '未知'));
+                    $dataarr['id'] = $log->id;
+                    $dataarr['name'] = $log->name;
+                    $dataarr['text'] = $log->text;
+                    $dataarr['regex'] = $log->regex;
+                    $dataarr['type'] = ($log->type === 1 ? '数据包明文匹配' : ($log->type === 2 ? '数据包 hex 匹配' : '未知'));
                     $data[] = $dataarr;
                 }
                 break;
@@ -906,34 +956,34 @@ class MetronController extends BaseController
                 $logs = [];
                 $data = [];
                 if ($perpage != -1) {
-                    $logs = $query->skip(($page - 1)*$perpage)->limit($perpage)->get();
+                    $logs = $query->skip(($page - 1) * $perpage)->limit($perpage)->get();
                 } else {
                     $logs = $query->get();
                 }
                 foreach ($logs as $log) {
-                    $dataarr['id']              = $log->id;
-                    $dataarr['name']            = $log->source_node_id == 0 ? '所有节点' : $log->Source_Node()->name;
-                    $dataarr['dist_name']       = $log->Dist_Node() == null ? '不进行中转' : $log->Dist_Node()->name;
-                    $dataarr['port']            = $log->port == 0 ? '所有端口' : $log->port;
-                    $dataarr['source_class']    = $log->Source_Node()->node_class;
-                    $dataarr['dist_class']      = $log->Dist_Node()->node_class;
-                    $dataarr['priority']        = $log->priority;
-                    $dataarr['user_id']         = $log->user_id;
+                    $dataarr['id'] = $log->id;
+                    $dataarr['name'] = $log->source_node_id == 0 ? '所有节点' : $log->Source_Node()->name;
+                    $dataarr['dist_name'] = $log->Dist_Node() == null ? '不进行中转' : $log->Dist_Node()->name;
+                    $dataarr['port'] = $log->port == 0 ? '所有端口' : $log->port;
+                    $dataarr['source_class'] = $log->Source_Node()->node_class;
+                    $dataarr['dist_class'] = $log->Dist_Node()->node_class;
+                    $dataarr['priority'] = $log->priority;
+                    $dataarr['user_id'] = $log->user_id;
                     $data[] = $dataarr;
                 }
                 break;
             case 'relay_link':
-                $nodes = Node::where( static function ($query) use ($user) {
+                $nodes = Node::where(static function ($query) use ($user) {
                     $query->Where('node_group', '=', $user->node_group)->orWhere('node_group', '=', 0);
-                } )->where('type', 1)->where( static function ($query) {
-                    $query->Where('sort', 10) ->orWhere('sort', 12);
-                } )->where('node_class', '<=', $user->class)->orderBy('name') ->get();
+                })->where('type', 1)->where(static function ($query) {
+                    $query->Where('sort', 10)->orWhere('sort', 12);
+                })->where('node_class', '<=', $user->class)->orderBy('name')->get();
 
-                $pathset     = new \ArrayObject();
+                $pathset = new \ArrayObject();
                 $relay_rules = Relay::where('user_id', $user->id)->orwhere('user_id', 0)->get();
-                $mu_nodes    = Node::where('sort', 9)->where('node_class', '<=', $user->class)->where('type', '1')->where( static function ($query) use ($user) {
-                    $query->where('node_group', '=', $user->node_group) ->orWhere('node_group', '=', 0);
-                } )->get();
+                $mu_nodes = Node::where('sort', 9)->where('node_class', '<=', $user->class)->where('type', '1')->where(static function ($query) use ($user) {
+                    $query->where('node_group', '=', $user->node_group)->orWhere('node_group', '=', 0);
+                })->get();
 
                 foreach ($nodes as $node) {
                     if ($node->mu_only == 0 || $node->mu_only == -1) {
@@ -1003,11 +1053,11 @@ class MetronController extends BaseController
                 $logs = [];
                 $data = [];
                 foreach ($pathset as $path) {
-                    $dataarr['port']        = $path->port;
-                    $dataarr['begin_node']  = $path->begin_node->name;
-                    $dataarr['end_node']    = $path->end_node->name;
-                    $dataarr['path']        = $path->path;
-                    $dataarr['status']      = $path->status;
+                    $dataarr['port'] = $path->port;
+                    $dataarr['begin_node'] = $path->begin_node->name;
+                    $dataarr['end_node'] = $path->end_node->name;
+                    $dataarr['path'] = $path->path;
+                    $dataarr['status'] = $path->status;
                     $data[] = $dataarr;
                 }
                 $res['data'] = $data;
@@ -1015,20 +1065,20 @@ class MetronController extends BaseController
             case 'invite_back':
                 $query = Payback::where('ref_by', '=', $user->id)->orderBy($field, $sort);
                 $total = $query->count();
-                $logs  = [];
-                $data  = [];
+                $logs = [];
+                $data = [];
                 # 每页数量
                 if ($perpage != -1) {
-                    $logs = $query->skip(($page - 1)*$perpage)->limit($perpage)->get();
+                    $logs = $query->skip(($page - 1) * $perpage)->limit($perpage)->get();
                 } else {
                     $logs = $query->get();
                 }
                 foreach ($logs as $log) {
-                    $dataarr['id']                   = $log->id;
-                    $dataarr['userid']               = $log->userid;
-                    $dataarr['ref_get']              = $log->ref_get;
-                    $dataarr['datetime']             = $log->datetime;
-                    $data[]                          = $dataarr;
+                    $dataarr['id'] = $log->id;
+                    $dataarr['userid'] = $log->userid;
+                    $dataarr['ref_get'] = $log->ref_get;
+                    $dataarr['datetime'] = $log->datetime;
+                    $data[] = $dataarr;
                 }
                 break;
             case 'invite_user':
@@ -1044,11 +1094,11 @@ class MetronController extends BaseController
                     $query = User::query()->whereNotIn('id', $codes)->where('ref_by', '=', $user->id)->orderBy($field, $sort);
                 }
                 $total = $query->count();
-                $logs  = [];
-                $data  = [];
+                $logs = [];
+                $data = [];
                 # 每页数量
                 if ($perpage != -1) {
-                    $logs = $query->skip(($page - 1)*$perpage)->limit($perpage)->get();
+                    $logs = $query->skip(($page - 1) * $perpage)->limit($perpage)->get();
                 } else {
                     $logs = $query->get();
                 }
@@ -1061,12 +1111,12 @@ class MetronController extends BaseController
                     if (!$backprice = Payback::where('userid', '=', $log->id)->sum('ref_get')) {
                         $backprice = 0;
                     }
-                    $dataarr['id']                   = $log->id;
-                    $dataarr['user_name']            = $log->user_name;
-                    $dataarr['reg_date']             = $log->reg_date;
+                    $dataarr['id'] = $log->id;
+                    $dataarr['user_name'] = $log->user_name;
+                    $dataarr['reg_date'] = $log->reg_date;
                     $dataarr['accumulated_recharge'] = $number . ' 元';
-                    $dataarr['get_rebates']          = $backprice . ' 元';
-                    $data[]                          = $dataarr;
+                    $dataarr['get_rebates'] = $backprice . ' 元';
+                    $data[] = $dataarr;
                 }
                 break;
             default:
@@ -1075,12 +1125,12 @@ class MetronController extends BaseController
         }
 
         $meta = [
-            "page"      => $page,                       # 当前页码
-            "pages"     => ceil($total / $perpage),     # 总页数
-            "perpage"   => $perpage,                    # 每页数量
-            "total"     => $total,                      # 总数量
-            "sort"      => $sort,                       # 排序方式
-            "field"     => $field,                      # 排序字段
+            "page" => $page,                       # 当前页码
+            "pages" => ceil($total / $perpage),     # 总页数
+            "perpage" => $perpage,                    # 每页数量
+            "total" => $total,                      # 总数量
+            "sort" => $sort,                       # 排序方式
+            "field" => $field,                      # 排序字段
         ];
         $res['meta'] = $meta;
         $res['data'] = $data;
@@ -1105,13 +1155,13 @@ class MetronController extends BaseController
             case 'paylist':
                 $table = Paylist::find($id);
 
-                if($table->status === 1) {
-                    $res = ['ret' => 0, 'msg' =>'已到账的订单无法删除'];
+                if ($table->status === 1) {
+                    $res = ['ret' => 0, 'msg' => '已到账的订单无法删除'];
                     return $response->getBody()->write(json_encode($res, JSON_UNESCAPED_UNICODE));
                 }
 
                 if ($table->userid !== $this->user->id) {
-                    $res = ['ret' => 0, 'msg' =>'非法操作'];
+                    $res = ['ret' => 0, 'msg' => '非法操作'];
                     return $response->getBody()->write(json_encode($res, JSON_UNESCAPED_UNICODE));
                 }
 
@@ -1119,22 +1169,22 @@ class MetronController extends BaseController
             case('subscribe_log'):
                 $table = UserSubscribeLog::find($id);
 
-                if($table->user_id !== $this->user->id) {
-                    $res = ['ret' => 0, 'msg' =>'非法操作'];
+                if ($table->user_id !== $this->user->id) {
+                    $res = ['ret' => 0, 'msg' => '非法操作'];
                     return $response->getBody()->write(json_encode($res, JSON_UNESCAPED_UNICODE));
                 }
                 break;
             default:
-                $res = ['ret' => 0, 'msg' =>'删除失败'];
+                $res = ['ret' => 0, 'msg' => '删除失败'];
                 return $response->getBody()->write(json_encode($res, JSON_UNESCAPED_UNICODE));
                 break;
         }
 
         if (!$table->delete()) {
-            $res = ['ret' => 0, 'msg' =>'删除失败'];
+            $res = ['ret' => 0, 'msg' => '删除失败'];
             return $response->getBody()->write(json_encode($res, JSON_UNESCAPED_UNICODE));
         }
-        $res = ['ret' => 1, 'msg' =>'删除成功'];
+        $res = ['ret' => 1, 'msg' => '删除成功'];
         return $response->getBody()->write(json_encode($res, JSON_UNESCAPED_UNICODE));
     }
 
@@ -1159,7 +1209,7 @@ class MetronController extends BaseController
         $header[] = 'Accept-Language: zh-CN,zh;q=0.9,und;q=0.8,en;q=0.7';
 
         $curl = curl_init();  //初始化curl
-        curl_setopt($curl, CURLOPT_URL,$url); //抓取指定网页
+        curl_setopt($curl, CURLOPT_URL, $url); //抓取指定网页
         curl_setopt($curl, CURLOPT_HEADER, 0);    //显示header
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);    //要求结果为字符串且输出到屏幕上
         curl_setopt($curl, CURLOPT_POST, 1);  //post提交方式
@@ -1186,13 +1236,13 @@ class MetronController extends BaseController
         $res_array = json_decode($done, true);
 
         if ($res_array['authType'] == 'sa') {
-            $res = [ 'ret' => 1, 'code' => 'sa', 'msg' => '账号状态正常'];
+            $res = ['ret' => 1, 'code' => 'sa', 'msg' => '账号状态正常'];
         }
         if ($res_array['serviceErrors'][0]['code'] == '-20209') {
-            $res = [ 'ret' => 0, 'code' => '-20209', 'msg' => 'Apple ID 已被锁定'];
+            $res = ['ret' => 0, 'code' => '-20209', 'msg' => 'Apple ID 已被锁定'];
         }
         if ($res_array['serviceErrors'][0]['code'] == '-20101') {
-            $res = [ 'ret' => 0, 'code' => '-20101', 'msg' => 'Apple ID 或密码不正确'];
+            $res = ['ret' => 0, 'code' => '-20101', 'msg' => 'Apple ID 或密码不正确'];
         }
 
         return $response->getBody()->write(json_encode($res, JSON_UNESCAPED_UNICODE));
@@ -1212,7 +1262,7 @@ class MetronController extends BaseController
         $mode = $request->getParam('filter_mode');
         $sort = explode("-", $request->getParam('filter_sort'));
         $link = Link::where('type', 11)->where('userid', $user->id)->first();
-        if ($link==null){
+        if ($link == null) {
             return $response->getBody()->write(json_encode(['ret' => 0, 'msg' => '您的订阅异常, 请尝试重置订阅']));
         }
         $rule = json_decode($link->filter, true);
@@ -1238,9 +1288,9 @@ class MetronController extends BaseController
                 break;
         }
 
-        $rule['sort'] = [ 'type' => $sort[0], 'value' => $sort[1] ];
+        $rule['sort'] = ['type' => $sort[0], 'value' => $sort[1]];
         if (MetronSetting::get('nodes_miniName') === true) {
-            $rule['mininame'] = (int) $request->getParam('filter_mininame');
+            $rule['mininame'] = (int)$request->getParam('filter_mininame');
         }
 
         $link->filter = json_encode($rule);
@@ -1256,10 +1306,12 @@ class MetronController extends BaseController
      */
     public function ajax_datachart($request, $response, $args)
     {
-        $name   = $args['name'];                        # 得到表名
-        $key    = $request->getParam('key');            # 得到 Key
-        $user   = $this->user;                          # 得到用户
-        if ($user == null || !$user->isLogin) { return 0; }
+        $name = $args['name'];                        # 得到表名
+        $key = $request->getParam('key');            # 得到 Key
+        $user = $this->user;                          # 得到用户
+        if ($user == null || !$user->isLogin) {
+            return 0;
+        }
 
         $data = [];
         switch ($name) {
@@ -1267,15 +1319,15 @@ class MetronController extends BaseController
                 $logs = TrafficLog::where('user_id', $user->id)->where('log_time', '>', time() - 3 * 86400)->orderBy('id', 'desc')->get();
                 foreach ($logs as $log) {
                     if (!isset($data[$log->node_id])) {
-                        $dataarr['node_name']   = $log->node()->name;
-                        $dataarr['ud']          = ($log->u+$log->d)*$log->rate;
-                        $dataarr['traffic']     = Tools::flowAutoShow($dataarr['ud']);
-                        $dataarr['mb']          = round($dataarr['ud']/1048576, 2);
-                        $data[$log->node_id]    = $dataarr;
+                        $dataarr['node_name'] = $log->node()->name;
+                        $dataarr['ud'] = ($log->u + $log->d) * $log->rate;
+                        $dataarr['traffic'] = Tools::flowAutoShow($dataarr['ud']);
+                        $dataarr['mb'] = round($dataarr['ud'] / 1048576, 2);
+                        $data[$log->node_id] = $dataarr;
                     } else {
-                        $data[$log->node_id]['ud']          = ($log->u+$log->d)*$log->rate + $data[$log->node_id]['ud'];
-                        $data[$log->node_id]['traffic']     = Tools::flowAutoShow($data[$log->node_id]['ud']);
-                        $data[$log->node_id]['mb']          = round($data[$log->node_id]['ud']/1048576, 2);
+                        $data[$log->node_id]['ud'] = ($log->u + $log->d) * $log->rate + $data[$log->node_id]['ud'];
+                        $data[$log->node_id]['traffic'] = Tools::flowAutoShow($data[$log->node_id]['ud']);
+                        $data[$log->node_id]['mb'] = round($data[$log->node_id]['ud'] / 1048576, 2);
                     }
                 }
                 foreach ($data as $da => $ta) {
@@ -1283,7 +1335,7 @@ class MetronController extends BaseController
                         unset($data[$da]);
                     }
                 }
-                if ( empty($data) ) {
+                if (empty($data)) {
                     $res['ret'] = 0;
                     $res['msg'] = '暂无记录';
                     return $response->getBody()->write(json_encode($res));
@@ -1304,7 +1356,9 @@ class MetronController extends BaseController
     public function changeTheme($request, $response, $args)
     {
         $user = $this->user;
-        if ($user == null || !$user->isLogin) { return 0; }
+        if ($user == null || !$user->isLogin) {
+            return 0;
+        }
 
         $type = $request->getParam('type');
 
