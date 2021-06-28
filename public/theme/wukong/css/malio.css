@@ -1,0 +1,143 @@
+.pagination-render a {
+  color: #6574f7;
+  background: #f9fafe;
+  border-radius: 3px;
+  margin: 0 3px;
+  font-weight: 600;
+  border-color: transparent;
+  position: relative;
+  display: block;
+  padding: .5rem .75rem;
+  line-height: 1.25;
+  border: 1px solid #f9fafe;
+}
+
+.pagination-render a:hover {
+  background-color: #6777ef;
+  color: #fff;
+  border-color: transparent;
+  text-decoration: none;
+}
+
+.pagination-render span {
+  color: #6574f7;
+  background: #f9fafe;
+  border-radius: 3px;
+  margin: 0 3px;
+  font-weight: 600;
+  border-color: transparent;
+  position: relative;
+  display: block;
+  padding: .5rem .75rem;
+  line-height: 1.25;
+  cursor: pointer;
+  border: 1px solid #f9fafe;
+}
+
+.pagination-render .disabled {
+  cursor: auto;
+  pointer-events: none;
+}
+
+.pagination-render .active span {
+  background-color: #6777ef;
+  color: white;
+  border-color: #6777ef;
+}
+
+@font-face {
+    font-family: 'malio';
+    src:  url('/theme/malio/fonts/malio-icons.eot?k8g547');
+    src:  url('/theme/malio/fonts/malio-icons.eot?k8g547#iefix') format('embedded-opentype'),
+      url('/theme/malio/fonts/malio-icons.ttf?k8g547') format('truetype'),
+      url('/theme/malio/fonts/malio-icons.woff?k8g547') format('woff'),
+      url('/theme/malio/fonts/malio-icons.svg?k8g547#malio-icons') format('svg');
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  [class^="malio-"], [class*=" malio-"] {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'malio' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+  
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  .malio-surge:before {
+    content: "\e900";
+  }
+  .malio-quantumult:before {
+    content: "\e901";
+  }
+  .malio-surfboard:before {
+    content: "\e902";
+  }
+  .malio-shadowrocket:before {
+    content: "\e903";
+  }
+  .malio-clash:before {
+    content: "\e905";
+  }
+  .malio-crisp:before {
+    content: "\e906";
+  }
+  .malio-mac:before {
+    content: "\e907";
+  }
+  .malio-atom:before {
+    content: "\e90c";
+  }
+  .malio-linux:before {
+    content: "\e90b";
+  }
+  .malio-qrcode:before {
+    content: "\e908";
+  }
+  .malio-wechat-pay:before {
+    content: "\e909";
+  }
+  .malio-alipay:before {
+    content: "\e90a";
+  }
+  .malio-finder:before {
+    content: "\e904";
+  }
+  .malio-v2rayng:before {
+    content: "\e90d";
+  }
+  .malio-kitsunebi:before {
+    content: "\e90e";
+  }
+  .malio-ssr:before {
+    content: "\e90f";
+  }
+  .malio-unionpay:before {
+    content: "\e910";
+  }
+  .malio-unionpay-color .path1:before {
+    content: "\e911";
+    color: rgb(226, 24, 54);
+  }
+  .malio-unionpay-color .path2:before {
+    content: "\e912";
+    margin-left: -1em;
+    color: rgb(0, 68, 124);
+  }
+  .malio-unionpay-color .path3:before {
+    content: "\e913";
+    margin-left: -1em;
+    color: rgb(0, 123, 132);
+  }
+  .malio-unionpay-color .path4:before {
+    content: "\e914";
+    margin-left: -1em;
+    color: rgb(254, 254, 254);
+  }

@@ -1,0 +1,807 @@
+/*============================================
+
+    Template: Mason - Multipurpose Landing Page Template
+	Css Name: Main Style
+	Version: 1.1
+	 
+
+==============================================
+    
+    CSS INDEX
+    ===================
+	
+    1. IMPORT GOOGLE FONT
+	2. HEADER AREA
+	3. SLIDER AREA
+	4. SERVICE AREA
+	5. ABOUT AREA
+	6. SECTION HEADDING STYLE
+	7. AWESOME FEATURES AREA
+	8. HOW WORK AREA
+	9. FUN FACT AREA
+	10. DOWNLOAD BUTTON AREA
+	11. PRICING AREA
+	12. TESTIMONIAL AREA
+	13. TEAM AREA
+	14. SUBCRIBE FORM AREA
+	15. CONTACT FORM AREA
+	16. CONTACT INFORMATION AREA
+	17. CONTACT SOCIAL AREA
+	18. HOMEPAGE TWO
+	19. VIDEO BACKGROUND AREA
+	20. ScreenShot Area
+	21. ScrollUp
+	
+===========================================================*/
+
+/* ============= 1. IMPORT GOOGLE FONT ============= */
+ @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800');
+
+/* ============= 2. HEADER AREA ============= */
+header {
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 4;
+}
+#navigation {
+    padding: 0 15px;
+}
+.navbar {
+    border-radius: 0;
+    margin: 0;
+    padding-top: 30px;
+    -webkit-transition: all 0.7s ease 0s;
+    transition: all 0.5s ease 0s;
+}
+.navbar.navbar-fixed-top {
+    background: rgba(0, 0, 0, 0) -webkit-linear-gradient(left, #ff5f6d 0%, #ffb270 100%) repeat scroll 0 0;
+    background: rgba(0, 0, 0, 0) linear-gradient(to right, #ff5f6d 0%, #ffb270 100%) repeat scroll 0 0;
+    box-shadow: 0 0 20px -10px #000;
+    padding: 0;
+}
+.navbar-brand {
+  padding: 19px 0;
+}
+.navbar > .container .navbar-brand, .navbar > .container-fluid .navbar-brand {
+  margin-left: 0;
+}
+.navbar-brand > img {
+    -webkit-transition: all 0.3s ease 0s;
+    transition: all 0.3s ease 0s;
+    width: 100%;
+}
+.navbar-fixed-top .navbar-brand > img {
+    width: 85%;
+}
+.navbar-nav li a {
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 20px;
+  transition: all 0.3s ease 0s;
+}
+.nav > li > a:focus, .nav > li > a:hover, .nav > .active > a {
+  background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+  opacity: 0.6;
+}
+.navbar-nav li a.download-btn {
+  border: 1px solid #fff;
+  border-radius: 4px;
+  margin-top: 10px;
+  padding: 8px 30px;
+  transition:.3s;
+}
+.navbar-nav li a.download-btn:hover {
+  background: #f75160 none repeat scroll 0 0;
+  border-color: #f75160;
+  box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.1);
+  opacity: 1;
+}
+
+/* ============= 3. SLIDER AREA ============= */
+.hero-area {
+  background-image: url(/theme/malio/imgm/slider/1.png);
+  background-size: cover;
+  background-position: center center;
+  height: 100vh;
+  z-index: 1;
+  position: relative;
+  color: #fff;
+}
+.parallax {
+  background-attachment: fixed;
+}
+.slider {
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  display: -webkit- flex;
+  display: -moz- flex;
+  display: -ms- flex;
+  display: -o- flex;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 100%;
+}
+.slider h1 {
+  color: #fff;
+  margin-bottom: 20px;
+  text-transform: capitalize;
+}
+.slider p {
+  color: #fff;
+  font-size: 18px;
+  margin: 0 0 35px;
+  padding-right: 28%;
+}
+.slider-thumb {
+  position: absolute;
+  bottom: 0;
+  right: 0%;
+  z-index: 3;
+}
+.hero-btn {
+  background: #ff5f6d none repeat scroll 0 0;
+  border-radius: 4px;
+  color: #fff;
+  display: inline-block;
+  font-size: 16px;
+  font-weight: 700;
+  padding: 15px 50px;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: all 0.3s ease 0s;
+  -webkit-box-shadow: 0px 0px 30px 0px rgba(0,0,0,0.1);
+  -moz-box-shadow: 0px 0px 30px 0px rgba(0,0,0,0.1);
+  box-shadow: 0px 0px 30px 3px rgba(0,0,0,0.1);
+}
+.hero-btn:hover, .about-content > .hero-btn:hover {
+  background-color: #f75160;
+  color: #fff;
+  text-decoration: none;
+}
+.hero-text p.he-p {
+  padding: 0 22%;
+  line-height: 30px;
+}
+
+/* Slider Nav */
+.background-area .owl-nav div {
+  background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  color: #ffffff;
+  font-size: 38px;
+  height: 50px;
+  left: -56px;
+  line-height: 45px;
+  margin-top: -25px;
+  position: absolute;
+  text-align: center;
+  top: 50%;
+  transition: all 0.4s ease 0s;
+  width: 50px;
+  z-index: 999;
+}
+.background-area .owl-nav .owl-next {
+    left: auto;
+    right: -56px;
+}
+.background-area:hover .owl-nav div {
+    left: 10px;
+}
+.background-area:hover .owl-nav .owl-next {
+    left: auto;
+    right: 10px;
+}
+.background-area .owl-nav div:hover {
+    background: rgba(255, 255, 255, 0.4) none repeat scroll 0 0;
+}
+.image-1 {background-image: url("/theme/malio/imgm/slider/4.png");}
+.slide-animation {
+  left: -15px;
+  position: absolute;
+  z-index:-9;
+}
+/* ============= 4. SERVICE AREA ============= */
+.service-area {}
+.single-service {
+  padding: 110px 25px 105px;
+  -webkit-transition: .3s;
+  transition: .3s;
+}
+.single-service h2 {
+  font-size: 24px;
+  padding-top: 15px;
+}
+.single-service:hover {
+  box-shadow: 0 0px 20px 0 rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: 0 0px 20px 0 rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0 0px 20px 0 rgba(0, 0, 0, 0.1);
+  transform: translateY(-5px);
+  -webkit-transition: .3s;
+  transition: .3s;
+}
+.service-icon {
+  float: left;
+  margin-right: 20px;
+  margin-top: 40px;
+}
+.service-content {
+  display: block;
+  overflow: hidden;
+}
+
+/* ============= 5. ABOUT AREA ============= */
+.about-content > h2 {
+  margin-bottom: 35px;
+}
+.about-content > p {
+  margin: 0 0 25px;
+}
+.about-content > .hero-btn {
+  background: #ff5f6d none repeat scroll 0 0;
+  border-radius: 4px;
+  box-shadow: 0 0 20px 0 rgba(255, 95, 109, 0.4);
+  -webkit-box-shadow: 0 0 20px 0 rgba(255, 95, 109, 0.4);
+  -moz-box-shadow: 0 0 20px 0 rgba(255, 95, 109, 0.4);
+  color: #fff;
+  display: inline-block;
+  font-size: 16px;
+  font-weight: 700;
+  padding: 15px 40px;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: all 0.3s ease 0s;
+  margin-top: 25px;
+}
+.about-content > .hero-btn i {
+  margin-right: 5px;
+}
+
+/* ============= 6. SECTION HEADDING STYLE ============= */
+.section-heading {
+  margin: 0 auto;
+  width: 48%;
+}
+.section-heading h2 {
+  margin-bottom: 24px;
+  position: relative;
+  text-transform: capitalize;
+  line-height: 30px;
+}
+.section-heading p {
+    margin-bottom: 10px;
+}
+
+/* ============= 7. AWESOME FEATURES AREA ============= */
+.awesome-feature {
+  border-radius: 10px;
+  margin-bottom: 20px;
+  padding: 40px 0 35px;
+  transition: all 0.3s ease 0s;
+}
+.awesome-feature:hover{background: #ff5f6d none repeat scroll 0 0;}
+.awesome-feature-icon span {
+    display: block;
+    height: 60px;
+    margin-left: 10px;
+    position: relative;
+    width: 60px;
+	margin:0 auto;
+}
+.awesome-feature-icon span:after {
+    background: rgba(0, 0, 0, 0) -webkit-linear-gradient(top, #ff5f6d 0%, #ffb270 100%) repeat scroll 0 0;
+    background: rgba(0, 0, 0, 0) linear-gradient(to top, #ff5f6d 0%, #ffb270 100%) repeat scroll 0 0;
+    border-radius: 60px;
+    content: "";
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 0;
+}
+.awesome-feature-icon i {
+    background-color: #f5f7fa;
+    border-radius: 60px;
+    color: #4c5462;
+    display: inline-block;
+    font-size: 24px;
+    height: calc(100% - 2px);
+    left: 0px;
+    line-height: 58px;
+    position: relative;
+    text-align: center;
+    top: 1px;
+    -webkit-transition: all 0.3s ease 0s;
+    transition: all 0.3s ease 0s;
+    width: calc(100% - 2px);
+    z-index: 1;
+}
+.awesome-feature:hover .awesome-feature-icon i {
+  background-color: #ff5f6d;
+  box-shadow: 0 0 4px 0px rgba(0, 0, 0, 0.20);
+  -webkit-box-shadow: 0 0 4px 0px rgba(0, 0, 0, 0.20);
+  -moz-box-shadow: 0 0 4px 0px rgba(0, 0, 0, 0.20);
+  color: #fff;
+}
+.awesome-feature:hover .awesome-feature-icon span::after {
+  background: #ff5f6d none repeat scroll 0 0;
+}
+.awesome-feature-details {
+  margin-top: 20px;
+}
+.awesome-feature-details h5 {
+  font-size: 20px;
+  font-weight: 400;
+  text-transform: capitalize;
+  margin: 0 0 15px;
+  -webkit-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
+}
+.awesome-feature-details p {
+  margin: 0;
+  padding: 0 50px;
+  -webkit-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
+}
+.awesome-feature:hover .awesome-feature-details h5,.awesome-feature:hover .awesome-feature-details p{color:#fff;}
+
+
+/* ============= 8. HOW WORK AREA ============= */
+.how-work-tab ul {
+  background: #fff none repeat scroll 0 0;
+  box-shadow: 0px 0 5px 0px rgba(0, 0, 0, 0.15);
+  -moz-box-shadow: 0px 0 5px 0px rgba(0, 0, 0, 0.15);
+  -webkit-box-shadow: 0px 0 5px 0px rgba(0, 0, 0, 0.15);
+  display: flex;
+}
+.how-work-tab ul li {
+  height: 50px;
+  line-height: 50px;
+  width: 33.33%;
+}
+.how-work-tab ul li a {
+  color: #3e3e3e;
+  display: block;
+  font-size: 20px;
+  font-weight: 600;
+  text-align: center;
+}
+.how-work-tab ul li.active a {
+  background:#ff5f6d;
+  color: #fff;
+}
+.how-work-tab .tab-content p {
+  margin-bottom: 25px;
+}
+
+/* ============= 9. FUN FACT AREA ============= */
+.single-fact h5 {
+    color: #fff;
+    font-weight: 600;
+    margin-bottom: 0px;
+	font-size:20px;
+}
+.single-fact h2 {
+  color: #fff;
+  font-size: 40px;
+  margin-bottom: 15px;
+  line-height: 35px;
+}
+
+/* ============= 10. DOWNLOAD BUTTON AREA ============= */
+.download-option-btn ul li a {
+  background: #fff none repeat scroll 0 0;
+  border-radius: 10px;
+  box-shadow: 0 0 30px 0px rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: 0 0 30px 0px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0 0 30px 0px rgba(0, 0, 0, 0.1);
+  color: #3e3e3e;
+  display: inline-block;
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0 14px;
+  padding: 18px 40px;
+  text-decoration: none;
+  text-transform: capitalize;
+  transition: all 0.3s ease 0s;
+}
+.download-option-btn ul li a i{color:#ff5f6d;margin-right:5px;transition:.3s;}
+.download-option-btn ul li a:hover i,.download-option-btn ul li a.active:hover i{color:#fff;}
+.download-option-btn ul li a:hover,.download-option-btn ul li a.active:hover{background:#ff5f6d;color:#fff;}
+.download-option-btn ul li a.active{background:#ff5f6d;color:#fff;}
+.download-option-btn ul li a.active i{color:#fff;}
+
+/* ============= 11. PRICING AREA ============= */
+.pricing-single {
+  border-radius: 10px;
+  box-shadow: 0 0 30px 0px rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: 0 0 30px 0px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0 0 30px 0px rgba(0, 0, 0, 0.1);
+  padding-top: 65px;
+  transition: all 0.4s ease 0s;
+}
+.price-titel h4 {
+  letter-spacing: 2px;
+}
+.pricing-price > span {
+  color: #3e3e3e;
+  display: block;
+  font-size: 50px;
+  font-weight: 300;
+  padding: 20px 0 22px;
+}
+.price-decs ul li {
+  color: #999999;
+  display: block;
+  font-size: 16px;
+  line-height: 38px;
+}
+.ordr-btn > a {
+  background: #fff none repeat scroll 0 0;
+  box-shadow: 0 0 30px 0px rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: 0 0 30px 0px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0 0 30px 0px rgba(0, 0, 0, 0.1);
+  display: inline-block;
+  font-size: 15px;
+  font-weight: 600;
+  padding: 24px 45px;
+  transition: all 0.4s ease 0s;
+}
+.ordr-btn.uppercase > a:hover {
+  opacity: 0.5;
+}
+.price-decs {
+  padding-bottom: 40px;
+}
+.pricing-single:hover,.pricing-single.active{background:#ff5f6d;color:#fff;}
+.pricing-single:hover .pricing-price > span,.pricing-single:hover .price-decs ul li,.pricing-single:hover .price-titel h4{color:#fff;}
+.pricing-single.active .pricing-price > span,.pricing-single.active .price-decs ul li,.pricing-single.active .price-titel h4{color:#fff;}
+.pricing-single:hover .ordr-btn > a,.pricing-single.active .ordr-btn > a{background:#ff5f6d;color:#fff;display:block;}
+
+/* ============= 12. TESTIMONIAL AREA ============= */
+.testimonial-desc p {
+  color: #fff;
+  font-size: 20px;
+  font-weight: 300;
+  line-height: 35px;
+  margin: 0 0 30px;
+  padding: 0 124px;
+}
+.testimonial-desc h4 {
+  color: #fff;
+  font-size: 24px;
+  margin: 0;
+}
+.testimonial-active.owl-theme .owl-controls {
+  display: none!important;
+}
+
+/* ============= 13. TEAM AREA ============= */
+.team-single {
+  display: block;
+  position: relative;
+  transition:.3s;
+  overflow:hidden;
+  padding-right: 1px;
+}
+.team-single img {
+  transform: scaleY(1);
+  transition: all 0.7s ease-in-out 0s;
+}
+.team-single:hover img {
+  transform: scale(1.2);
+}
+.team-single:hover {
+  box-shadow: 0 0 30px 0px rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: 0 0 30px 0px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0 0 30px 0px rgba(0, 0, 0, 0.1);
+  border-radius:10px;
+}
+.team-overlay {
+  background: #ff5f6d none repeat scroll 0 0;
+  box-shadow: 0 0 30px 0px rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: 0 0 30px 0px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0 0 30px 0px rgba(0, 0, 0, 0.1);
+  padding: 22px 0 12px;
+  position: absolute;
+  top: 40%;
+  transform: translateY(-50%);
+  width: 100%;
+  opacity:0;
+  visibility:hidden;
+  transition:.3s;
+}
+.team-single:hover .team-overlay{opacity:1;visibility:visible;top:50%;}
+.team-overlay > h5 {
+  color: #fff;
+  font-weight: 600;
+}
+.team-overlay h6 {
+  color: #fff;
+}
+
+/* ============= 14. SUBCRIBE FORM AREA ============= */
+.subcribe-form input {
+  background: transparent none repeat scroll 0 0;
+  border: 1px solid #ff5f6d;
+  border-radius: 5px;
+  box-shadow: none;
+  color: #444444;
+  font-size: 12px;
+  font-weight: normal;
+  height: 45px;
+  margin-right: 15px;
+  padding-left: 20px;
+  width: 30%;
+}
+.subcribe-form button {
+  background: #ff5f6d none repeat scroll 0 0;
+  border: medium none;
+  border-radius: 5px;
+  color: #fff;
+  font-weight: 700;
+  height: 45px;
+  text-transform: uppercase;
+  top: 0;
+  width: 155px;
+  transition:.3s;
+  box-shadow: 0 0 20px 0px rgba(255, 95, 109, 0.4);
+  -webkit-box-shadow: 0 0 20px 0px rgba(255, 95, 109, 0.4);
+  -moz-box-shadow: 0 0 20px 0px rgba(255, 95, 109, 0.4);
+}
+.subcribe-form button:hover{background:#F55160;}
+
+/* Mail Chimp */
+.mailchimp-alerts {margin-top: 15px;}
+.mailchimp-submitting{color:#31708f}
+.mailchimp-success{color:#3c763d;}
+.mailchimp-error{color:#a94442;}
+
+/* ============= 15. Contact Form Area ============= */
+.contact-form {
+  background: #fff none repeat scroll 0 0;
+  box-shadow: 0 0 30px 0px rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: 0 0 30px 0px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0 0 30px 0px rgba(0, 0, 0, 0.1);
+  padding: 125px 70px;
+  width: 60%;
+  float:left;
+}
+.form-control {
+  background: transparent none repeat scroll 0 0;
+  border: 1px solid #eee;
+  border-radius: 5px;
+  box-shadow: none;
+  color: #333;
+  height: 45px;
+  padding: 10px 18px;
+  transition: all 0.3s ease 0s;
+}
+.form-control:focus {
+  box-shadow: 0 0 30px 0px rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: 0 0 30px 0px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0 0 30px 0px rgba(0, 0, 0, 0.1);
+  outline: 0 none;
+  border:none;
+}
+.description textarea { height: 100px }
+.form-group  button { border: none }
+.btn-contact-bg {
+  background: #ff5f6d none repeat scroll 0 0;
+  border-radius: 5px;
+  box-shadow: 0 0 20px 0px rgba(255, 95, 109, 0.4);
+  -webkit-box-shadow: 0 0 20px 0px rgba(255, 95, 109, 0.4);
+  -webkit-box-shadow: 0 0 20px 0px rgba(255, 95, 109, 0.4);
+  color: #fff;
+  display: inline-block;
+  font-size: 15px;
+  font-weight: 600;
+  text-transform: uppercase;
+  transition: all 0.3s ease 0s;
+  width: 150px;
+}
+.btn-contact-bg:hover,
+.btn-contact-bg:focus {
+  background: #f55160;
+  color: #fff;
+}
+#map { height: 530px; }
+
+/* ============= 16. CONTACT INFORMATION AREA ============= */
+.single-address {
+  display: block;
+  position: relative;
+  margin-bottom:65px;
+}
+.single-address i {
+  color: #fff;
+  display: block;
+  font-size: 36px;
+  line-height: 50px;
+}
+.single-address .media-left {
+  left: 65px;
+  padding: 0;
+  position: absolute;
+}
+.single-address p {
+color:#fff;
+margin:0;
+}
+
+.conct-border {
+  border-bottom: 1px solid rgba(250, 87, 101, 0.9);
+  display: block;
+  overflow: hidden;
+}
+.conct-border.two {
+  border-bottom: 1px solid rgba(250, 87, 101, 0.2);
+}
+
+/* ============= 17. Contact Social Area ============= */
+.contact-social ul li a {
+  background: #fff none repeat scroll 0 0;
+  border-radius: 100%;
+  color: #000000;
+  display: block;
+  font-size: 15pt;
+  height: 45px;
+  line-height: 45px;
+  margin-right: 15px;
+  text-align: center;
+  transition: all 0.4s ease 0s;
+  width: 45px;
+  margin: 0 12px;
+}
+.contact-social ul li a:hover{color:#fff;background:#ff5f6d;}
+.copyright-text p {
+  color: #fff;
+  font-size: 13px;
+  margin-bottom: 0;
+  padding: 0;
+}
+.copyright-text p a {
+  color: #fff;
+  font-weight:700;
+}
+
+/* ============= 18. HOMEPAGE TWO ============= */
+.banner-video-btn {
+  bottom: 45px;
+  display: block;
+  left: 7%;
+  position: absolute;
+  width: auto;
+}
+.banner-video-btn .video-popup {
+  color: #fff;
+  transition:.4s;
+}
+.banner-video-btn .video-popup:hover{color:#3e3e3e;}
+.banner-video-btn .video-popup i {
+  float: left;
+  font-size: 24px;
+  line-height: 35px;
+}
+.banner-video-btn .video-popup > span {
+  float: left;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 34px;
+  margin-left: 10px;
+}
+.background-content, .slider-carousel, .slider-full-carousel {
+  z-index: 3;
+}
+.background-area {
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+.image-1, .image-2, .image-3 {
+  background-attachment: scroll;
+  background-clip: initial;
+  background-color: rgba(0, 0, 0, 0);
+  background-origin: initial;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+.single-carousel {
+  background-size: cover;
+}
+.background-content {
+  position: relative;
+}
+.banner-image {
+  bottom: 70px;
+  padding-left: 30px;
+  position: absolute;
+  right: 0;
+  width: 50%;
+}
+.banner-image.two {
+  bottom: 70px;
+  padding-left: 10px;
+  position: absolute;
+  right: 0;
+  width: 22%;
+}
+.background-content {
+  position: relative;
+}
+
+/* ============= 19. VIDEO BACKGROUND AREA ============= */
+.player.mb_YTPlayer {
+  height: 100vh;
+  width: 100%;
+}
+.buttonBar {
+  display: none;
+}
+
+/* ============= 20. ScreenShot Area ============= */
+.screenshot-slider {
+  margin-left: -20px;
+  margin-right: -20px;
+}
+.screenshot-slider .slick-list {
+  padding-left: 236px !important;
+  padding-right: 236px !important;
+}
+.single-screenshot {transition:.4s;}
+.single-screenshot.slick-active {
+  -webkit-transform: scale(1.25);
+  -ms-transform: scale(1.25);
+  transform: scale(1.25);
+  z-index: 9;
+}
+.single-screenshot.slick-center {
+  -webkit-transform: scale(1.5);
+  -ms-transform: scale(1.5);
+  transform: scale(1.5);
+  z-index: 99 !important;
+}
+
+.single-screenshot .image {
+  box-shadow: 10px 10px 20px 5px rgba(0, 0, 0, 0.2);
+  display: block;
+}
+.single-screenshot .image img {}
+.ss2-prev {
+  left: -80px;
+}
+.ss2-next {
+  right: -80px;
+}
+.screenshot-slider .slick-list {
+  padding-top: 128px!important;
+}
+
+/* ============= 21. ScrollUp ============= */
+#scrollUp {
+  background: #FA5765 none repeat scroll 0 0;
+  border-radius: 0px;
+  bottom: 15px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+  color: #fff;
+  font-size: 28px;
+  height: 40px;
+  line-height: 35px;
+  position: fixed;
+  right: 15px;
+  text-align: center;
+  transition: all 0.3s ease 0s;
+  width: 40px;
+  z-index: 200;
+}
+#scrollUp:hover{background:#3e3e3e;}
+

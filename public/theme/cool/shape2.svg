@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22">
+  <defs>
+    <style>
+      .cls-1 {
+        font-size: 25px;
+        fill: #27eac8;
+        text-anchor: middle;
+        font-family: Roboto;
+      }
+    </style>
+  </defs>
+  <text id="_" data-name="+" class="cls-1" transform="matrix(1.437, 1.434, -1.437, 1.434, -0.832, 23.066)"><tspan x="0">+</tspan></text>
+</svg>

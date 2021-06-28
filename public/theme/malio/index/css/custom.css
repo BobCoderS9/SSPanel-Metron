@@ -1,0 +1,77 @@
+/**
+ *
+ * You can write your CSS code here, DO NOT touch the default JavaScript file
+ * because it will make it harder for you to update.
+ * 
+ */
+
+/*# sourceMappingURL=custom.css.map */
+
+.licenses {
+	margin-top: 30px;
+}
+
+.licenses .license {
+	display: flex;
+	border-radius: 3px;
+	overflow: hidden;
+	margin-bottom: 20px;
+}
+.licenses .license .license-price {
+	font-size: 40px;
+	flex-shrink: 0;
+	font-weight: 700;
+	font-family: 'Segoe UI';
+	width: 200px;
+	background-color: #394eea;
+	padding: 30px;
+	text-align: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.licenses .license .license-price i {
+	font-size: 40px;
+}
+.licenses .license .license-price .text-small {
+	opacity: .8;
+}
+.licenses .license .btn {
+	margin-top: 20px;
+	border-width: 2px;
+}
+.licenses .license.bg-primary .btn {
+	background-color: #fff;
+	color: #4052e4;
+	box-shadow: 0 4px 8px rgba(0,0,0,.15);
+	border-color: transparent;
+}
+.licenses .license.bg-primary .btn:hover {
+	background-color: transparent;
+	color: #fff;
+	box-shadow: none;
+	border-color: #fff !important;
+}
+.licenses .license.bg-primary .btn.btn-progress {
+	background-image: url('../dist/img/spinner-primary.svg');
+}
+.licenses .license .license-detail {
+	padding: 30px;
+}
+.licenses .license .license-title {
+	font-size: 20px;
+	margin-bottom: 5px;
+	font-weight: 600;
+}
+.licenses .license p {
+	font-size: 14px;
+	font-weight: 400;
+	margin-bottom: 0;
+}
+.bg-grey {
+	background-color: #f2f7fb !important;
+}
+
+.card form {
+	width: 100%;
+}

@@ -140,7 +140,7 @@ return function (SlimApp $app) {
         $this->post('/changetheme',             App\Controllers\MetronController::class . ':changeTheme');
         $this->post('/setting/{page}',          App\Controllers\MetronController::class . ':updateSetting');
         $this->post('/packageconversion',       App\Controllers\MetronController::class . ':PackageConversion');
-        $this->post('/advance_feset_flow',      App\Controllers\MetronController::class . ':ad vanceResetFlow');
+        $this->post('/advance_feset_flow',      App\Controllers\MetronController::class . ':advanceResetFlow');
         $this->post('/account_check',           App\Controllers\MetronController::class . ':AccountCheck');
         $this->post('/node_filter',             App\Controllers\MetronController::class . ':nodeFilterSave');
 
