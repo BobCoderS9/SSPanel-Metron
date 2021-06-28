@@ -3047,7 +3047,7 @@
             class="CodeMirror-activeline" style="position: relative;"><div
             class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div
             class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre
-            class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">首先在 宝塔面板 - 网站 - PHP命令行版本 需要修改成有加载 metron.so 扩展的PHP版本, 如果后续有安装新的PHP, 需要重新修改保存</span></pre></div><pre
+            class=" CodeMirror-line " role="presentation"></pre></div><pre
             class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">每日任务 (必须)</span></pre><pre
             class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span
             cm-text="">​</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation"
@@ -3057,11 +3057,25 @@
             class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">脚本内容：php /www/wwwroot/你的网站目录/xcat Job DailyJob</span></pre><pre
             class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">检测任务 (必须)</span></pre><pre
             class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span
-            cm-text="">​</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation"
+            cm-text="">​</span></span></pre>
+
+        <pre class=" CodeMirror-line " role="presentation"><span role="presentation"
                                                                                                      style="padding-right: 0.1px;">任务类型：Shell 脚本</span></pre><pre
             class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">任务名称：自行填写</span></pre><pre
             class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">执行周期：N分钟 1 分钟</span></pre><pre
-            class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">脚本内容：php /www/wwwroot/你的网站目录/xcat Job CheckJob</span></pre><pre
+            class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">脚本内容：php /www/wwwroot/你的网站目录/xcat Job CheckJob</span></pre>
+
+       <pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">定时检测邮件队列 (必须)</span></pre><pre
+            class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span
+            cm-text="">​</span></span></pre>
+
+    <pre class=" CodeMirror-line " role="presentation"><span role="presentation"
+                                                             style="padding-right: 0.1px;">任务类型：Shell 脚本</span></pre><pre
+            class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">任务名称：自行填写</span></pre><pre
+            class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">执行周期：N分钟 1 分钟</span></pre><pre
+            class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">脚本内容：php /www/wwwroot/你的网站目录/xcat Job SendMail</span></pre>
+
+        <pre
             class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">每日流量报告 (给开启每日邮件的用户发送邮件)</span></pre><pre
             class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span
             cm-text="">​</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation"
