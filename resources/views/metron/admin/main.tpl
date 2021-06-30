@@ -130,7 +130,6 @@
 
                     <a class="waves-attach" data-toggle="collapse" href="#ui_menu_config">配置</a>
                     <ul class="menu-collapse collapse in" id="ui_menu_config">
-                        <li><a href="/admin/bob"><i class="icon icon-lg">important_devices</i>&nbsp;客户端配置</a></li>
                         <li><a href="/admin/config/telegram"><i class="icon icon-lg">supervisor_account</i>&nbsp;Telegram</a></li>
                         <li><a href="/admin/config/register"><i class="icon icon-lg">supervisor_account</i>&nbsp;用户注册</a></li>
                     </ul>

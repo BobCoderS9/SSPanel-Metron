@@ -3,7 +3,6 @@
 
 namespace App\Command;
 
-use App\Controllers\BobClashController;
 use App\Models\Shop;
 use App\Models\User;
 use App\Services\Config;
@@ -34,41 +33,6 @@ class Bob extends Command
                 echo '方法不存在.' . PHP_EOL;
             }
         }
-    }
-
-    public function createClashYaml()
-    {
-        $classs = User::query()->groupBy('class')->pluck('class');
-        $config = require(BASE_PATH . '/config/.bobvpn.php');
-        foreach ($classs as $class) {
-            $user = User::where('class', $class)->first();
-            if ($user) {
-                $ssr_support = true;
-                if (method_exists(URL::class, 'getNew_AllItems')) {
-                    $items = URL::getNew_AllItems($user, [
-                        'type' => 'all',
-                        'emoji' => false,
-                        'is_mu' => 1
-                    ]);
-                }
-                $Proxys = [];
-                foreach ($items as $item) {
-                    $Proxy = AppURI::getClashURI($item, $ssr_support);
-                    if ($Proxy !== null) {
-                        $Proxys[] = $Proxy;
-                    }
-                }
-                $file_path = BASE_PATH . "/public/bob";
-                if (is_dir($file_path) || @mkdir($file_path, 0777)) ;
-                $content = BobClashController::getClashConfs($user, $Proxys, $config['Clash_Profiles']['default']);
-                $filename = $file_path . '/clash_' . $user->class . '.yaml';
-                $myfile = fopen($filename, "w") or die("Unable to open file!");
-                fwrite($myfile, $content);
-                fclose($myfile);
-            }
-        }
-
-        echo('订阅节点文件更新成功！' . PHP_EOL);
     }
 
     public function createUser()
