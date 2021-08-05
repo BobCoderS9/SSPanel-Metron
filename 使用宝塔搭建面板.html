@@ -3032,7 +3032,8 @@
     <blockquote><h3><a name="一-使用宝塔面板的计划任务配置" class="md-header-anchor"></a><span>一、 使用宝塔面板的计划任务配置  </span></h3>
     </blockquote>
     <pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded md-focus" lang=""
-         style="break-inside: unset;"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang=""><div
+         style="break-inside: unset;">
+        <div class="CodeMirror cm-s-inner CodeMirror-wrap" lang=""><div
             style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 4px;"><textarea
             autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0"
             style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div
@@ -3048,117 +3049,138 @@
             class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div
             class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre
             class=" CodeMirror-line " role="presentation"></pre></div><pre
-            class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">每日任务 (必须)</span></pre><pre
+            class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">每日任务 (必须)</span></pre>
+        <pre
             class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span
             cm-text="">​</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation"
                                                                                                      style="padding-right: 0.1px;">任务类型：Shell 脚本</span></pre><pre
             class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">任务名称：自行填写</span></pre><pre
             class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">执行周期：每天 0 小时 0 分钟</span></pre><pre
             class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">脚本内容：php /www/wwwroot/你的网站目录/xcat Job DailyJob</span></pre><pre
-            class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">检测任务 (必须)</span></pre><pre
+            class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">检测任务 (必须)</span></pre>
+
+        <pre
             class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span
             cm-text="">​</span></span></pre>
 
         <pre class=" CodeMirror-line " role="presentation"><span role="presentation"
-                                                                                                     style="padding-right: 0.1px;">任务类型：Shell 脚本</span></pre><pre
-            class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">任务名称：自行填写</span></pre><pre
-            class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">执行周期：N分钟 1 分钟</span></pre><pre
-            class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">脚本内容：php /www/wwwroot/你的网站目录/xcat Job CheckJob</span></pre>
+                                                                 style="padding-right: 0.1px;">任务类型：Shell 脚本</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">任务名称：自行填写</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">执行周期：N分钟 1 分钟</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">脚本内容：php /www/wwwroot/你的网站目录/xcat Job CheckJob</span></pre>
 
        <pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">定时检测邮件队列 (必须)</span></pre><pre
-            class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span
-            cm-text="">​</span></span></pre>
+                class=" CodeMirror-line " role="presentation"><span role="presentation"
+                                                                    style="padding-right: 0.1px;"><span
+                cm-text="">​</span></span></pre>
 
     <pre class=" CodeMirror-line " role="presentation"><span role="presentation"
                                                              style="padding-right: 0.1px;">任务类型：Shell 脚本</span></pre><pre
-            class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">任务名称：自行填写</span></pre><pre
-            class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">执行周期：N分钟 1 分钟</span></pre><pre
-            class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">脚本内容：php /www/wwwroot/你的网站目录/xcat Job SendMail</span></pre>
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">任务名称：自行填写</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">执行周期：N分钟 1 分钟</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">脚本内容：php /www/wwwroot/你的网站目录/xcat Job SendMail</span></pre>
 
         <pre
-            class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">每日流量报告 (给开启每日邮件的用户发送邮件)</span></pre><pre
-            class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span
-            cm-text="">​</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation"
-                                                                                                     style="padding-right: 0.1px;">任务类型：Shell 脚本</span></pre><pre
-            class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">任务名称：自行填写</span></pre><pre
-            class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">执行周期：每天 0 小时 0 分钟</span></pre><pre
-            class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">脚本内容：php /www/wwwroot/你的网站目录/xcat SendDiaryMail</span></pre><pre
-            class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">审计封禁 (建议设置)</span></pre><pre
-            class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span
-            cm-text="">​</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation"
-                                                                                                     style="padding-right: 0.1px;">任务类型：Shell 脚本</span></pre><pre
-            class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">任务名称：自行填写</span></pre><pre
-            class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">执行周期：N分钟 1 分钟</span></pre><pre
-            class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">脚本内容：php /www/wwwroot/你的网站目录/xcat DetectBan</span></pre><pre
-            class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">检测被墙 (可选)</span></pre><pre
-            class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span
-            cm-text="">​</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation"
-                                                                                                     style="padding-right: 0.1px;">任务类型：Shell 脚本</span></pre><pre
-            class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">任务名称：自行填写</span></pre><pre
-            class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">执行周期：N分钟 1 分钟</span></pre><pre
-            class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">脚本内容：php /www/wwwroot/你的网站目录/xcat DetectGFW</span></pre><pre
-            class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">Radius (可选)</span></pre><pre
-            class=" CodeMirror-line " role="presentation"><span role="presentation"
-                                                                style="padding-right: 0.1px;"> </span></pre><pre
-            class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">synclogin</span></pre><pre
-            class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">任务类型：Shell 脚本</span></pre><pre
-            class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">任务名称：自行填写</span></pre><pre
-            class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">执行周期：N分钟 1 分钟</span></pre><pre
-            class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">脚本内容：php /www/wwwroot/你的网站目录/xcat SyncRadius synclogin</span></pre><pre
-            class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span
-            cm-text="">​</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation"
-                                                                                                     style="padding-right: 0.1px;">syncvpn</span></pre><pre
-            class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">任务类型：Shell 脚本</span></pre><pre
-            class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">任务名称：自行填写</span></pre><pre
-            class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">执行周期：N分钟 1 分钟</span></pre><pre
-            class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">脚本内容：php /www/wwwroot/你的网站目录/xcat SyncRadius syncvpn</span></pre><pre
-            class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span
-            cm-text="">​</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation"
-                                                                                                     style="padding-right: 0.1px;">syncnas</span></pre><pre
-            class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">任务类型：Shell 脚本</span></pre><pre
-            class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">任务名称：自行填写</span></pre><pre
-            class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">执行周期：N分钟 1 分钟</span></pre><pre
-            class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">脚本内容：php /www/wwwroot/你的网站目录/xcat SyncRadius syncnas</span></pre><pre
-            class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">自动备份 (可选)</span></pre><pre
-            class=" CodeMirror-line " role="presentation"><span role="presentation"
-                                                                style="padding-right: 0.1px;"> </span></pre><pre
-            class=" CodeMirror-line " role="presentation"><span role="presentation"
-                                                                style="padding-right: 0.1px;">整体备份</span></pre><pre
-            class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">任务类型：Shell 脚本</span></pre><pre
-            class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">任务名称：自行填写</span></pre><pre
-            class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">执行周期：自己设置, 可以设置每30分钟左右</span></pre><pre
-            class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">脚本内容：php /www/wwwroot/你的网站目录/xcat Backup full</span></pre><pre
-            class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span
-            cm-text="">​</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation"
-                                                                                                     style="padding-right: 0.1px;">只备份核心数据</span></pre><pre
-            class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">任务类型：Shell 脚本</span></pre><pre
-            class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">任务名称：自行填写</span></pre><pre
-            class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">执行周期：自己设置, 可以设置每30分钟左右</span></pre><pre
-            class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">脚本内容：php /www/wwwroot/你的网站目录/xcat Backup simple</span></pre><pre
-            class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">财务报表 (可选)</span></pre><pre
-            class=" CodeMirror-line " role="presentation"><span role="presentation"
-                                                                style="padding-right: 0.1px;"> </span></pre><pre
-            class=" CodeMirror-line " role="presentation"><span role="presentation"
-                                                                style="padding-right: 0.1px;">日报</span></pre><pre
-            class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">任务类型：Shell 脚本</span></pre><pre
-            class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">任务名称：自行填写</span></pre><pre
-            class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">执行周期：每天 0 小时 0 分钟</span></pre><pre
-            class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">脚本内容：php /www/wwwroot/你的网站目录/xcat FinanceMail day</span></pre><pre
-            class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span
-            cm-text="">​</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation"
-                                                                                                     style="padding-right: 0.1px;">周报</span></pre><pre
-            class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">任务类型：Shell 脚本</span></pre><pre
-            class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">任务名称：自行填写</span></pre><pre
-            class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">执行周期：每星期 周日 0 小时 0 分钟</span></pre><pre
-            class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">脚本内容：php /www/wwwroot/你的网站目录/xcat FinanceMail week</span></pre><pre
-            class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span
-            cm-text="">​</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation"
-                                                                                                     style="padding-right: 0.1px;">月报</span></pre><pre
-            class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">任务类型：Shell 脚本</span></pre><pre
-            class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">任务名称：自行填写</span></pre><pre
-            class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">执行周期：每月 1 日 0 小时 0 分钟</span></pre><div
-            class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span
-            role="presentation" style="padding-right: 0.1px;">脚本内容：php /www/wwwroot/你的网站目录/xcat FinanceMail month</span></pre></div></div></div></div></div></div><div
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">每日流量报告 (给开启每日邮件的用户发送邮件)</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation"
+                                                                    style="padding-right: 0.1px;"><span
+                cm-text="">​</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span
+                role="presentation"
+                style="padding-right: 0.1px;">任务类型：Shell 脚本</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">任务名称：自行填写</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">执行周期：每天 0 小时 0 分钟</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">脚本内容：php /www/wwwroot/你的网站目录/xcat SendDiaryMail</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">审计封禁 (建议设置)</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation"
+                                                                    style="padding-right: 0.1px;"><span
+                cm-text="">​</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span
+                role="presentation"
+                style="padding-right: 0.1px;">任务类型：Shell 脚本</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">任务名称：自行填写</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">执行周期：N分钟 1 分钟</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">脚本内容：php /www/wwwroot/你的网站目录/xcat DetectBan</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">检测被墙 (可选)</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation"
+                                                                    style="padding-right: 0.1px;"><span
+                cm-text="">​</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span
+                role="presentation"
+                style="padding-right: 0.1px;">任务类型：Shell 脚本</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">任务名称：自行填写</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">执行周期：N分钟 1 分钟</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">脚本内容：php /www/wwwroot/你的网站目录/xcat DetectGFW</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">Radius (可选)</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation"
+                                                                    style="padding-right: 0.1px;"> </span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">synclogin</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">任务类型：Shell 脚本</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">任务名称：自行填写</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">执行周期：N分钟 1 分钟</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">脚本内容：php /www/wwwroot/你的网站目录/xcat SyncRadius synclogin</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation"
+                                                                    style="padding-right: 0.1px;"><span
+                cm-text="">​</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span
+                role="presentation"
+                style="padding-right: 0.1px;">syncvpn</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">任务类型：Shell 脚本</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">任务名称：自行填写</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">执行周期：N分钟 1 分钟</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">脚本内容：php /www/wwwroot/你的网站目录/xcat SyncRadius syncvpn</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation"
+                                                                    style="padding-right: 0.1px;"><span
+                cm-text="">​</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span
+                role="presentation"
+                style="padding-right: 0.1px;">syncnas</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">任务类型：Shell 脚本</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">任务名称：自行填写</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">执行周期：N分钟 1 分钟</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">脚本内容：php /www/wwwroot/你的网站目录/xcat SyncRadius syncnas</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">自动备份 (可选)</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation"
+                                                                    style="padding-right: 0.1px;"> </span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation"
+                                                                    style="padding-right: 0.1px;">整体备份</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">任务类型：Shell 脚本</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">任务名称：自行填写</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">执行周期：自己设置, 可以设置每30分钟左右</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">脚本内容：php /www/wwwroot/你的网站目录/xcat Backup full</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation"
+                                                                    style="padding-right: 0.1px;"><span
+                cm-text="">​</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span
+                role="presentation"
+                style="padding-right: 0.1px;">只备份核心数据</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">任务类型：Shell 脚本</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">任务名称：自行填写</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">执行周期：自己设置, 可以设置每30分钟左右</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">脚本内容：php /www/wwwroot/你的网站目录/xcat Backup simple</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">财务报表 (可选)</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation"
+                                                                    style="padding-right: 0.1px;"> </span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation"
+                                                                    style="padding-right: 0.1px;">日报</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">任务类型：Shell 脚本</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">任务名称：自行填写</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">执行周期：每天 0 小时 0 分钟</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">脚本内容：php /www/wwwroot/你的网站目录/xcat FinanceMail day</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation"
+                                                                    style="padding-right: 0.1px;"><span
+                cm-text="">​</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span
+                role="presentation"
+                style="padding-right: 0.1px;">周报</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">任务类型：Shell 脚本</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">任务名称：自行填写</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">执行周期：每星期 周日 0 小时 0 分钟</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">脚本内容：php /www/wwwroot/你的网站目录/xcat FinanceMail week</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation"
+                                                                    style="padding-right: 0.1px;"><span
+                cm-text="">​</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span
+                role="presentation"
+                style="padding-right: 0.1px;">月报</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">任务类型：Shell 脚本</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">任务名称：自行填写</span></pre><pre
+                class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">执行周期：每月 1 日 0 小时 0 分钟</span></pre><div
+                class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span
+                role="presentation"
+                style="padding-right: 0.1px;">脚本内容：php /www/wwwroot/你的网站目录/xcat FinanceMail month</span></pre></div></div></div></div></div></div><div
             style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 2158px;"></div><div
             class="CodeMirror-gutters" style="display: none; height: 2158px;"></div></div></div></pre>
 </div>
