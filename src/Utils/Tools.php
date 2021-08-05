@@ -418,7 +418,7 @@ class Tools
      * Filter key in `App\Models\Model` object
      *
      * @param \App\Models\Model $object
-     * @param array             $filter_array
+     * @param array $filter_array
      *
      * @return \App\Models\Model
      */
@@ -505,9 +505,9 @@ class Tools
         if ($server[1] == '0' || $server[1] == '') {
             $item['port'] = 443;
         } else {
-            $item['port'] = (int) $server[1];
+            $item['port'] = (int)$server[1];
         }
-        $item['aid'] = (int) $server[2];
+        $item['aid'] = (int)$server[2];
         $item['net'] = 'tcp';
         $item['headerType'] = 'none';
         if (count($server) >= 4) {
@@ -516,6 +516,10 @@ class Tools
                 $item['path'] = '/';
             } elseif ($item['net'] == 'tls') {
                 $item['tls'] = 'tls';
+            } elseif ($server[3] == 'grpc') {
+                $item['net'] = 'grpc';
+            } elseif ($server[4] == 'grpc') {
+                $item['net'] = 'grpc';
             }
         }
         if (count($server) >= 5) {
@@ -525,6 +529,8 @@ class Tools
                 $item['net'] = 'ws';
             } elseif ($server[4] == 'tls') {
                 $item['tls'] = 'tls';
+            } elseif ($server[4] == 'xtls') {
+                $item['tls'] = 'xtls';
             }
         }
         if (count($server) >= 6 && $server[5] != '') {
@@ -542,15 +548,33 @@ class Tools
                 }
             }
             if (array_key_exists('outside_port', $item)) {
-                $item['port'] = (int) $item['outside_port'];
+                $item['port'] = (int)$item['outside_port'];
                 unset($item['outside_port']);
             }
             if (isset($item['inside_port'])) {
                 unset($item['inside_port']);
             }
+            if (array_key_exists('servicename', $item)) {
+                $item['servicename'] = $item['servicename'];
+            }else{
+                $item['servicename'] = "";
+            }
+            if (array_key_exists('enable_xtls', $item)) {
+                $item['enable_xtls'] = $item['enable_xtls'];
+            }else{
+                $item['enable_xtls'] = "";
+            }
+            if (array_key_exists('enable_vless', $item)) {
+                $item['vtype'] = 'vless://';
+            } else {
+                $item['vtype'] = 'vmess://';
+            }
+            if (!array_key_exists('sni', $item)) {
+                $item['sni'] = $item['host'];
+            }
         }
         # Bob新增VLESS配置
-        if (count($server) >= 7 && $server[6] != ''){
+        if (count($server) >= 7 && $server[6] != '') {
             $item = array_merge($item, URL::parse_args($server[6]));
         }
 
@@ -576,7 +600,7 @@ class Tools
         if ($server[1] == '0' || $server[1] == '') {
             $item['port'] = 443;
         } else {
-            $item['port'] = (int) $server[1];
+            $item['port'] = (int)$server[1];
         }
         if (count($server) >= 4) {
             $item['net'] = $server[3];
@@ -602,7 +626,7 @@ class Tools
                 unset($item['relayserver']);
             }
             if (array_key_exists('outside_port', $item)) {
-                $item['port'] = (int) $item['outside_port'];
+                $item['port'] = (int)$item['outside_port'];
                 unset($item['outside_port']);
             }
         }
@@ -629,17 +653,17 @@ class Tools
                     if (strpos($item['port'], '+') !== false) { // 多个单端口节点，格式：8.8.8.8;port=80#1080+443#8443
                         $args_explode = explode('+', $item['port']);
                         foreach ($args_explode as $arg) {
-                            if ((int) substr($arg, 0, strpos($arg, '#')) == $mu_port) {
-                                $node_port = (int) substr($arg, strpos($arg, '#') + 1);
+                            if ((int)substr($arg, 0, strpos($arg, '#')) == $mu_port) {
+                                $node_port = (int)substr($arg, strpos($arg, '#') + 1);
                             }
                         }
                     } else {
-                        if ((int) substr($item['port'], 0, strpos($item['port'], '#')) == $mu_port) {
-                            $node_port = (int) substr($item['port'], strpos($item['port'], '#') + 1);
+                        if ((int)substr($item['port'], 0, strpos($item['port'], '#')) == $mu_port) {
+                            $node_port = (int)substr($item['port'], strpos($item['port'], '#') + 1);
                         }
                     }
                 } else { // 端口偏移，偏移端口，格式：8.8.8.8;port=1000 or 8.8.8.8;port=-1000
-                    $node_port = ($mu_port + (int) $item['port']);
+                    $node_port = ($mu_port + (int)$item['port']);
                 }
             }
         }
@@ -663,13 +687,13 @@ class Tools
                     if (strpos($item['port'], '+') !== false) {
                         $args_explode = explode('+', $item['port']);
                         foreach ($args_explode as $arg) {
-                            $port[substr($arg, 0, strpos($arg, '#'))] = (int) substr($arg, strpos($arg, '#') + 1);
+                            $port[substr($arg, 0, strpos($arg, '#'))] = (int)substr($arg, strpos($arg, '#') + 1);
                         }
                     } else {
-                        $port[substr($item['port'], 0, strpos($item['port'], '#'))] = (int) substr($item['port'], strpos($item['port'], '#') + 1);
+                        $port[substr($item['port'], 0, strpos($item['port'], '#'))] = (int)substr($item['port'], strpos($item['port'], '#') + 1);
                     }
                 } else {
-                    $type = (int) $item['port'];
+                    $type = (int)$item['port'];
                 }
             }
         }
@@ -855,9 +879,9 @@ class Tools
     /**
      * Add files and sub-directories in a folder to zip file.
      *
-     * @param string     $folder
+     * @param string $folder
      * @param ZipArchive $zipFile
-     * @param int        $exclusiveLength Number of text to be exclusived from the file path.
+     * @param int $exclusiveLength Number of text to be exclusived from the file path.
      */
     public static function folderToZip($folder, &$zipFile, $exclusiveLength)
     {
@@ -903,12 +927,12 @@ class Tools
     /**
      * 重置自增列 ID
      *
-     * @param DatatablesHelper  $db
-     * @param string            $table
+     * @param DatatablesHelper $db
+     * @param string $table
      */
     public function reset_auto_increment($db, $table)
     {
-        $maxid = $db->query("SELECT `auto_increment` AS `maxid` FROM `information_schema`.`tables` WHERE `table_schema` = '" . $_ENV['db_database']. "' AND `table_name` = '". $table ."'")[0]['maxid'];
+        $maxid = $db->query("SELECT `auto_increment` AS `maxid` FROM `information_schema`.`tables` WHERE `table_schema` = '" . $_ENV['db_database'] . "' AND `table_name` = '" . $table . "'")[0]['maxid'];
         if ($maxid >= 2000000000) {
             $db->query('ALTER TABLE `' . $table . '` auto_increment = 1');
         }
