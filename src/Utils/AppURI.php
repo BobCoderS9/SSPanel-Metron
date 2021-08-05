@@ -67,7 +67,8 @@ class AppURI
                     'type' => $item['headerType'],
                     'host' => $item['host'],
                     'path' => $item['path'],
-                    'tls' => $item['tls']
+                    'tls' => $item['tls'],
+                    'sni' => $item['sni']
                 ];
                 $return = ('vmess://' . base64_encode(
                         json_encode($node, 320)
@@ -119,8 +120,8 @@ class AppURI
                             break;
                         }
                         $tls = ($item['tls'] == 'tls'
-                            ? ', tls=true'
-                            : '');
+                            ? ', tls=true, sni=' . $item['host']
+                               : '');
                         $ws = ($item['net'] == 'ws'
                             ? ', ws=true, ws-path=' . $item['path'] . ', ws-headers=host:' . $item['host']
                             : '');
@@ -362,6 +363,9 @@ class AppURI
                     'cipher' => 'auto',
                     'udp' => true
                 ];
+                if ($item['sni']) {
+                    $return['servername'] = $item['sni'];
+                }
                 if ($item['net'] == 'ws') {
                     $return['network'] = 'ws';
                     $return['ws-path'] = $item['path'];
@@ -447,9 +451,9 @@ class AppURI
                     if ($item['verify_cert'] == false) {
                         $tls .= '&allowInsecure=1';
                     }
-                    if (isset($item['localserver'])) {
-                        $tls .= '&peer=' . $item['localserver'];
-                    }
+                    $tls .= ($item['sni']
+                        ? ('&peer=' . $item['sni'])
+                        : ('&peer=' . $item['host']));
                 }
                 $return = ('vmess://' . Tools::base64_url_encode('chacha20-poly1305:' . $item['id'] . '@' . $item['add'] . ':' . $item['port']) . '?remarks=' . rawurlencode($item['remark']) . $obfs . $tls);
                 break;

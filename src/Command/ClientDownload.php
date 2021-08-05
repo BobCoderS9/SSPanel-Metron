@@ -161,7 +161,7 @@ class ClientDownload extends Command
             'savePath'  => BASE_PATH.'public/clients/',
             'downloads' => [
                 [
-                    'sourceName' => 'app-universal-release.apk',
+                    'sourceName' => 'app-premium-universal-release.apk',
                     'saveName'   => 'Clash-Android.apk',
                     'apkpureUrl' => ''
                 ],
