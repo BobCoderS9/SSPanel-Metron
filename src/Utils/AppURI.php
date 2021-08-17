@@ -289,6 +289,9 @@ class AppURI
                     : '');
                 $return = $item['remark'] . ' = vmess, ' . $item['add'] . ', ' . $item['port'] . ', username = ' . $item['id'] . $ws . $tls;
                 break;
+            case 'trojan':
+                $return = $item['remark'] . ' = trojan,' . $item['address'] . ', ' . $item['port'] . ', password='.$item['passwd'].',sni='. $item['host'];
+                break;
         }
         return $return;
     }
