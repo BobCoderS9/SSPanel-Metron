@@ -240,7 +240,7 @@ class URL
                 $sort = [0, 10];
                 break;
             case 'vmess':
-                $sort = [11, 12];
+                $sort = [11, 12, 14];
                 break;
             case 'vless':
                 $sort = [15];
@@ -398,7 +398,7 @@ class URL
 
         $items = URL::getNew_AllItems($user, $Rule);
         foreach ($items as $item) {
-            if ($item['type'] == 'vmess' || $item['type'] == 'vless') {
+            if ($Rule['type'] == 'vmess' || $item['type'] == 'vless') {
                 $out = LinkController::getListItem($item, 'v2rayn');
             } else {
                 $out = LinkController::getListItem($item, $Rule['type']);

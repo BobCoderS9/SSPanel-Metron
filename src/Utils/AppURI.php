@@ -114,6 +114,9 @@ class AppURI
                 }
                 $return = $node . '#' . $item['remark'];
                 break;
+            case 'trojan':
+                $return = 'trojan://' . $item['passwd'] . '@' . $item['address'] . ':' . $item['port'].'?sni=' . $item['host'].'#'.$item['remark'];
+                break;
         }
         return $return;
     }
