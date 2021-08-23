@@ -511,7 +511,7 @@ class LinkController extends BaseController
                 $return = AppURI::getClashURI($item);
                 break;
             case 'clashr':
-                $return = AppURI::getClashURI($item, true);
+                $return = AppURI::getClashURI($item);
                 break;
             case 'v2rayn':
                 $return = AppURI::getV2RayNURI($item);
@@ -849,7 +849,7 @@ class LinkController extends BaseController
         $items = URL::getNew_AllItems($user, $Rule);
         $Proxys = [];
         foreach ($items as $item) {
-            $Proxy = AppURI::getClashURI($item, $ssr_support);
+            $Proxy = AppURI::getClashURI($item);
             if ($Proxy !== null) {
                 $Proxys[] = $Proxy;
             }
