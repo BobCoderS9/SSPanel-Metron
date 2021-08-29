@@ -66,13 +66,6 @@ chown -R www:www 你的文件夹名/
 UPDATE user SET theme='metron'
 ```
 
-#### 11.自行编辑config文件
-
-.metron_setting.php 中务必设置授权码 (从bot获取)
-
-    .config.php 中设置 $_ENV['theme'] = 'metron';
-
-
 ### 使用宝塔面板的计划任务配置
 ```
 每日任务 (必须)
@@ -111,11 +104,17 @@ UPDATE user SET theme='metron'
 执行周期：N分钟 1 分钟
 脚本内容：php /www/wwwroot/你的网站目录/xcat DetectBan
 
-检测被墙 (可选)
+检测节点被墙 (可选)
 任务类型：Shell 脚本
 任务名称：自行填写
 执行周期：N分钟 1 分钟
 脚本内容：php /www/wwwroot/你的网站目录/xcat DetectGFW
+
+检测中转服务器 (可选)
+任务类型：Shell 脚本
+任务名称：自行填写
+执行周期：N分钟 5 分钟
+脚本内容：php /www/wwwroot/你的网站目录/xcat DetectTransfer
 
 Radius (可选)
 synclogin
