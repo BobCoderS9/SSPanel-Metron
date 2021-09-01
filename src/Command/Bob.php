@@ -107,7 +107,7 @@ class Bob extends Command
     {
         $users = User::query()->where('uuid', null)->get();
         foreach ($users as $item){
-            $item->uuid = Tools::genUUID();
+            $item->uuid = Uuid::uuid3(Uuid::NAMESPACE_DNS, ($item->passwd) . $_ENV['key'])->toString();
             $item->save();
         }
 
