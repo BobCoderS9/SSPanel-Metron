@@ -12,6 +12,7 @@ use App\Utils\GA;
 use App\Utils\Hash;
 use App\Utils\Tools;
 use App\Utils\URL;
+use Ramsey\Uuid\Uuid;
 
 class Bob extends Command
 {
