@@ -214,6 +214,23 @@ class MetronPay extends AbstractPayment
                         );
                     }
                     return json_encode($return);
+                case ('vmq'):
+                    $vmq = new BobVmqPay();
+                    $result = $vmq->MetronPay($type, $price, $shopinfo, $paylist_id);
+                    if ($result['errcode'] === 0) {
+                        $return = array(
+                            'ret' => 1,
+                            'type' => 'qrcode',
+                            'tradeno' => $result['pid'],
+                            'url' => $result['url']
+                        );
+                    } else {
+                        $return = array(
+                            'ret' => 0,
+                            'msg' => $result['errmsg']
+                        );
+                    }
+                    return json_encode($return);
                 default:
                     $return = array(
                         'ret' => 0,
@@ -391,7 +408,23 @@ class MetronPay extends AbstractPayment
                         );
                     }
                     return json_encode($return);
-                    break;
+                case ('vmq'):
+                    $vmq = new BobVmqPay();
+                    $result = $vmq->MetronPay($type, $price, $shopinfo, $paylist_id);
+                    if ($result['errcode'] === 0) {
+                        $return = array(
+                            'ret' => 1,
+                            'type' => 'qrcode',
+                            'tradeno' => $result['pid'],
+                            'url' => $result['url']
+                        );
+                    } else {
+                        $return = array(
+                            'ret' => 0,
+                            'msg' => $result['errmsg']
+                        );
+                    }
+                    return json_encode($return);
                 default:
                     $return = array(
                         'ret' => 0,
@@ -520,6 +553,10 @@ class MetronPay extends AbstractPayment
         $payment_system = $path_exploded[3];
 
         switch ($payment_system) {
+            case ('vmq'):
+                $vmq = new BobVmqPay();
+                $vmq->notify($request, $response, $args);
+                return;
             case ('wolfpay'):
                 $wolfpay_notify = new wolfpay();
                 $wolfpay_notify->notify($request, $response, $args);

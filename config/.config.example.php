@@ -298,6 +298,11 @@ $_ENV['enable_checkin_captcha'] = false;        //启用签到验证码
 # Metron主题支持的支付方式都在 metron_setting.php 设置, 不要修改这里的支付方式， 只需要修改支付系统的参数
 $_ENV['payment_system'] = 'metronpay';    # 不要动!!!
 
+#V免签
+$_ENV['vmq_secret']  = '';  // 通讯密钥
+$_ENV['vmq_url']  = '';     // 服务器地址
+$_ENV['vmq_param']  = 'bob666';  // (选填)传输参数
+
 #codepay码支付
 #wiki地址:https://goo.gl/dRwRDi  http://t.cn/RnsWjtB
 $_ENV['codepay_id'] = '';          //码支付ID
