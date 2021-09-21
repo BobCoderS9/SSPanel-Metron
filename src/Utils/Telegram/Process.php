@@ -29,7 +29,7 @@ class Process
 //            file_put_contents(BASE_PATH . '/storage/telegram.log', json_encode(file_get_contents("php://input")) . "\r\n", FILE_APPEND);
             if ($update->getCallbackQuery() !== null) {
                 new Callbacks\Callback($bot, $update->getCallbackQuery());
-            } else if ($Message->getReplyToMessage()->getText() != null) {
+            } else if ($Message->getReplyToMessage() != null) {
                 if (preg_match("/[#](.*)/", $Message->getReplyToMessage()->getText(), $match)) {
                     new Callbacks\ReplayTicket($bot, $Message, $match[1]);
                 }
