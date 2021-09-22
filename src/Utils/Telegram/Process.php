@@ -27,12 +27,12 @@ class Process
             $update = $bot->commandsHandler(true);
             $Message = $update->getMessage();
 //            file_put_contents(BASE_PATH . '/storage/telegram.log', json_encode(file_get_contents("php://input")) . "\r\n", FILE_APPEND);
-            if ($update->getCallbackQuery() !== null) {
-                new Callbacks\Callback($bot, $update->getCallbackQuery());
-            } else if ($Message->getReplyToMessage()->getText() != null) {
+            if ($Message && $Message->getReplyToMessage()->getText() != null) {
                 if (preg_match("/[#](.*)/", $Message->getReplyToMessage()->getText(), $match)) {
                     new Callbacks\ReplayTicket($bot, $Message, $match[1]);
                 }
+            } else if ($update->getCallbackQuery() !== null) {
+                new Callbacks\Callback($bot, $update->getCallbackQuery());
             } else if ($Message !== null) {
                 new Message($bot, $update->getMessage());
             }
