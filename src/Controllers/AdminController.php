@@ -256,7 +256,7 @@ class AdminController extends UserController
 
         $stats = new Analytics();
 
-        $today_income = $stats->getIncome($date_in_timestamp,  +86400);
+        $today_income = $stats->getIncome($date_in_timestamp,  $date_in_timestamp+86400);
         $yesterday_income = $stats->getIncome($date_in_timestamp-86400, $date_in_timestamp);
 
         $first_day_of_this_week_timestamp = strtotime("last monday midnight",$date_in_timestamp);

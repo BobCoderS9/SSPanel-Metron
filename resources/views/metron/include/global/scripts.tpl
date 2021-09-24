@@ -7,6 +7,6 @@
 
 {if $metron['enable_cust'] === 'crisp' && $metron['crisp_id'] != ''}
     {include file='include/global/crisp.tpl'}
-{else if $metron['enable_cust'] === 'chatra' && $metron['chatra_id'] != ''}
+{elseif $metron['enable_cust'] === 'chatra' && $metron['chatra_id'] != ''}
     {include file='include/global/chatra.tpl'}
 {/if}
