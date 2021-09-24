@@ -86,6 +86,18 @@ UPDATE user SET theme='metron'
 执行周期：每小时
 脚本内容：php /www/wwwroot/你的网站目录/xcat Job UserJob
 
+检查用户会员等级过期任务 (必须)
+任务类型：Shell 脚本
+任务名称：自行填写
+执行周期：每分钟
+脚本内容：php /www/wwwroot/你的网站目录/xcat Job CheckUserClassExpire
+
+检查账号过期任务 (必须)
+任务类型：Shell 脚本
+任务名称：自行填写
+执行周期：每小钟
+脚本内容：php /www/wwwroot/你的网站目录/xcat Job CheckUserExpire
+
 定时检测邮件队列 (必须)
 任务类型：Shell 脚本
 任务名称：自行填写

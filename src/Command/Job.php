@@ -45,6 +45,8 @@ class Job extends Command
     . '│ ├─ UserGa                  - 二次验证' . PHP_EOL
     . '│ ├─ DailyJob                - 每日任务' . PHP_EOL
     . '│ ├─ CheckJob                - 检查任务，每分钟' . PHP_EOL
+    . '│ ├─ CheckUserClassExpire    - 检查用户会员等级过期任务，每分钟' . PHP_EOL
+    . '│ ├─ CheckUserExpire         - 检查账号过期任务，每小钟' . PHP_EOL
     . '│ ├─ UserJob                 - 用户账户相关任务，每小时' . PHP_EOL
     . '│ ├─ updatedownload          - 检查客户端更新' . PHP_EOL
     . '│ ├─ SendMail                - 批量发送邮件' . PHP_EOL;
@@ -77,7 +79,7 @@ class Job extends Command
             ->where('bandwidthlimit_resetday', date('d'))
             ->where('node_bandwidth', '>', 0)
             ->update(['node_bandwidth' => 0]);
-        echo '重置节点流量成功;'.PHP_EOL;
+        echo '重置节点流量成功;' . PHP_EOL;
 
         // 清理订阅记录
         UserSubscribeLog::where(
@@ -85,7 +87,7 @@ class Job extends Command
             '<',
             date('Y-m-d H:i:s', time() - 86400 * (int)$_ENV['subscribeLog_keep_days'])
         )->delete();
-        echo '清理订阅记录成功;'.PHP_EOL;
+        echo '清理订阅记录成功;' . PHP_EOL;
 
         Token::where('expire_time', '<', time())->delete();
         NodeInfoLog::where('log_time', '<', time() - 86400 * 3)->delete();
@@ -95,7 +97,7 @@ class Job extends Command
         Speedtest::where('datetime', '<', time() - 86400 * 3)->delete();
         EmailVerify::where('expire_in', '<', time() - 86400 * 3)->delete();
         //system('rm ' . BASE_PATH . '/storage/*.png', $ret);
-        echo '清理其他日志成功;'.PHP_EOL;
+        echo '清理其他日志成功;' . PHP_EOL;
 
         $db = new DatatablesHelper();
 
@@ -195,7 +197,7 @@ class Job extends Command
                 );
             }
         }
-        echo '重置用户流量成功;'.PHP_EOL;
+        echo '重置用户流量成功;' . PHP_EOL;
 
         $qqwry = file_get_contents('http://qqwry.mirror.noc.one/QQWry.Dat?from=sspanel_uim');
         if ($qqwry != '') {
@@ -620,27 +622,6 @@ class Job extends Command
     {
         $users = User::all();
         foreach ($users as $user) {
-            if (strtotime($user->expire_in) < time() && $user->expire_notified == false) {
-                $user->transfer_enable = 0;
-                $user->u = 0;
-                $user->d = 0;
-                $user->last_day_t = 0;
-                $user->sendMail(
-                    $_ENV['appName'] . '-您的用户账户已经过期了',
-                    'news/warn.tpl',
-                    [
-                        'text' => '您好，系统发现您的账号已经过期了。'
-                    ],
-                    [],
-                    $_ENV['email_queue']
-                );
-                $user->expire_notified = true;
-                $user->save();
-            } elseif (strtotime($user->expire_in) > time() && $user->expire_notified == true) {
-                $user->expire_notified = false;
-                $user->save();
-            }
-
             //余量不足检测
             if ($_ENV['notify_limit_mode'] != false) {
                 $user_traffic_left = $user->transfer_enable - $user->u - $user->d;
@@ -739,32 +720,6 @@ class Job extends Command
                 );
                 $user->kill_user();
                 continue;
-            }
-
-            if (
-                $user->class != 0 &&
-                strtotime($user->class_expire) < time() &&
-                strtotime($user->class_expire) > 1420041600
-            ) {
-                $text = '您好，系统发现您的账号等级已经过期了。';
-                $reset_traffic = $_ENV['class_expire_reset_traffic'];
-                if ($reset_traffic >= 0) {
-                    $user->transfer_enable = Tools::toGB($reset_traffic);
-                    $user->u = 0;
-                    $user->d = 0;
-                    $user->last_day_t = 0;
-                    $text .= '流量已经被重置为' . $reset_traffic . 'GB';
-                }
-                $user->sendMail(
-                    $_ENV['appName'] . '-您的账户等级已经过期了',
-                    'news/warn.tpl',
-                    [
-                        'text' => $text
-                    ],
-                    [],
-                    $_ENV['email_queue']
-                );
-                $user->class = 0;
             }
 
             // 审计封禁解封
@@ -877,5 +832,70 @@ class Job extends Command
             }
         });
         unlink(BASE_PATH . '/storage/email_queue');
+    }
+
+    /**
+     * 检查用户等级过期时间
+     */
+    public function CheckUserClassExpire()
+    {
+        $users = User::query()
+            ->where('class_expire', '<', date('Y-m-d H:i:s', time()))
+            ->where('class', '!=', 0)
+            ->where('is_admin', '!=', 1)
+            ->get();
+
+        foreach ($users as $user) {
+            $text = '您好，系统发现您的账号等级已经过期了。';
+            $reset_traffic = $_ENV['class_expire_reset_traffic'];
+            if ($reset_traffic >= 0) {
+                $user->transfer_enable = Tools::toGB($reset_traffic);
+                $user->u = 0;
+                $user->d = 0;
+                $user->last_day_t = 0;
+                $text .= '流量已经被重置为' . $reset_traffic . 'GB';
+            }
+            $user->sendMail(
+                $_ENV['appName'] . '-您的账户等级已经过期了',
+                'news/warn.tpl',
+                [
+                    'text' => $text
+                ],
+                [],
+                $_ENV['email_queue']
+            );
+            $user->class = 0;
+            $user->save();
+        }
+    }
+
+    /**
+     *  检查用户过期任务
+     */
+    public function CheckUserExpire()
+    {
+        $users = User::query()
+            ->where('expire_in', '<', date('Y-m-d H:i:s', time()))
+            ->where('expire_notified', 0)
+            ->where('is_admin', '!=', 1)
+            ->get();
+
+        foreach ($users as $user) {
+            $user->transfer_enable = 0;
+            $user->u = 0;
+            $user->d = 0;
+            $user->last_day_t = 0;
+            $user->sendMail(
+                $_ENV['appName'] . '-您的用户账户已经过期了',
+                'news/warn.tpl',
+                [
+                    'text' => '您好，系统发现您的账号已经过期了。'
+                ],
+                [],
+                $_ENV['email_queue']
+            );
+            $user->expire_notified = true;
+            $user->save();
+        }
     }
 }
