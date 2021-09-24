@@ -457,6 +457,11 @@ class MtAgent extends \App\Controllers\BaseController
 
         # 转余额
         if ($type === 1){
+            if ($total < 0) {
+                $res['ret'] = 0;
+                $res['msg'] = '提现金额需大于0元';
+                return $response->getBody()->write(json_encode($res));
+            }
             # 转至余额 直接创建 code 记录 和 增加余额
             $code               = new Code();
             $code->code         = '#'.$paytake->id.' - '.'返利转余额';
