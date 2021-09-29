@@ -41,6 +41,7 @@ class NodeController extends AdminController
             'traffic_rate'            => '流量比率',
             'node_group'              => '节点群组',
             'node_class'              => '节点等级',
+            'node_sort'               => '节点排序',
             'node_speedlimit'         => '节点限速/Mbps',
             'node_bandwidth'          => '已走流量/GB',
             'node_bandwidth_limit'    => '流量限制/GB',
@@ -48,7 +49,7 @@ class NodeController extends AdminController
             'node_heartbeat'          => '上一次活跃时间',
             'custom_method'           => '自定义加密',
             'custom_rss'              => '自定义协议以及混淆',
-            'mu_only'                 => '只启用单端口多用户'
+            'mu_only'                 => '只启用单端口多用户',
         );
         $table_config['default_show_column'] = array('op', 'id', 'name', 'sort');
         $table_config['ajax_url'] = 'node/ajax';
@@ -128,6 +129,7 @@ class NodeController extends AdminController
             Radius::AddNas($node->node_ip, $request->getParam('server'));
         }
         $node->node_class                 = $request->getParam('class');
+        $node->node_sort                  = (int)$request->getParam('node_sort');
         $node->node_bandwidth_limit       = $request->getParam('node_bandwidth_limit') * 1024 * 1024 * 1024;
         $node->bandwidthlimit_resetday    = $request->getParam('bandwidthlimit_resetday');
 
@@ -242,6 +244,7 @@ class NodeController extends AdminController
 
         $node->status                     = $request->getParam('status');
         $node->node_class                 = $request->getParam('class');
+        $node->node_sort                  = (int)$request->getParam('node_sort');
         $node->node_bandwidth_limit       = $request->getParam('node_bandwidth_limit') * 1024 * 1024 * 1024;
         $node->bandwidthlimit_resetday    = $request->getParam('bandwidthlimit_resetday');
 
@@ -411,6 +414,7 @@ class NodeController extends AdminController
             $tempdata['traffic_rate']               = $node->traffic_rate;
             $tempdata['node_group']                 = $node->node_group;
             $tempdata['node_class']                 = $node->node_class;
+            $tempdata['node_sort']                  = $node->node_sort;
             $tempdata['node_speedlimit']            = $node->node_speedlimit;
             $tempdata['node_bandwidth']             = Tools::flowToGB($node->node_bandwidth);
             $tempdata['node_bandwidth_limit']       = Tools::flowToGB($node->node_bandwidth_limit);

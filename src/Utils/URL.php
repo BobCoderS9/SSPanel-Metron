@@ -191,7 +191,7 @@ class URL
             }
         }
 
-        $nodes = $query->where('type', '1')->orderBy('name')->get();
+        $nodes = $query->where('type', '1')->orderBy('node_sort', 'desc')->orderBy('name')->get();
 
         if (MetronSetting::get('nodes_filter') === true && MetronSetting::get('nodes_miniName') === true && $rules['nodefilter']['mininame'] === 1) {
             $regex = MetronSetting::get('nodes_regex');

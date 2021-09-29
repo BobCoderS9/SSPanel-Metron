@@ -174,6 +174,7 @@ CREATE TABLE IF NOT EXISTS `ss_node` (
   `traffic_rate` float NOT NULL DEFAULT '1',
   `node_class` int(11) NOT NULL DEFAULT '0',
   `node_speedlimit` int(11) NOT NULL DEFAULT '0',
+  `node_sort` int(11) NOT NULL DEFAULT '0',
   `node_connector` int(11) NOT NULL DEFAULT '0',
   `node_bandwidth` bigint(20) NOT NULL DEFAULT '0',
   `node_bandwidth_limit` bigint(20) NOT NULL DEFAULT '0',

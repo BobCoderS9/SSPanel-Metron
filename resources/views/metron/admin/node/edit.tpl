@@ -260,6 +260,13 @@
                                            name="node_speedlimit" type="text" value="{$node->node_speedlimit}">
                                     <p class="form-control-guide"><i class="material-icons">info</i>不限速填0，对于每个用户端口生效</p>
                                 </div>
+
+                                <div class="form-group form-group-label">
+                                    <label class="floating-label" for="node_speedlimit">节点排序</label>
+                                    <input class="form-control maxwidth-edit" id="node_sort"
+                                           name="node_sort" type="text" value="{$node->node_sort}">
+                                    <p class="form-control-guide"><i class="material-icons">info</i>数字越大越靠前</p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -354,6 +361,7 @@
                     status: $$getValue('status'),
                     sort: $$getValue('sort'),
                     node_speedlimit: $$getValue('node_speedlimit'),
+                    node_sort: $$getValue('node_sort'),
                     class: $$getValue('class'),
                     node_bandwidth_limit: $$getValue('node_bandwidth_limit'),
                     bandwidthlimit_resetday: $$getValue('bandwidthlimit_resetday')
