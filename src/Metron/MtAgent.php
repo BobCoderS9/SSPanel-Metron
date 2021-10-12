@@ -457,7 +457,8 @@ class MtAgent extends \App\Controllers\BaseController
 
         # 转余额
         if ($type === 1){
-            if ($total < 0) {
+            if ($total <= 0) {
+                $paytake->delete();
                 $res['ret'] = 0;
                 $res['msg'] = '提现金额需大于0元';
                 return $response->getBody()->write(json_encode($res));
