@@ -511,7 +511,7 @@ class UserController extends BaseController
                 ->assign('baseUrl', Config::get('baseUrl'))
                 ->display($url);
         } else {
-            return $this->view()->display('user/tutorial.tpl');
+            return $this->view()->display('user/help/home.tpl');
         }
     }
 
