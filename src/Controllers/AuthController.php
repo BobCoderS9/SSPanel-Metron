@@ -456,6 +456,9 @@ class AuthController extends BaseController
 
         $user->ga_token = $secret;
         $user->ga_enable = 0;
+        if (MetronSetting::get('c_rebate') === true) {
+            $user->c_rebate     = 1;
+        }
 
         if ($user->save()) {
             if (Config::getconfig('Register.bool.Enable_email_verify')) {
