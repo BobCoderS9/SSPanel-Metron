@@ -26,20 +26,12 @@ class Payment
     {
         $method = $_ENV['payment_system'];
         switch ($method) {
-            case ('codepay'):
-                return new Codepay();
             case ('paymentwall'):
                 return new PaymentWall();
-            case ('spay'):
-                return new SPay();
             case ('f2fpay'):
                 return new AopF2F();
             case ('payjs'):
                 return new PAYJS($_ENV['payjs_key']);
-            case ('yftpay'):
-                return new YftPay();
-            case ('bitpayx'):
-                return new BitPayX($_ENV['bitpay_secret']);
             case("metronpay"):
                 return new MetronPay();
             default:

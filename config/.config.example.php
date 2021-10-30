@@ -303,11 +303,6 @@ $_ENV['vmq_secret']  = '';  // 通讯密钥
 $_ENV['vmq_url']  = '';     // 服务器地址
 $_ENV['vmq_param']  = 'bob666';  // (选填)传输参数
 
-#codepay码支付
-#wiki地址:https://goo.gl/dRwRDi  http://t.cn/RnsWjtB
-$_ENV['codepay_id'] = '';          //码支付ID
-$_ENV['codepay_key'] = '';          //码支付通信密钥
-
 #alipay,f2fpay
 $_ENV['f2fpay_app_id'] = '';
 $_ENV['f2fpay_p_id'] = '';
@@ -325,11 +320,6 @@ $_ENV['pmw_publickey'] = '';
 $_ENV['pmw_privatekey'] = '';
 $_ENV['pmw_widget'] = 'm2_1';
 $_ENV['pmw_height'] = '350px';
-
-# BitPay 数字货币支付（USDT、比特币、以太坊、EOS等） 商户后台获取授权码 https://merchants.mugglepay.com/
-#   注册即可使用USDT收款，无需任何费用
-#   客服和技术 24x7 在线支持： https://t.me/joinchat/GLKSKhUnE4GvEAPgqtChAQ
-$_ENV['bitpay_secret'] = '';
 
 #PayJs
 $_ENV['payjs_mchid'] = '';
