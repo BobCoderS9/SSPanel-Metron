@@ -2,11 +2,7 @@
 
 namespace App\Utils;
 
-use App\Models\{
-    User,
-    Node,
-    Relay
-};
+use App\Models\{InviteCode, User, Node, Relay};
 use App\Services\Config;
 use DateTime;
 
@@ -936,5 +932,20 @@ class Tools
         if ($maxid >= 2000000000) {
             $db->query('ALTER TABLE `' . $table . '` auto_increment = 1');
         }
+    }
+
+    /**
+     * 生成邀请码
+     *
+     * @return string
+     */
+    public static function generateInviteCode()
+    {
+        $temp_code = self::genRandomChar(4);
+        if(InviteCode::where('code', $temp_code)->first()){
+            self::generateInviteCode();
+        }
+
+        return $temp_code;
     }
 }
