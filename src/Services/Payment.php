@@ -11,12 +11,8 @@ namespace App\Services;
 
 use App\Services\Gateway\{
     AopF2F,
-    Codepay,
     PaymentWall,
-    SPay,
     PAYJS,
-    YftPay,
-    BitPayX,
     MetronPay
 };
 

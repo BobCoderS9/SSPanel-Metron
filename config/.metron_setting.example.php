@@ -176,10 +176,9 @@ $_MT['shared_account'] = [
 # 使用哪种支付方式需要在 Config 中设置好参数
 # 目前支持的支付方式: 不使用请设置为 none
 # 支付方式后面带 _qr 为使用站内二维码方式, 无需离开网站即可支付, _url 为跳转到支付链接进行支付, 不带的默认使用原支付的方式
-# 支付宝: codepay |stripe | paytaro | wolfpay_ur | bitpayx | wolfpay_qr | yftpay | pycloudspay | f2fpay | pcexpay
-# 微信  : codepay | stripe | paytaro | wolfpay_ur | bitpayx | payjs
+# 支付宝: codepay |stripe | paytaro | wolfpay_ur | wolfpay_qr | yftpay | pycloudspay | f2fpay | pcexpay
+# 微信  : codepay | stripe | paytaro | wolfpay_ur | payjs
 # QQ钱包: codepay |
-# 数字货币: bitpay |
 
 $_MT['pay_alipay']     = 'none';        // 支付宝默认
 $_MT['max_alipay_num'] = 0;     // 使用支付宝支付时, 金额大于等于设定值, 使用下方支付方式 (设置 0 不使用)

@@ -328,11 +328,6 @@ $_ENV['zfbjk_pid']            = '';
 $_ENV['zfbjk_key']            = '';
 $_ENV['zfbjk_qrcodeurl']      = '';
 
-# BitPay 数字货币支付（USDT、比特币、以太坊、EOS等） 商户后台获取授权码 https://merchants.mugglepay.com/
-#   注册即可使用USDT收款，无需任何费用
-#   客服和技术 24x7 在线支持： https://t.me/joinchat/GLKSKhUnE4GvEAPgqtChAQ
-$_ENV['bitpay_secret']        = '';
-
 #PayJs
 $_ENV['payjs_mchid']          = '';
 $_ENV['payjs_key']            = '';

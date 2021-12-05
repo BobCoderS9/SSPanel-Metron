@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-use App\Services\{Auth, Mail, Config, Payment, BitPayment, MetronSetting};
+use App\Services\{Auth, Mail, Config, Payment, MetronSetting};
 use App\Models\{Ip,
     Ann,
     Code,

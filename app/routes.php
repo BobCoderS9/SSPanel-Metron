@@ -122,11 +122,6 @@ return function (SlimApp $app) {
         //Reconstructed Payment System
         $this->post('/payment/purchase',        App\Services\Payment::class . ':purchase');
         $this->get('/payment/return',           App\Services\Payment::class . ':returnHTML');
-
-        // Crypto Payment - BTC, ETH, EOS, BCH, LTC etch
-        $this->post('/payment/bitpay/purchase', App\Services\BitPayment::class . ':purchase');
-        $this->get('/payment/bitpay/return',    App\Services\BitPayment::class . ':returnHTML');
-
         # Metron
         $this->get('/setting/{page}',           App\Controllers\UserController::class . ':settingPages');
         $this->get('/shared_account',           App\Controllers\MetronController::class . ':SharedAccount');
@@ -172,9 +167,6 @@ return function (SlimApp $app) {
         $this->get('/notify/{type}/{method}',  App\Services\Payment::class . ':notify');
         $this->post('/notify/{type}/{method}', App\Services\Payment::class . ':notify');
         $this->post('/status',                 App\Services\Payment::class . ':getStatus');
-
-        $this->post('/bitpay/notify',   App\Services\BitPayment::class . ':notify');
-        $this->post('/bitpay/status',   App\Services\BitPayment::class . ':getStatus');
     });
 
     // Auth
