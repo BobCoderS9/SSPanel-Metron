@@ -560,10 +560,9 @@ class Tools
             }else{
                 $item['enable_xtls'] = "";
             }
+            $item['vtype'] = 'vmess://';
             if (array_key_exists('enable_vless', $item)) {
                 $item['vtype'] = 'vless://';
-            } else {
-                $item['vtype'] = 'vmess://';
             }
             if (!array_key_exists('sni', $item)) {
                 $item['sni'] = $item['host'];
