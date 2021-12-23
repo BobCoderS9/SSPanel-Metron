@@ -112,7 +112,7 @@ class UserController extends AdminController
         $user->pass                 = Hash::passwordHash($passwd);
         $user->user_name            = $email;
         $user->email                = $email;
-        $user->passwd               = Tools::genRandomChar(8);
+        $user->passwd               = Tools::genRandomChar(16);
         $user->port                 = Tools::getAvPort();
         $user->t                    = 0;
         $user->u                    = 0;
