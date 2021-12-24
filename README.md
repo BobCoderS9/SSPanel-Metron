@@ -31,7 +31,7 @@ cp config/.metron_setting.example.php config/.metron_setting.php
 cp config/appprofile.example.php config/appprofile.php
 ```
 
-.config.php设置后执行`php xcat initQQWry` 下载IP解析库
+.config.php设置后执行`php xcat Tool initQQWry` 下载IP解析库
 
 #### 8.网站设置
 
@@ -59,7 +59,7 @@ chown -R www:www 你的文件夹名/
 
 #### 10.数据库操作
 
-首次迁移: 导入网站目录下的`sql/metron.sql` 文件
+首次迁移: 导入网站目录下的`sql/glzjin_all.sql` 文件
 
 将数据库user表里的全部用户的theme列改为metron，使用phpmyadmin执行这条sql语句:
 ```sql
