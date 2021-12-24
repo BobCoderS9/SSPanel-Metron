@@ -870,6 +870,8 @@ class Job extends Command
                 $_ENV['email_queue']
             );
             $user->class = 0;
+            $user->node_connector = Config::getconfig('Register.string.defaultConn');
+            $user->node_speedlimit = Config::getconfig('Register.string.defaultSpeedlimit');
             $user->save();
         }
     }
