@@ -402,7 +402,7 @@ class AuthController extends BaseController
         $user->user_name            = $antiXss->xss_clean($name);
         $user->email                = $email;
         $user->pass                 = Hash::passwordHash($passwd);
-        $user->passwd               = Tools::genRandomChar(6);
+        $user->passwd               = Tools::genRandomChar(16);
         $user->port                 = Tools::getAvPort();
         $user->t                    = 0;
         $user->u                    = 0;
