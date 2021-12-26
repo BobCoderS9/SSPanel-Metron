@@ -7,6 +7,7 @@ use App\Services\{ Mail, Config, MetronSetting };
 use App\Utils\{GA, Hash, Check, Tools };
 use App\Metron\{ MtAuth, Metron };
 use Exception;
+use Ramsey\Uuid\Uuid;
 
 class MtAgent extends \App\Controllers\BaseController
 {
@@ -314,7 +315,8 @@ class MtAgent extends \App\Controllers\BaseController
         $newuser->user_name            = $email;
         $newuser->email                = $email;
         $newuser->pass                 = Hash::passwordHash($pass);
-        $newuser->passwd               = Tools::genRandomChar(6);
+        $newuser->passwd               = Tools::genRandomChar(16);
+        $newuser->uuid                 = Uuid::uuid3(Uuid::NAMESPACE_DNS, $email . '|' . $current_timestamp);
         $newuser->port                 = Tools::getAvPort();
         $newuser->t                    = 0;
         $newuser->u                    = 0;
