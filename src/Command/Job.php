@@ -824,7 +824,6 @@ class Job extends Command
             foreach ($email_queues as $email_queue) {
                 try {
                     if (filter_var($email_queue->to_email, FILTER_VALIDATE_EMAIL)) {
-                        var_dump($email_queue->to_email);
                         Mail::send($email_queue->to_email, $email_queue->subject, $email_queue->template, json_decode($email_queue->array), []);
                         echo "[{$email_queue->to_email}] - 发送成功" . PHP_EOL;
                     } else {
