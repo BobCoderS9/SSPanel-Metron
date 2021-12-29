@@ -821,10 +821,10 @@ class Job extends Command
         fclose($myfile);
         // 分块处理，节省内存
         EmailQueue::chunkById(500, function ($email_queues) {
-
             foreach ($email_queues as $email_queue) {
                 try {
-                    if (!filter_var($email_queue->to_email, FILTER_VALIDATE_EMAIL)) {
+                    if (filter_var($email_queue->to_email, FILTER_VALIDATE_EMAIL)) {
+                        var_dump($email_queue->to_email);
                         Mail::send($email_queue->to_email, $email_queue->subject, $email_queue->template, json_decode($email_queue->array), []);
                     } else {
                         $email_queue->delete();
