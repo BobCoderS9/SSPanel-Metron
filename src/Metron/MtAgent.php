@@ -309,7 +309,8 @@ class MtAgent extends \App\Controllers\BaseController
             $res['msg'] = '邮箱已经被注册了';
             return $response->getBody()->write(json_encode($res));
         }
-
+        
+        $current_timestamp             = time();
         $newuser                       = new User();
         $pass                          = Tools::genRandomChar();
         $newuser->user_name            = $email;
