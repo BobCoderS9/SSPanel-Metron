@@ -30,7 +30,7 @@ class Password
         $subject = $_ENV['appName'] . '重置密码';
         $resetUrl = $_ENV['baseUrl'] . '/password/token/' . $pwdRst->token;
         try {
-            Mail::send($email, $subject, 'password/reset.tpl', [
+            $result = Mail::send($email, $subject, 'password/reset.tpl', [
                 'resetUrl' => $resetUrl
             ], [
                 //BASE_PATH.'/public/assets/email/styles.css'
@@ -38,7 +38,7 @@ class Password
         } catch (Exception $e) {
             return false;
         }
-        return true;
+        return $result;
     }
 
     public static function resetBy($token, $password)
