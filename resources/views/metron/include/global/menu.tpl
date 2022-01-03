@@ -15,22 +15,22 @@
                                         <ul class="menu-nav">
                                             <li class="menu-item menu-item-submenu menu-item-rel">
                                                 <a href="/user" class="menu-link">
-                                                    <span class="menu-text"><strong>主页</strong></span>
+                                                    <span class="menu-text"><strong>首页</strong></span>
                                                 </a>
                                             </li>
                                             <li class="menu-item menu-item-submenu menu-item-rel">
                                                 <a href="/user/code" class="menu-link">
-                                                    <span class="menu-text"><strong>钱包</strong></span>
+                                                    <span class="menu-text"><strong>我的钱包</strong></span>
                                                 </a>
                                             </li>
                                             <li class="menu-item menu-item-submenu menu-item-rel">
                                                 <a href="/user/shop" class="menu-link">
-                                                    <span class="menu-text"><strong>商店</strong></span>
+                                                    <span class="menu-text"><strong>商店服务</strong></span>
                                                 </a>
                                             </li>
                                             <li class="menu-item menu-item-submenu menu-item-rel">
                                                 <a href="/user/node" class="menu-link">
-                                                    <span class="menu-text"><strong>节点</strong></span>
+                                                    <span class="menu-text"><strong>节点列表</strong></span>
                                                 </a>
                                             </li>
                                             <li class="menu-item menu-item-submenu menu-item-rel" data-menu-toggle="click" aria-haspopup="true">
@@ -187,7 +187,12 @@
                                             {/if}
                                             <li class="menu-item menu-item-submenu menu-item-rel">
                                                 <a href="/user/help" class="menu-link">
-                                                    <span class="menu-text"><strong>文档中心</strong></span>
+                                                    <span class="menu-text"><strong>使用教程</strong></span>
+                                                </a>
+                                            </li>
+                                            <li class="menu-item menu-item-submenu menu-item-rel">
+                                                <a href="/user/help" class="menu-link" target="_blank">
+                                                    <span class="menu-text"><strong>在线QQ</strong></span>
                                                 </a>
                                             </li>
                                             {if $metron['agent_menu_enable'] === true && $user->agent > 0}
