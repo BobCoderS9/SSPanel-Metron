@@ -56,7 +56,7 @@ class Smtp extends Base
             $mail->addAttachment($file);
         }
         // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
-        if (!$mail->send()) {
+        if ($mail->send()) {
             return true;
         }
         return false;
