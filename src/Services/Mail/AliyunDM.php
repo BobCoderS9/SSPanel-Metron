@@ -32,12 +32,11 @@ class AliyunDM
         $request->setHtmlBody($text);
         try {
             $response = $client->getAcsResponse($request);
+            return true;
         } catch (\ClientException  $e) {
-            print_r($e->getErrorCode());
-            print_r($e->getErrorMessage());
+            return false;
         } catch (\ServerException  $e) {
-            print_r($e->getErrorCode());
-            print_r($e->getErrorMessage());
+            return false;
         }
     }
 
