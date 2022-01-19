@@ -17,11 +17,11 @@
                                     <h2 class="text-white font-weight-bold my-2 mr-5">用户中心</h2>
                                 </div>
                             </div>
-                            <div class="d-flex align-items-center">
+                            <div class="d-flex align-items-center" id="checkin-btn">
                                 {if $user->isAbleToCheckin()}
                                     <a href="javascript:;"
                                        class="btn {$style[$theme_style]['global']['btn_subheader']} font-weight-bold py-3 px-6"
-                                       id="checkin" onclick="index.checkin();">每日签到</a>
+                                       id="checkin">每日签到</a>
                                 {else}
                                     <a href="javascript:;"
                                        class="btn btn-transparent-white font-weight-bold py-3 px-6 mr-2 disabled"
@@ -400,5 +400,32 @@
             ');
         {/if}
     </script>
+<script>
+    $(document).ready(function () {     
+        $("#checkin").click(function () {
+            $.ajax({
+                type: "POST",
+                url: "/user/checkin",
+                dataType: "json",
+                success: function (data) {
+                    Swal.fire({
+                        title: "欢迎回来",
+                        text: data.msg,
+                        icon: "success",
+                        buttonsStyling: false,
+                        confirmButtonText: "确定",
+                        customClass: {
+                            confirmButton: "btn btn-primary"
+                        }
+                    });
+                    document.getElementById("checkin-btn").innerHTML = '<a href="javascript:;"class="btn btn-transparent-white font-weight-bold py-3 px-6 mr-2 disabled"disabled="disabled">已签到</a>';
+                },
+                error: function (jqXHR) {
+                    Swal.fire("发生错误", " ", "error");
+                }
+            });
+        });
+    });
+</script>
     </body>
 </html>
