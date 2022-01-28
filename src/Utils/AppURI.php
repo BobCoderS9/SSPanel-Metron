@@ -454,7 +454,7 @@ class AppURI
                 $return = (self::getItemUrl($item, 0));
                 break;
             case 'vmess':
-                if (!in_array($item['net'], ['tcp', 'ws', 'http', 'h2'])) {
+                if (!in_array($item['net'], ['tcp', 'ws', 'http', 'h2', 'grpc'])) {
                     break;
                 }
                 $obfs = '';
@@ -469,6 +469,11 @@ class AppURI
                         break;
                     case 'mkcp':
                         $obfs .= 'obfsParam={"header":' . '"' . ($item['headerType'] == '' || $item['headerType'] == 'noop' ? 'none' : $item['headerType']) . '"' . '}&obfs=mkcp';
+                        break;
+                    case 'grpc':
+                        $obfs .= ($item['host'] != ''
+                            ? ('&obfsParam=' . '&path=' . $item['servicename'] . '&obfs=grpc')
+                            : ('&obfsParam=' . $item['add'] . '&path=' . $item['servicename'] . '&obfs=grpc'));
                         break;
                     case 'h2':
                         $obfs .= ($item['host'] != ''
