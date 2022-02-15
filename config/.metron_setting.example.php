@@ -192,7 +192,7 @@ $_MT['pay_qqpay']      = 'none';      // QQ钱包默认
 $_MT['max_qqpay_num']  = 0;     // 使用微信支付时, 金额大于等于设定值, 使用下方支付方式
 $_MT['max_qqpay_pay']  = 'none';  // 支付金额大于上面设置的值时, 使用此支付方式
 
-$_MT['pay_crypto']     = 'none';	// 数字货币支付
+$_MT['pay_crypto']     = 'bob_tron_pay';	// 数字货币支付
 
 $_MT['mix_amount'] = 0;     // 限制每次最低充值, 商店购买套餐不受此限制。（因为商店扣除余额后可能出现很低的金额）
 

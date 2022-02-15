@@ -329,6 +329,12 @@ $_ENV['payjs_key'] = '';
 $_ENV['paytaro_app_id'] = '';
 $_ENV['paytaro_app_secret'] = '';
 
+#bobpay
+$_ENV['tron_api_url'] = '';
+$_ENV['tron_app_id'] = '';
+$_ENV['tron_app_secret'] = '';
+
+
 #wolfpay
 $_ENV['wolfpay'] = [
     'config' => [
