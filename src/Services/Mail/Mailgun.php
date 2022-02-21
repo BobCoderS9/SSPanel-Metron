@@ -51,5 +51,7 @@ class Mailgun extends Base
                     'inline' => $inline
                 ]);
         }
+
+        return true;
     }
 }
