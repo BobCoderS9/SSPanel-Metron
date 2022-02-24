@@ -82,8 +82,8 @@
                             <div class="col-sm-12 col-xl-6 mb-8">
                                 <div class="card card-custom cursor_onclick {$metron['style_shadow']}"
                                         {if $user->class >= $node['class'] && $node['sort'] != 15 } onclick="node.NodeInfo({$node['id']})"
-                                        {elseif $user->class >= $node['class'] && $node['sort'] == 15 }  onclick="showVless({$node['id']})"
-                                        {else}  onclick="node.Classinsufficient()" {/if}>
+                                        {elseif $user->class >= $node['class'] && $node['sort'] == 15 } onclick="showVless({$node['id']})"
+                                        {else} onclick="node.Classinsufficient()" {/if}>
                                     <div class="card-body pt-6 pl-4 pb-5">
                                         <ul class="list-unstyled user-details list-unstyled-border list-unstyled-noborder">
                                             <li class="media">
@@ -94,7 +94,9 @@
                                                     <div class="media-title"><span
                                                                 class="label label-dot label-xl {if $node['online']=='1'}label-success{else}label-danger{/if}"></span> {$node['name']}
                                                     </div>
-                                                    <div class=" text-job text-muted">{$node['info']}</div>
+                                                    <div class=" text-job text-muted">
+                                                        {$node['info']}
+                                                    </div>
                                                 </div>
                                                 <div class="media-items">
                                                     {if $metron['enable_online_user'] == true}
@@ -123,6 +125,57 @@
                                                 </div>
                                             </li>
                                         </ul>
+                                        {if $node['unlock'] && $metron['show_stream_media'] === true}
+                                            <div style="border-top: 2px dashed #ECF0F3;
+                                        border-bottom-right-radius: 0.42rem;
+                                        border-bottom-left-radius: 0.42rem;
+                                        margin-top: 20px;
+                                        margin-bottom: 10px;"></div>
+                                            <div class="datatable datatable-bordered datatable-head-custom datatable-default datatable-primary datatable-loaded" style="">
+                                                <table id="node_unlocak"  class="datatable-table" style="display: block;">
+                                                    <thead class="datatable-head">
+                                                    <tr class="datatable-row" style="left: 0px;">
+                                                        <th data-field="YouTube" class="datatable-cell"><span>YouTube</span></th>
+                                                        <th data-field="Netflix" class="datatable-cell"><span>Netflix</span></th>
+                                                        <th data-field="DisneyPlus" class="datatable-cell"><span>DisneyPlus</span></th>
+                                                        <th data-field="港澳台B站" class="datatable-cell"><span>港澳台B站</span></th>
+                                                        <th data-field="台湾B站" class="datatable-cell"><span>台湾B站</span></th>
+                                                        <th data-field="MyTVSuper" class="datatable-cell"><span>MyTVSuper</span></th>
+                                                        <th data-field="BBC" class="datatable-cell"><span>BBC</span></th>
+                                                        <th data-field="Abema" class="datatable-cell"><span>Abema</span></th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody style="" class="datatable-body">
+                                                    <tr data-row="0" class="datatable-row" style="left: 0px;">
+                                                        <td data-field="YouTube" style="width: 13%;" aria-label="{$node['unlock']['unlock_item']['YouTube']}" class="datatable-cell">
+                                                            <span>{$node['unlock']['unlock_item']['YouTube']}</span>
+                                                        </td>
+                                                        <td data-field="Netflix" style="width: 13%;" aria-label="{$node['unlock']['unlock_item']['Netflix']}" class="datatable-cell">
+                                                            <span>{$node['unlock']['unlock_item']['Netflix']}</span>
+                                                        </td>
+                                                        <td data-field="DisneyPlus" style="width: 13%;" aria-label="{$node['unlock']['unlock_item']['DisneyPlus']}" class="datatable-cell">
+                                                            <span>{$node['unlock']['unlock_item']['DisneyPlus']}</span>
+                                                        </td>
+                                                        <td data-field="BilibiliHKMCTW" style="width: 13%;" aria-label="{$node['unlock']['unlock_item']['BilibiliHKMCTW']}" class="datatable-cell">
+                                                            <span>{$node['unlock']['unlock_item']['BilibiliHKMCTW']}</span>
+                                                        </td>
+                                                        <td data-field="BilibiliTW" style="width: 13%;" aria-label="{$node['unlock']['unlock_item']['BilibiliTW']}" class="datatable-cell">
+                                                            <span>{$node['unlock']['unlock_item']['BilibiliTW']}</span>
+                                                        </td>
+                                                        <td data-field="MyTVSuper" style="width: 13%;" aria-label="{$node['unlock']['unlock_item']['MyTVSuper']}" class="datatable-cell">
+                                                            <span>{$node['unlock']['unlock_item']['MyTVSuper']}</span>
+                                                        </td>
+                                                        <td data-field="BBC" style="width: 13%;" aria-label="{$node['unlock']['unlock_item']['BBC']}" class="datatable-cell">
+                                                            <span>{$node['unlock']['unlock_item']['BBC']}</span>
+                                                        </td>
+                                                        <td data-field="Abema" style="width: 13%;" aria-label="{$node['unlock']['unlock_item']['Abema']}" class="datatable-cell">
+                                                            <span>{$node['unlock']['unlock_item']['Abema']}</span>
+                                                        </td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        {/if}
                                     </div>
                                 </div>
                             </div>
@@ -269,20 +322,21 @@
                         <p>节点Host：<code id="nodeinfo-trojan-modal-host"></code></p>
                         <p>节点端口：<code id="nodeinfo-trojan-modal-port"></code></p>
                         <p>节点密码：<code id="nodeinfo-trojan-modal-passwd"></code></p>
-                        <p>Trojan链接：<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js"></script>
-                        <a href="#" class="copy-text" >点此复制</a>
-<script>
-     var clipboard = new ClipboardJS('.copy-text', {
-    		text: function(trigger) {
-            var address = document.querySelector('#nodeinfo-trojan-modal-address').innerText;
-            var host = document.querySelector('#nodeinfo-trojan-modal-host').innerText;
-            var port = document.querySelector('#nodeinfo-trojan-modal-port').innerText;
-            var passwd = document.querySelector('#nodeinfo-trojan-modal-passwd').innerText;
-            var nodename = document.querySelector('#nodeinfo-trojan-modal-remark').innerText;
-            return  "trojan://"+passwd + "@"+ address+ ":"+ port+ "?peer="+ host+ "#"+ nodename;
-        }
-    });
-    </script>
+                        <p>Trojan链接：
+                            <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js"></script>
+                            <a href="#" class="copy-text">点此复制</a>
+                            <script>
+                                var clipboard = new ClipboardJS('.copy-text', {
+                                    text: function (trigger) {
+                                        var address = document.querySelector('#nodeinfo-trojan-modal-address').innerText;
+                                        var host = document.querySelector('#nodeinfo-trojan-modal-host').innerText;
+                                        var port = document.querySelector('#nodeinfo-trojan-modal-port').innerText;
+                                        var passwd = document.querySelector('#nodeinfo-trojan-modal-passwd').innerText;
+                                        var nodename = document.querySelector('#nodeinfo-trojan-modal-remark').innerText;
+                                        return "trojan://" + passwd + "@" + address + ":" + port + "?peer=" + host + "#" + nodename;
+                                    }
+                                });
+                            </script>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -540,9 +594,13 @@
 
     </body>
     <script>
+        $("td span:contains('Yes')").addClass("text-success");
+        $("td span:contains('No')").addClass("text-danger");
+        $("td span:contains('Unknow')").addClass("text-warning");
+        $("td span:contains('仅限自制')").addClass("text-info");
         //触发模态框的同时调用此方法
         function showVless(id) {
-            $.get('/user/nodeinfo/'+id, function (res) {
+            $.get('/user/nodeinfo/' + id, function (res) {
                 let data = JSON.parse(res)
                 $("#nodeinfo-v2ray-vless-modal-remark").text(data.info.remark)
                 $("#nodeinfo-v2ray-vless-modal-add").text(data.info.add)

@@ -3,11 +3,8 @@
 namespace App\Controllers\User;
 
 use App\Controllers\UserController;
-use App\Models\{
-    Node,
-    User,
-    Relay
-};
+use App\Services\MetronSetting;
+use App\Models\{Node, StreamMedia, User, Relay};
 use App\Utils\{
     URL,
     Tools,
@@ -69,6 +66,25 @@ class NodeController extends UserController
             $array_node['info']       = $node->info;
             $array_node['mu_only']    = $node->mu_only;
             $array_node['group']      = $node->node_group;
+
+            if (MetronSetting::get('show_stream_media')) {
+                $unlock = StreamMedia::where('node_id', $node->id)
+                    ->orderBy('id', 'desc')
+                    ->where('created_at', '>', time() - 86460) // 只获取最近一天零一分钟内上报的数据
+                    ->first();
+                if ($unlock != null) {
+                    $details = json_decode($unlock->result, true);
+                    foreach ($details as $key => $value) {
+                        $info = [
+                            'node_name' => $node->name,
+                            'created_at' => $unlock->created_at,
+                            'unlock_item' => $details
+                        ];
+                    }
+
+                    array_push($array_node['unlock'], $info);
+                }
+            }
 
             if ($node->sort == 13) {
                 $server = Tools::ssv2Array($node->server);

@@ -385,6 +385,8 @@ return function (SlimApp $app) {
 
     // mu
     $app->group('/mod_mu', function () {
+        // 流媒体检测
+        $this->post('/media/saveReport',    App\Controllers\Mod_Mu\NodeController::class . ':saveReport');
         $this->get('/nodes/{id}/info',      App\Controllers\Mod_Mu\NodeController::class . ':get_info');
         $this->get('/users',                App\Controllers\Mod_Mu\UserController::class . ':index');
         $this->post('/users/traffic',       App\Controllers\Mod_Mu\UserController::class . ':addTraffic');

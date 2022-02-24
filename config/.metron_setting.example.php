@@ -358,3 +358,6 @@ $_MT['auto_reset_mode'] = 'sspanel';
 $_MT['auto_close_ticket'] = true;       // 自动关闭用户没有回复的工单
 $_MT['close_ticket_time'] = 3;          // 用户多久(天)没有回复的工单自动关闭
 $_MT['del_user_ticket']   = true;       // 清理用户不存在的工单
+
+# 节点显示流媒体检测结果
+$_MT['show_stream_media']  = true;
