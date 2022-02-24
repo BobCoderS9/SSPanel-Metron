@@ -67,6 +67,7 @@ class NodeController extends UserController
             $array_node['mu_only']    = $node->mu_only;
             $array_node['group']      = $node->node_group;
 
+            $array_node['unlock'] = [];
             if (MetronSetting::get('show_stream_media')) {
                 $unlock = StreamMedia::where('node_id', $node->id)
                     ->orderBy('id', 'desc')
@@ -74,15 +75,37 @@ class NodeController extends UserController
                     ->first();
                 if ($unlock != null) {
                     $details = json_decode($unlock->result, true);
-                    foreach ($details as $key => $value) {
-                        $info = [
-                            'node_name' => $node->name,
-                            'created_at' => $unlock->created_at,
-                            'unlock_item' => $details
-                        ];
-                    }
+                    $details = str_replace('Originals Only', '仅限自制', $details);
+                    $details = str_replace('Oversea Only', '仅限海外', $details);
+                    $array_node['unlock'] = [
+                        'node_name' => $node->name,
+                        'created_at' => $unlock->created_at,
+                        'unlock_item' => $details
+                    ];
+                }
 
-                    array_push($array_node['unlock'], $info);
+                if (MetronSetting::get('streaming_media_unlock_multiplexing') != null ) {
+                    $value = MetronSetting::get('streaming_media_unlock_multiplexing');
+                    $array_keys = array_keys($value);
+                    if (in_array($node->id, $array_keys)){
+                        $key_node = Node::where('id', $node->id)->first();
+                        $value_node = StreamMedia::where('node_id', $value[$node->id])
+                            ->orderBy('id', 'desc')
+                            ->where('created_at', '>', time() - 86460) // 只获取最近一天零一分钟内上报的数据
+                            ->first();
+
+                        if ($value_node != null) {
+                            $details = json_decode($value_node->result, true);
+                            $details = str_replace('Originals Only', '仅限自制', $details);
+                            $details = str_replace('Oversea Only', '仅限海外', $details);
+
+                            $array_node['unlock'] = [
+                                'node_name' => $key_node->name,
+                                'created_at' => $value_node->created_at,
+                                'unlock_item' => $details
+                            ];
+                        }
+                    }
                 }
             }
 

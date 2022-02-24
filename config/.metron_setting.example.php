@@ -361,3 +361,8 @@ $_MT['del_user_ticket']   = true;       // 清理用户不存在的工单
 
 # 节点显示流媒体检测结果
 $_MT['show_stream_media']  = true;
+//流媒体解锁 如下设置将使397，297号节点复用4号节点的检测结果 使用时去掉注释符 //
+$_MT['streaming_media_unlock_multiplexing'] = [
+    //'397' => '4',
+    //'297' => '4',
+];
