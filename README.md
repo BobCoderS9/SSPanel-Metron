@@ -1,7 +1,5 @@
 ## SSPanel-Metron主题，目前由@BobS9维护开发中。
 
-联系方式：[@BobS9](https://t.me/BobS9)
-
 #### 1.连接 SSH 安装宝塔面板
 
 #### 2.宝塔面板安装环境, 推荐使用 PHP 7.2、MySQL 5.6、Nginx 1.16
