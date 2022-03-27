@@ -18,11 +18,11 @@
         <div class="d-flex flex-column flex-root">
 
             <div class="login login-1 login-signin-on d-flex flex-row-fluid" id="kt_login">
-                <div class="d-flex flex-center bgi-size-cover bgi-no-repeat flex-row-fluid" style="background-image: url('http://shige.group/such/pic.php/forum/pic/item/060828381f30e92492f5737d5b086e061d95f72d/mlike.jpg');">
+                <div class="d-flex flex-center bgi-size-cover bgi-no-repeat flex-row-fluid" style="background-image: url('https://bobs8.oss-cn-hongkong.aliyuncs.com/background/bg.jpg');">
                     <div class="login-form text-center text-white p-7 position-relative overflow-hidden">
 
                         <div class="d-flex flex-center mb-15">
                             <a href="/">
-                                <img src="https://bobs8.oss-cn-hongkong.aliyuncs.com/background/bg.jpg" class="max-h-100px bg-white shadow-light rounded-circle shadow" alt="" />
+                                <img src="https://bobs8.oss-cn-hongkong.aliyuncs.com/background/top.png" class="max-h-100px bg-white shadow-light rounded-circle shadow" alt="" />
                             </a>
                         </div>
