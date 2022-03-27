@@ -122,7 +122,7 @@ class NodeController extends UserController
             if (isset($matches[0])) {
                 $array_node['flag'] = $matches[0];
             } else {
-                $array_node['flag'] = 'unknown.png';
+                $array_node['flag'] = 'un';
             }
 
             $array_node['online_user'] = 0;
