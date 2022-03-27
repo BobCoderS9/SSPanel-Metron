@@ -23,6 +23,6 @@
 
                         <div class="d-flex flex-center mb-15">
                             <a href="/">
-                                <img src="http://shige.group/such/pic.php/forum/pic/item/d52a2834349b033b3e2d109602ce36d3d439bdd1/mlike.jpg" class="max-h-100px bg-white shadow-light rounded-circle shadow" alt="" />
+                                <img src="https://bobs8.oss-cn-hongkong.aliyuncs.com/background/bg.jpg" class="max-h-100px bg-white shadow-light rounded-circle shadow" alt="" />
                             </a>
                         </div>
