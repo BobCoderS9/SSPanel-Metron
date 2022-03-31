@@ -118,7 +118,7 @@ class AppURI
                 $return = 'trojan://' . $item['passwd'] . '@' . $item['address'] . ':' . $item['port'].'?sni=' . $item['host'].'#'.$item['remark'];
                 break;
             case 'ss':
-                $return = self::getItemUrl($item, 1);
+                $return = self::getItemUrl($item, 2);
                 break;
         }
         return $return;
