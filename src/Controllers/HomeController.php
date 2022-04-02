@@ -250,9 +250,17 @@ class HomeController extends BaseController
                     break;
                 case 'clash':
                     $msg = [
-                        '**订阅链接：**[[点击下载配置]](' . $subInfo['clash'] . ')',
+                        '**订阅链接：**[[Clash 点击此处一键添加]](clash://install-config?url=' . urlencode($subInfo['clash']) . ')',
                         '```',
                         $subInfo['clash'],
+                        '```'
+                    ];
+                    break;
+                case 'clashr':
+                    $msg = [
+                        '**订阅链接：**[[ClashXR 点击此处一键添加]](clash://install-config?url=' . urlencode($subInfo['clashr']) . ')',
+                        '```',
+                        $subInfo['clashr'],
                         '```'
                     ];
                     break;
