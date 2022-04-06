@@ -71,6 +71,29 @@
 {include file='admin/footer.tpl'}
 
 <script>
+    function copy_node(id) {
+        $.ajax({
+            type:"POST",
+            url:"/admin/node/copy",
+            dataType:"json",
+            data:{
+                id: id
+            },
+            success:function(data){
+                if(data.ret){
+                    $("#result").modal();
+                    $("#msg").html(data.msg);
+                }else{
+                    $("#result").modal();
+                    $("#msg").html(data.msg);
+                }
+            },
+            error:function(jqXHR){
+                $("#result").modal();
+                $("#msg").html(data.msg+"  发生错误了。");
+            }
+        });
+    }
 
     function delete_modal_show(id) {
         deleteid = id;

@@ -203,6 +203,7 @@ return function (SlimApp $app) {
 
         $this->get('/node/create',              App\Controllers\Admin\NodeController::class . ':create');
         $this->post('/node',                    App\Controllers\Admin\NodeController::class . ':add');
+        $this->post('/node/copy',               App\Controllers\Admin\NodeController::class . ':copy');
         $this->get('/node/{id}/edit',           App\Controllers\Admin\NodeController::class . ':edit');
         $this->put('/node/{id}',                App\Controllers\Admin\NodeController::class . ':update');
         $this->delete('/node',                  App\Controllers\Admin\NodeController::class . ':delete');

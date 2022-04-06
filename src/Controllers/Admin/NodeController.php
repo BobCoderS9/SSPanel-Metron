@@ -308,6 +308,21 @@ class NodeController extends AdminController
         );
     }
 
+    public function copy($request, $response, $args)
+    {
+        $id = $request->getParam('id');
+        $res = Node::query()->find($id)->replicate()->save();
+        if (!$res) {
+            $rs['ret'] = 0;
+            $rs['msg'] = "复制失败";
+            return $response->getBody()->write(json_encode($rs));
+        }
+
+        $rs['ret'] = 1;
+        $rs['msg'] = "复制成功";
+        return $response->getBody()->write(json_encode($rs));
+    }
+
     /**
      * @param Request   $request
      * @param Response  $response
@@ -364,6 +379,7 @@ class NodeController extends AdminController
         foreach ($nodes as $node) {
             $tempdata = [];
             $tempdata['op']   = '<a class="btn btn-brand" ' . ($node->sort == 999 ? 'disabled' : 'href="/admin/node/' . $node->id . '/edit"') . '>编辑</a>
+                <a class="btn btn-subscription" ' . ($node->sort == 999 ? 'disabled' : 'id="copy_node" value="' . $node->id . '" href="javascript:void(0);" onClick="copy_node(\'' . $node->id . '\')"') . '>复制</a>
                 <a class="btn btn-brand-accent" ' . ($node->sort == 999 ? 'disabled' : 'id="delete" value="' . $node->id . '" href="javascript:void(0);" onClick="delete_modal_show(\'' . $node->id . '\')"') . '>删除</a>';
             $tempdata['id']   = $node->id;
             $tempdata['name'] = $node->name;

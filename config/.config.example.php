@@ -329,8 +329,8 @@ $_ENV['payjs_key'] = '';
 $_ENV['paytaro_app_id'] = '';
 $_ENV['paytaro_app_secret'] = '';
 
-#bobpay
-$_ENV['tron_api_url'] = '';
+#bobpay @bob_pay_bot https://faka.bob1.xyz/buy/13
+$_ENV['tron_api_url'] = 'https://pay.bobu.me';
 $_ENV['tron_app_id'] = '';
 $_ENV['tron_app_secret'] = '';
 
