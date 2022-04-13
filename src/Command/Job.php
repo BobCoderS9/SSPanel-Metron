@@ -845,7 +845,7 @@ class Job extends Command
     {
         $users = User::query()
             ->where('class_expire', '<', date('Y-m-d H:i:s', time()))
-            ->where('class', '!=', 0)
+            ->where('class', '>', 0)
             ->where('is_admin', '!=', 1)
             ->get();
 
