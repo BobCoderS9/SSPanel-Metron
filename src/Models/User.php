@@ -503,7 +503,7 @@ class User extends Model
 
     public function paidUserCount()
     {
-        return self::where('class', '!=', '0')->count();
+        return self::where('class', '>', '0')->count();
     }
 
     public function allUserCount()

@@ -286,7 +286,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="wizard-step wizard-step-active"
-                                                                 onclick="location='/user/tutorial'">
+                                                                 onclick="location='/user/help'">
                                                                 <div class="wizard-step-icon">
                                                                     <i class="fas fa-download" style="color: #fff;"></i>
                                                                 </div>

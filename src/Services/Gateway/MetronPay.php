@@ -13,7 +13,7 @@ class MetronPay extends AbstractPayment
         if ($telegram === 0) {
             $price = $request->getParam('price') ?? 0;
             $pay_type = $request->getParam('type');
-            $type = explode('_', $pay_type)[1];
+            $type = isset(explode('_', $pay_type)[1]) ? explode('_', $pay_type)[1] : $request->getParam('type');
             $client = $request->getParam('client');
             $paylist_id = (int)$request->getParam('paylist_id');
 
