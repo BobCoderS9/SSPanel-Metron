@@ -373,7 +373,7 @@ class AuthController extends BaseController
         $regname = '#[^\x{4e00}-\x{9fa5}A-Za-z0-9]#u';
         if (preg_match($regname, $name)) {
             $res['ret'] = 0;
-            $res['msg'] = '不能包含符号';
+            $res['msg'] = '昵称不能包含符号';
             return $res;
         }
         if (strlen($name) > 15) {
