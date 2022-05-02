@@ -190,11 +190,6 @@
                                                     <span class="menu-text"><strong>使用教程</strong></span>
                                                 </a>
                                             </li>
-                                            <li class="menu-item menu-item-submenu menu-item-rel">
-                                                <a href="/user/help" class="menu-link" target="_blank">
-                                                    <span class="menu-text"><strong>在线QQ</strong></span>
-                                                </a>
-                                            </li>
                                             {if $metron['agent_menu_enable'] === true && $user->agent > 0}
                                             <li class="menu-item menu-item-submenu menu-item-rel">
                                                 <a href="/user/agent" class="menu-link">

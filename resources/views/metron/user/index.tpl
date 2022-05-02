@@ -286,7 +286,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="wizard-step wizard-step-active"
-                                                                 onclick="location='/user/tutorial'">
+                                                                 onclick="location='/user/help'">
                                                                 <div class="wizard-step-icon">
                                                                     <i class="fas fa-download" style="color: #fff;"></i>
                                                                 </div>
@@ -369,6 +369,26 @@
             </div>
         </div>
     {/if}
+    <div class="modal fade" id="userClassExpire" data-backdrop="static" tabindex="-1" role="dialog"
+         aria-labelledby="qrcode-sublink-modal-title" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content shadow-lg">
+                <div class="modal-header">
+                    <h4 class="modal-title {$style[$theme_style]['modal']['text_title']}"
+                        id="qrcode-sublink-modal-title"><strong>账号等级过期</strong></h4>
+                </div>
+                <div class="modal-body">
+                    您套餐已过期或还未购买套餐，请先购买套餐后使用
+                </div>
+                <div class="modal-footer">
+                    <a href="/user/shop" class="btn btn-primary">前往购买</a>
+                    <button type="button" class="btn {$style[$theme_style]['modal']['btn_close']} font-weight-bold"
+                            data-dismiss="modal">关闭
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     {include file='include/global/scripts.tpl'}
     {include file='include/global/import_sublink.tpl'}
@@ -379,6 +399,9 @@
         <script> mt.pop('{$metron['pop_time']}') </script>
     {/if}
     <script>
+        {if $user->class == 0}
+        $('#userClassExpire').modal()
+        {/if}
         {if $user->class > 0 && substr($user->unusedTraffic(),0,-2) > 0 && ((substr($user->unusedTraffic(),0,-2) <= 5 && substr($user->unusedTraffic(),-2) == 'GB') || (substr($user->unusedTraffic(),0,-2) <= 1024 && substr($user->unusedTraffic(),-2) == 'MB'))}
         $('#index-alert').append('\
                 <div class="alert alert-custom alert-white alert-shadow fade mb-8 show {$metron['style_shadow']}" role="alert">\

@@ -4,10 +4,7 @@
 namespace App\Controllers\Mod_Mu;
 
 use App\Controllers\BaseController;
-use App\Models\{
-    Node,
-    NodeInfoLog
-};
+use App\Models\{Node, NodeInfoLog, StreamMedia};
 use App\Services\Config;
 
 class NodeController extends BaseController
@@ -124,5 +121,35 @@ class NodeController extends BaseController
             $serverIP = getenv('SERVER_ADDR');
         }
         return $serverIP;
+    }
+
+    /**
+     * @param Request   $request
+     * @param Response  $response
+     * @param array     $args
+     */
+    public function saveReport($request, $response, $args)
+    {
+        // $request_ip = $_SERVER["REMOTE_ADDR"];
+        $node_id = $request->getParam('node_id');
+        $content = $request->getParam('content');
+        $result = json_decode(base64_decode($content), true);
+
+        /* $node = Node::where('node_ip', $request_ip)->first();
+        if ($node != null) {
+            $report = new StreamMedia;
+            $report->node_id = $node->id;
+            $report->result = json_encode($result);
+            $report->created_at = time();
+            $report->save();
+            die('ok');
+        } */
+
+        $report = new StreamMedia;
+        $report->node_id = $node_id;
+        $report->result = json_encode($result);
+        $report->created_at = time();
+        $report->save();
+        die('ok');
     }
 }

@@ -203,6 +203,7 @@ return function (SlimApp $app) {
 
         $this->get('/node/create',              App\Controllers\Admin\NodeController::class . ':create');
         $this->post('/node',                    App\Controllers\Admin\NodeController::class . ':add');
+        $this->post('/node/copy',               App\Controllers\Admin\NodeController::class . ':copy');
         $this->get('/node/{id}/edit',           App\Controllers\Admin\NodeController::class . ':edit');
         $this->put('/node/{id}',                App\Controllers\Admin\NodeController::class . ':update');
         $this->delete('/node',                  App\Controllers\Admin\NodeController::class . ':delete');
@@ -385,6 +386,8 @@ return function (SlimApp $app) {
 
     // mu
     $app->group('/mod_mu', function () {
+        // 流媒体检测
+        $this->post('/media/saveReport',    App\Controllers\Mod_Mu\NodeController::class . ':saveReport');
         $this->get('/nodes/{id}/info',      App\Controllers\Mod_Mu\NodeController::class . ':get_info');
         $this->get('/users',                App\Controllers\Mod_Mu\UserController::class . ':index');
         $this->post('/users/traffic',       App\Controllers\Mod_Mu\UserController::class . ':addTraffic');

@@ -398,15 +398,12 @@ class URL
 
         $items = URL::getNew_AllItems($user, $Rule);
         foreach ($items as $item) {
-            if ($Rule['type'] == 'vmess' || $item['type'] == 'vless') {
-                $out = LinkController::getListItem($item, 'v2rayn');
-            } else {
-                $out = LinkController::getListItem($item, $Rule['type']);
-            }
+            $out = LinkController::getListItem($item, $Rule['type']);
             if ($out !== null) {
                 $return_url .= $out . PHP_EOL;
             }
         }
+
         return $return_url;
     }
 

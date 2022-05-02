@@ -56,7 +56,7 @@
                                         <div class="input-group mt-5">
                                             <input class="form-control h-auto text-white placeholder-white opacity-70 bg-dark-o-70 rounded-l-50 border-0 py-4 px-8 pr-0" type="text" placeholder="邮箱验证码" name="email_code" id="email_code" autocomplete="new-password" />
                                             <div class="input-group-append ml-0">
-                                                <button type="button" class="btn btn-pill btn-outline-code font-weight-bold pr-5 opacity-70 bg-dark-o-70" id="send-code">获取验证码</button>
+                                                <button type="button" class="btn btn-pill btn-outline-code font-weight-bold pr-5 opacity-70 bg-dark-o-70" id="send_email" onclick="sendMail()">获取验证码</button>
                                             </div>
                                         </div>
                                     </div>
@@ -107,6 +107,45 @@
                         {include file='include/auth/scripts.tpl'}
 
 <script>
+
+    function sendMail() {
+        var email = $("#email").val();
+        var postfix = $("#email_postfix").val();
+        toastr.options = {
+            "closeButton": false,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": false,
+            "positionClass": "toast-top-center",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        };
+        if (!email) {
+            toastr.error("邮箱不能为空");
+            return false;
+        }
+        $("#send_email").attr("disabled", true);
+        $.post("/auth/send", {
+            email: email + postfix
+        }, function (res) {
+            $("#send_email").attr("disabled", false);
+            res = JSON.parse(res);
+            if(res.ret) {
+                toastr.success(res.msg);
+            } else {
+                toastr.error(res.msg);
+            }
+        })
+    }
+
     if ((getCookie('uid')) != '') {
         window.location.href = '/user';
     }

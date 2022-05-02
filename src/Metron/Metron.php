@@ -236,7 +236,7 @@ class Metron
     {
         $info = $this->getConversionInfo($user, $bought);
         if ($info['ret'] !== 1) {
-            return $res;
+            return $info;
         }
         /* 增加 Code 表 */
         $codeq = new Code();
@@ -252,6 +252,7 @@ class Metron
         }
         /* 处理 Bought 表 */
         $bought->renew = 0;
+        $bought->usedd = 0; // 取消生效
         $bought->save();
 
         /* 处理 User */

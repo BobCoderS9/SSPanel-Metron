@@ -916,3 +916,12 @@ CREATE TABLE `payback_take_log`  (
                                      `datetime` int(11) NULL DEFAULT NULL,
                                      PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/* 流媒体表 */
+CREATE TABLE `stream_media` (
+                                `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+                                `node_id` int(11) DEFAULT NULL,
+                                `result` text,
+                                `created_at` int(11) DEFAULT NULL,
+                                PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4;
