@@ -20,7 +20,7 @@ class Bob extends Command
     . '├─=: php xcat Bob' . PHP_EOL
     . '│ ├─ createUser - [数量(必填)] [名称(选填)] [密码(选填)] - 批量新增用户' . PHP_EOL
     . '│ ├─ createUuid - 批量生成UUID' . PHP_EOL
-    . '│ ├─ addExpireOrFlow [等级(-1:全部用户)] [类型(1:时间 2:流量)] [数值(天/GB)] - 批量添加到期时间或流量' . PHP_EOL;
+    . '│ ├─ addExpireOrFlow [等级(-1:全部用户)] [类型(1:时间 2:流量 3:余额)] [数值(天/GB/金额)] - 批量添加到期时间、流量或余额' . PHP_EOL;
 
     public function boot()
     {
@@ -131,19 +131,28 @@ class Bob extends Command
             })
             ->get();
 
-        if ($type == 1) {
-            $value = $value * 86400;
-        } else {
-            $value = $value * 1024 * 1024 * 1024;
-        }
         $users->each(function ($user) use ($type, $value) {
-            if ($type == 1) {
-                $user->class_expire = date('Y-m-d H:i:s', strtotime($user->class_expire) + $value);
-            } else {
-                $user->transfer_enable = $user->transfer_enable + $value;
+            $text = "";
+            switch ($type){
+                case 1:
+                    $value = $value * 86400;
+                    $user->class_expire = date('Y-m-d H:i:s', strtotime($user->class_expire) + $value);
+                    $text = '时间';
+                    $user->save();
+                    break;
+                case 2:
+                    $value = $value * 1024 * 1024 * 1024;
+                    $user->transfer_enable = $user->transfer_enable + $value;
+                    $text = '流量';
+                    $user->save();
+                    break;
+                case 3:
+                    $user->money = $user->money + $value;
+                    $text = '余额';
+                    $user->save();
+                    break;
             }
-            $user->save();
-            echo "用户[{$user->email}]添加" . ($type == 1 ? '时间' : '流量') . "成功" . PHP_EOL;
+            echo "用户[{$user->email}]添加" . $text . "成功" . PHP_EOL;
         });
     }
 }
