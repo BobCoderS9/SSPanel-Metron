@@ -16,6 +16,15 @@ $_MT['style_shadow'] = 'rounded-lg shadow';    // 卡片圆角: rounded / rounde
 #####  落地页设置  --------------------------------------------------------------------------------------------
 $_MT['index_enable'] = false;                // true: 开启落地页 false:关闭落地页,并自动跳转至用户中心  落地页还在咕,先不要开
 
+#####  背景图设置  --------------------------------------------------------------------------------------------
+// 登录/注册页面 背景图
+$_MT['index_background_image'] = "https://cdn.jsdelivr.net/gh/BobCoderS9/metron-assets@3.0.2/metron/media/bg/bg-2.jpg";
+// 登录/注册页面 LOGO
+$_MT['index_background_logo'] = "https://cdn.jsdelivr.net/gh/BobCoderS9/metron-assets@3.0.2/metron/media/logos/user.png";
+// 用户中心顶部背景图
+$_MT['user_background_top'] = "https://cdn.jsdelivr.net/gh/BobCoderS9/metron-assets@3.0.2/metron/media/bg/bg-01-450.jpg";
+
+
 #####  重要通知弹窗  --------------------------------------------------------------------------------------------
 $_MT['domain_info']  = true;                     // 当用户访问网站的地址不是config设置的, 提示用户转到 config 地址
 $_MT['domain_time']  = 15;                     // 弹出后间隔多久再提示 (单位:分钟)

@@ -18,7 +18,7 @@
 {/if}
 <link href="/favicon.ico" rel="shortcut icon" />
 </head>
-<body id="kt_body" {if $theme_style !== 'dark'}style="background-image: url({$metron['assets_url']}/media/bg/bg-01-450.jpg)"{/if} class="quick-panel-right demo-panel-right offcanvas-right header-fixed subheader-enabled page-loading">
+<body id="kt_body" {if $theme_style !== 'dark'}style="background-image: url({$metron['user_background_top']})"{/if} class="quick-panel-right demo-panel-right offcanvas-right header-fixed subheader-enabled page-loading">
 <div id="kt_header_mobile" class="header-mobile">
     <!--开始::手机端Logo
     <a href="/user">
