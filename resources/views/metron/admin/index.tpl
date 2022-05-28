@@ -1,5 +1,38 @@
 {include file='admin/main.tpl'}
-
+<style>
+    table {
+        width: 100%;
+        display: table;
+        border-collapse: collapse;
+        border-spacing: 0;
+    }
+    table, th, td {
+        border: none;
+    }
+    thead {
+        color: rgba(0,0,0,0.6);
+    }
+    tr {
+        border-bottom: 1px solid rgba(0,0,0,0.12);
+    }
+    td, th {
+        padding: 15px 10px;
+    }
+    td, th {
+        padding: 15px 5px;
+        display: table-cell;
+        text-align: left;
+        vertical-align: middle;
+        border-radius: 2px;
+        font-weight: 500;
+    }
+    table, th, td {
+        border: none;
+    }
+    tr {
+        border-bottom: 1px solid rgba(0,0,0,0.12);
+    }
+</style>
 <main class="content">
     <div class="content-header ui-content-header">
         <div class="container">
@@ -24,7 +57,6 @@
 
                     <div class="col-xx-12 col-sm-6">
 
-
                         <div class="card">
                             <div class="card-main">
                                 <div class="card-inner">
@@ -36,7 +68,24 @@
                                 </div>
                             </div>
                         </div>
-
+                        <div class="card">
+                            <div class="card-main">
+                                <div class="card-inner">
+                                    <h5>72小时节点流量使用排名</h5>
+                                    <table>
+                                        <thead>
+                                        <tr>
+                                            <th>节点ID</th>
+                                            <th>节点名称</th>
+                                            <th>使用流量</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody id="node_traffic_text">
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
                         <div class="card">
                             <div class="card-main">
                                 <div class="card-inner">
@@ -119,8 +168,6 @@
 
                             </div>
                         </div>
-
-
                         <div class="card">
                             <div class="card-main">
                                 <div class="card-inner">
@@ -189,13 +236,8 @@
 
                             </div>
                         </div>
-
-
                     </div>
-
-
                     <div class="col-xx-12 col-sm-6">
-
                         <div class="card">
                             <div class="card-main">
                                 <div class="card-inner">
@@ -207,13 +249,29 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="card">
                             <div class="card-main">
                                 <div class="card-inner">
-
+                                    <h5>72小时用户流量使用排名</h5>
+                                    <table>
+                                        <thead>
+                                        <tr>
+                                            <th>用户ID</th>
+                                            <th>用户名</th>
+                                            <th>邮箱</th>
+                                            <th>使用流量</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody id="user_traffic_text">
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-main">
+                                <div class="card-inner">
                                     <div id="node_chart" style="height: 300px; width: 100%;"></div>
-
                                     <script src="//cdn.jsdelivr.net/gh/YihanH/canvasjs.js@v2.2/canvasjs.min.js"></script>
                                     <script type="text/javascript">
                                         var chart = new CanvasJS.Chart("node_chart",
@@ -258,19 +316,13 @@
 
                                         chart.render();
                                     </script>
-
                                 </div>
-
                             </div>
                         </div>
-
-
                         <div class="card">
                             <div class="card-main">
                                 <div class="card-inner">
-
                                     <div id="traffic_chart" style="height: 300px; width: 100%;"></div>
-
                                     <script src="//cdn.jsdelivr.net/gh/YihanH/canvasjs.js@v2.2/canvasjs.min.js"></script>
                                     <script type="text/javascript">
                                         var chart = new CanvasJS.Chart("traffic_chart",
@@ -328,8 +380,6 @@
 
                             </div>
                         </div>
-
-
                     </div>
 
                 </div>
@@ -357,6 +407,53 @@
                     data = data.data;
                     var html_text = `<h6>${data.date}的数据</h6>今日收入：${data.todayIncome}<br>昨日收入：${data.yesterdayIncome}<br>本周收入：${data.thisWeekIncome}<br>上周收入：${data.lastWeekIncome}<br>本月收入：${data.thisMonthIncome}<br>上月收入：${data.lastMonthIncome}`;
                     $('#income_text').html(html_text);
+                } else {
+                    console.log(data.error)
+                }
+            }
+        })
+    }
+
+    function getNodeTraffic(date) {
+        $.ajax({
+            type: "GET",
+            url: "/admin/api/analytics/node",
+            dataType: "json",
+            data: {
+                date: date,
+            },
+            success: function (data) {
+                console.log(data.ret);
+                if (data.success) {
+                    data = data.data;
+                    var html_text = "";
+                    data.forEach(function (item) {
+                        html_text += `<tr><th>${item.node_id}</th><th>${item.node_name}</th><th>${item.traffic}</th></tr>`;
+                    })
+                    $('#node_traffic_text').html(html_text);
+                } else {
+                    console.log(data.error)
+                }
+            }
+        })
+    }
+
+    function getUserTraffic(date) {
+        $.ajax({
+            type: "GET",
+            url: "/admin/api/analytics/userTraffic",
+            dataType: "json",
+            data: {
+                date: date,
+            },
+            success: function (data) {
+                if (data.success) {
+                    data = data.data;
+                    var html_text = "";
+                    data.forEach(function (item) {
+                        html_text += `<tr><th>${item.user_id}</th><th>${item.user_name}</th><th>${item.email}</th><th>${item.traffic}</th></tr>`;
+                    })
+                    $('#user_traffic_text').html(html_text);
                 } else {
                     console.log(data.error)
                 }
@@ -401,5 +498,7 @@
     date = date.replaceAll('/','-');
     getIncome(date);
     getNewUsers(date);
+    getNodeTraffic();
+    getUserTraffic();
 </script>
 {/literal}

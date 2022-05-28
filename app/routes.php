@@ -354,6 +354,8 @@ return function (SlimApp $app) {
         });
         // admin 增加收入和新用户统计
         $this->get('/api/analytics/income',     App\Controllers\AdminController::class . ':getIncome');
+        $this->get('/api/analytics/node',     App\Controllers\AdminController::class . ':getNodeTraffic');
+        $this->get('/api/analytics/userTraffic',     App\Controllers\AdminController::class . ':getUserTraffic');
         $this->get('/api/analytics/new-users',  App\Controllers\AdminController::class . ':newUsers');
 
         # Metron

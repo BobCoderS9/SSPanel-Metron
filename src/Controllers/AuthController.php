@@ -365,22 +365,27 @@ class AuthController extends BaseController
             return $res;
         }
 
-        if (empty($name)){
-            $res['ret'] = 0;
-            $res['msg'] = '昵称不能为空';
-            return $res;
+        if ($name){
+            if (empty($name)){
+                $res['ret'] = 0;
+                $res['msg'] = '昵称不能为空';
+                return $res;
+            }
+            $regname = '#[^\x{4e00}-\x{9fa5}A-Za-z0-9]#u';
+            if (preg_match($regname, $name)) {
+                $res['ret'] = 0;
+                $res['msg'] = '昵称不能包含符号';
+                return $res;
+            }
+            if (strlen($name) > 15) {
+                $res['ret'] = 0;
+                $res['msg'] = '昵称太长了';
+                return $res;
+            }
+        } else {
+            $name = $email;
         }
-        $regname = '#[^\x{4e00}-\x{9fa5}A-Za-z0-9]#u';
-        if (preg_match($regname, $name)) {
-            $res['ret'] = 0;
-            $res['msg'] = '昵称不能包含符号';
-            return $res;
-        }
-        if (strlen($name) > 15) {
-            $res['ret'] = 0;
-            $res['msg'] = '昵称太长了';
-            return $res;
-        }
+
 
         if (User::where("reg_ip", $_SERVER['REMOTE_ADDR'])->count() >= 5){
             $res['ret'] = 0;

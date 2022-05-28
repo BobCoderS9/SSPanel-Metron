@@ -2,11 +2,8 @@
 
 namespace App\Controllers;
 
-use App\Models\{
-    Node,
-    User,
-    Coupon
-};
+use Illuminate\Database\Capsule\Manager;
+use App\Models\{Node, TrafficLog, User, Coupon};
 use App\Utils\{
     Tools,
     DatatablesHelper
@@ -320,6 +317,40 @@ class AdminController extends UserController
             "thisMonth" => $this_month_users,
             "lastMonth" => $last_moneth_users
         );
+        return $response->getBody()->write(json_encode($res));
+    }
+
+    public function getNodeTraffic($request, $response, $args)
+    {
+        $logs = Manager::connection()->select('SELECT *,(SUM(u) + SUM(d)) as sum_ud FROM `user_traffic_log` GROUP BY node_id ORDER BY sum_ud DESC LIMIT 0,10');
+        foreach ($logs as &$log) {
+            $log->node_name = Node::query()->where('id', $log->node_id)->value('name');
+            $log->traffic = Tools::flowAutoShow($log->sum_ud);
+        }
+
+        $res['success'] = true;
+        $res['error'] = '';
+        $res['message'] = '';
+        $res['data'] = $logs;
+
+        return $response->getBody()->write(json_encode($res));
+    }
+
+    public function getUserTraffic($request, $response, $args)
+    {
+        $logs = Manager::connection()->select('SELECT *,(SUM(u) + SUM(d)) as sum_ud FROM `user_traffic_log` GROUP BY user_id ORDER BY sum_ud DESC LIMIT 0,10');
+        foreach ($logs as &$log) {
+            $user = User::query()->where('id', $log->user_id)->first();
+            $log->user_name = $user->user_name;
+            $log->email = $user->email;
+            $log->traffic = Tools::flowAutoShow($log->sum_ud);
+        }
+
+        $res['success'] = true;
+        $res['error'] = '';
+        $res['message'] = '';
+        $res['data'] = $logs;
+
         return $response->getBody()->write(json_encode($res));
     }
 }
