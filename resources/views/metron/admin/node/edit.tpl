@@ -53,21 +53,6 @@
         <div class="col-lg-12 col-sm-12">
             <section class="content-inner margin-top-no">
                 <form id="main_form">
-                    <div class="card">
-                        <div class="card-main">
-                            <div class="card-inner">
-                                <div class="form-group">
-                                    <div class="row">
-                                        <div class="col-md-10 col-md-push-1">
-                                            <button id="submit" type="submit"
-                                                    class="btn btn-block btn-brand waves-attach waves-light">修改
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="card">
@@ -272,6 +257,21 @@
                                             <input class="form-control maxwidth-edit" id="node_sort"
                                                    name="node_sort" type="text" value="{$node->node_sort}">
                                             <p class="form-control-guide"><i class="material-icons">info</i>数字越大越靠前</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-main">
+                            <div class="card-inner">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-10 col-md-push-1">
+                                            <button id="submit" type="submit"
+                                                    class="btn btn-block btn-brand waves-attach waves-light">修改
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
