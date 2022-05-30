@@ -864,6 +864,10 @@ class LinkController extends BaseController
             $Profiles = $_ENV['Clash_DefaultProfiles']; // 默认策略组
         }
 
+        header("subscription-userinfo: upload={$user['u']}; download={$user['d']}; total={$user['transfer_enable']}; expire={$user['expired_at']}");
+        header('profile-update-interval: 24');
+        header("content-disposition:attachment;filename={$_ENV['appName']}");
+
         return ConfController::getClashConfs($user, $Proxys, $_ENV['Clash_Profiles'][$Profiles]);
     }
 
