@@ -232,7 +232,7 @@
                             {if $config['payment_system'] == 'metronpay'}
                                 {if $metron['pay_alipay'] != 'none' && $metron['pay_alipay'] != ''}
                                     <li class="nav-alipay nav-item d-flex col flex-grow-1 flex-shrink-0 mr-3 mb-3 mb-lg-0 cursor_onclick">
-                                        <a class="nav-link border py-10 d-flex flex-grow-1 rounded flex-column align-items-center" data-toggle="pill" data-name="pay_alipay">
+                                        <a class="nav-link border py-10 d-flex flex-grow-1 rounded flex-column align-items-center active" data-toggle="pill" data-name="pay_alipay">
                                         <span class="nav-icon py-2 w-auto">
                                             <i class="fab fa-alipay icon-2x"></i>
                                         </span>
