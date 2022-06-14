@@ -16,7 +16,7 @@
 
 
 ```shell
-git config core.filemode false && wget https://getcomposer.org/installer -O composer.phar && php composer.phar && php composer.phar install
+wget https://getcomposer.org/installer -O composer.phar && php composer.phar && php composer.phar install
 ```
 
 
@@ -95,7 +95,7 @@ UPDATE user SET theme='metron'
 检查账号过期任务 (必须)
 任务类型：Shell 脚本
 任务名称：自行填写
-执行周期：每小钟
+执行周期：每小时
 脚本内容：php /www/wwwroot/你的网站目录/xcat Job CheckUserExpire
 
 定时检测邮件队列 (必须)
