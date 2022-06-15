@@ -80,7 +80,8 @@ class NodeController extends BaseController
                 $query->where('sort', '=', 0)
                     ->orWhere('sort', '=', 10)
                     ->orWhere('sort', '=', 12)
-                    ->orWhere('sort', '=', 13);
+                    ->orWhere('sort', '=', 13)
+                    ->orWhere('sort', '=', 14);
             }
         )->get();
         $res = [
