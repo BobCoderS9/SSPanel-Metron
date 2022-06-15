@@ -826,10 +826,6 @@ class UserController extends BaseController
             if ($coupon == null) {
                 $credit = 0;
             } else {
-                if ($coupon->onetime == 1) {
-                    $onetime = true;
-                }
-
                 $credit = $coupon->credit;
             }
 
@@ -893,11 +889,6 @@ class UserController extends BaseController
         }
 
         $bought->coupon = $code;
-
-
-        if (isset($onetime)) {
-            $price = $shop->price;
-        }
         $bought->price = $price;
         $bought->usedd = 1;
         $bought->save();
