@@ -132,9 +132,12 @@
             toastr.error("邮箱不能为空");
             return false;
         }
+        if (postfix !== undefined){
+            email = email + postfix;
+        }
         $("#send_email").attr("disabled", true);
         $.post("/auth/send", {
-            email: email + postfix
+            email: email
         }, function (res) {
             $("#send_email").attr("disabled", false);
             res = JSON.parse(res);
