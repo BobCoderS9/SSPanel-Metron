@@ -139,14 +139,29 @@
         $.post("/auth/send", {
             email: email
         }, function (res) {
-            $("#send_email").attr("disabled", false);
             res = JSON.parse(res);
             if(res.ret) {
                 toastr.success(res.msg);
+                timeoutChangeStyle();
             } else {
                 toastr.error(res.msg);
+                $("#send_email").attr("disabled", false);
             }
         })
+    }
+
+    var num = 60;
+    function timeoutChangeStyle() {
+        if (num == 0) {
+            $("#send_email").text("发送验证码");
+            num = 60;
+            $("#send_email").attr("disabled", false);
+        } else {
+            var str = num + "s 后再次获取";
+            $("#send_email").text(str);
+            setTimeout("timeoutChangeStyle()", 1000);
+        }
+        num--;
     }
 
     if ((getCookie('uid')) != '') {
