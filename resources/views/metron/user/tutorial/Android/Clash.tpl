@@ -80,18 +80,7 @@
                                                             </div>
                                                         </div>
                                                         {/if}
-                                                        {if in_array('clashr',$metron['index_sub'])}
-                                                        <div class="btn-group mb-3 mr-3">
-                                                            <button type="button" class="btn btn-pill btn-clash dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">&nbsp;&nbsp;<i class="metron-clash text-white"></i>ClashR 订阅配置&nbsp;&nbsp;</button>
-                                                            <div class="dropdown-menu">
-                                                                <button type="button" class="dropdown-item copy-text" data-clipboard-text="{$subInfo["clashr"]}">复制 ClashR 订阅</button>
-                                                                <div class="dropdown-divider">
-                                                                </div>
-                                                                <button type="button" class="dropdown-item" href="##" onclick="importSublink('clashr')">一键导入 ClashR</button>
-                                                            </div>
-                                                        </div>
-                                                        {/if}
-                                                        <p class="mb-2">点击上方按钮一键导入节点配置到ClashR</p>
+                                                        <p class="mb-2">点击上方按钮一键导入节点配置到Clash</p>
                                                         <p class="mb-2">文件名填入 <code>{$config["appName"]}</code></p>
                                                         <p class="mb-2">然后点击右上角的 <code>√</code> 完成导入</p>
                                                         <p class="mb-2">再次打开软件，进入 <code>配置文件</code> 选中刚刚导入的节点配置</p>
@@ -101,7 +90,7 @@
                                                             </div>
                                                             <div class="alert-text">
                                                                 <p class="mb-2">无法一键导入? 试试手动设置订阅</p>
-                                                                <p class="mb-2">先复制 Clash/ClashR 订阅地址</p>
+                                                                <p class="mb-2">先复制 Clash 订阅地址</p>
                                                                 <p class="mb-2">打开APP 进入 <code>配置</code> - 选择 <code>新配置</code> - <code>URL</code> </p>
                                                                 <p class="mb-2">粘贴订阅地址到 URL 一栏, 名称填写 {$config["appName"]}, 点击右上角保存</p>
                                                                 <p class="mb-2">回到 <code>配置文件</code> 选中刚刚导入的节点配置</p>
@@ -140,7 +129,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                
+
 							</div>
 						</div>
 					</div>

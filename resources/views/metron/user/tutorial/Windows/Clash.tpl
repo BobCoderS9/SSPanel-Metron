@@ -112,17 +112,6 @@
                                                             </div>
                                                         </div>
                                                         {/if}
-                                                        {if in_array('clashr',$metron['index_sub'])}
-                                                        <div class="btn-group mb-3 mr-3">
-                                                            <button type="button" class="btn btn-pill btn-clash dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">&nbsp;&nbsp;<i class="metron-clash"></i>ClashR 订阅配置&nbsp;&nbsp;</button>
-                                                            <div class="dropdown-menu">
-                                                                <button type="button" class="dropdown-item copy-text" data-clipboard-text="{$subInfo["clashr"]}">复制 ClashR 订阅</button>
-                                                                <div class="dropdown-divider">
-                                                                </div>
-                                                                <button type="button" class="dropdown-item" href="##" onclick="importSublink('clashr')">一键导入 ClashR</button>
-                                                            </div>
-                                                        </div>
-                                                        {/if}
                                                         <!-- 结束 :: 订阅按钮 -->
                                                         <div class="h6 pt-2">点击上方按钮一键导入节点配置到Clash/ClashR</div>
                                                         <div class="h6 pt-2">导入成功后， <code>Profiles</code> 界面会多出一个配置选项卡</div>
@@ -182,7 +171,7 @@
                                     </div>
                                 </div>
                                 <!-- 结束 :: 教程内容 -->
-                                
+
 							</div>
 						</div>
 					</div>

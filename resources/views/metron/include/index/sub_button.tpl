@@ -22,18 +22,6 @@
                                                             </div>
                                                         </div>
                                                         {/if}
-                                                        {if in_array('clashr',$metron['index_sub'])}
-                                                        <!-- ClashR订阅 -->
-                                                        <div class="btn-group mb-3 mr-3">
-                                                            <button type="button" class="btn btn-pill btn-clash dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="metron-clash text-white"></i>&nbsp;&nbsp;ClashR 订阅&nbsp;&nbsp;</button>
-                                                            <div class="dropdown-menu">
-                                                                <button type="button" class="dropdown-item copy-text" data-clipboard-text="{$subInfo["clashr"]}">复制 ClashR 订阅</button>
-                                                                <div class="dropdown-divider">
-                                                                </div>
-                                                                <button type="button" class="dropdown-item" href="##" onclick="importSublink('clashr')">一键导入 ClashR</button>
-                                                            </div>
-                                                        </div>
-                                                        {/if}
                                                         {if in_array('surge',$metron['index_sub'])}
                                                         <!-- Surge订阅 -->
                                                         <div class="btn-group mb-3 mr-3">
@@ -57,6 +45,18 @@
                                                                 <button type="button" class="dropdown-item" href="##" onclick="importSublink('shadowrocket')">一键导入 Shadowrocket</button>
                                                             </div>
                                                         </div>
+                                                        {/if}
+                                                        {if in_array('stash',$metron['index_sub'])}
+                                                            <!-- Stash -->
+                                                            <div class="btn-group mb-3 mr-3">
+                                                                <button type="button" class="btn btn-pill btn-surfboard dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                    <i class="text-white"></i>&nbsp;&nbsp;Stash 订阅&nbsp;&nbsp;</button>
+                                                                <div class="dropdown-menu">
+                                                                    <button type="button" class="dropdown-item copy-text" data-clipboard-text="{$subInfo["stash"]}">复制 Stash 订阅</button>
+                                                                    <div class="dropdown-divider"></div>
+                                                                    <button type="button" class="dropdown-item" href="##" onclick="importSublink('stash')">一键导入 Stash</button>
+                                                                </div>
+                                                            </div>
                                                         {/if}
                                                         {if in_array('quantumult',$metron['index_sub'])}
                                                         <!-- Quantumult订阅 -->

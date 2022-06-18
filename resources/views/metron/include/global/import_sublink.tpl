@@ -6,9 +6,6 @@
             if (client == 'clash') {
                 index.oneclickImport('clash','{$subInfo["clash"]}')
             };
-            if (client == 'clashr') {
-                index.oneclickImport('clashr','{$subInfo["clashr"]}')
-            };
             if (client == 'shadowrocket') {
                 index.oneclickImport('shadowrocket','{$subInfo["shadowrocket"]}')
             };
@@ -17,6 +14,9 @@
             };
             if (client == 'quantumult_v2') {
                 index.oneclickImport('quantumult_v2','{$subInfo["quantumult_v2"]}')
+            };
+            if (client == 'stash') {
+                location.href = "stash://install-config?url=" + encodeURIComponent('{$subInfo["stash"]}') + "&name=" + '{$config["appName"]}'
             };
             }
             function qrcodeSublink(client) {

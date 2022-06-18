@@ -121,18 +121,18 @@ $_MT['help_Keywords'] = ['下载', '套餐', 'SSR',];     // 文档中心推荐�
 $_MT['nodes_filter'] = false;        // 开启订阅节点筛选
 $_MT['nodes_miniName'] = false;     // 允许用户开启节点正则匹配简化节点名称, 启用该选项需熟悉使用正则表达式
 $_MT['nodes_regex'] = '/\[(.*?)\]/';     // 节点筛选设置中节点名称缩短的正则表达式, 默认 [ ] 中的字符都会被移除
-# 主页订阅框显示哪些订阅     可选: ssr, v2ray, surge, clash, clashr, surfboard, kitsunebi, shadowrocket, quantumult, quantumultx,
+# 主页订阅框显示哪些订阅     可选: ssr, v2ray, surge, clash, surfboard, kitsunebi, shadowrocket, quantumult, quantumultx,
 $_MT['index_sub'] = [
     'ssr',
     'v2ray',
     'surge',
     'clash',
-    'clashr',
     'surfboard',
     'kitsunebi',
     'quantumult',
     'quantumultx',
     'shadowrocket',
+    'stash'
 ];
 # 共享账号
 $_MT['shared_account_enable'] = true;       // 显示 共享账号 导航菜单
