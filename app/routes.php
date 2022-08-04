@@ -356,7 +356,11 @@ return function (SlimApp $app) {
         $this->get('/api/analytics/income',     App\Controllers\AdminController::class . ':getIncome');
         $this->get('/api/analytics/node',     App\Controllers\AdminController::class . ':getNodeTraffic');
         $this->get('/api/analytics/userTraffic',     App\Controllers\AdminController::class . ':getUserTraffic');
-        $this->get('/api/analytics/new-users',  App\Controllers\AdminController::class . ':newUsers');
+        $this->get('/api/analytics/new_users',  App\Controllers\AdminController::class . ':newUsers');
+        $this->get('/api/analytics/ref_user_count',  App\Controllers\AdminController::class . ':getRefUserCount');
+        $this->get('/api/analytics/ref_money_count',  App\Controllers\AdminController::class . ':getRefMoneyCount');
+        $this->get('/api/analytics/get_order_detail',  App\Controllers\AdminController::class . ':getOrderDetail');
+        $this->get('/api/analytics/get_ticket_detail',  App\Controllers\AdminController::class . ':getTicketDetail');
 
         # Metron
         // Help Mange
