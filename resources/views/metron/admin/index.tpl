@@ -103,8 +103,8 @@
                                     <h5>邀请人数</h5>
                                     <button class="mdl-button mdl-js-button mdl-button--raised" onclick="getRefUserCount('today')">今天</button>
                                     <button class="mdl-button mdl-js-button mdl-button--raised" onclick="getRefUserCount('yesterday')">昨天</button>
-                                    <button class="mdl-button mdl-js-button mdl-button--raised" onclick="getRefUserCount('week')">这周</button>
-                                    <button class="mdl-button mdl-js-button mdl-button--raised" onclick="getRefUserCount('month')">这月</button>
+                                    <button class="mdl-button mdl-js-button mdl-button--raised" onclick="getRefUserCount('week')">本周</button>
+                                    <button class="mdl-button mdl-js-button mdl-button--raised" onclick="getRefUserCount('month')">本月</button>
                                     <table>
                                         <thead>
                                         <tr>
@@ -297,8 +297,8 @@
                                     <h5>邀请返利</h5>
                                     <button class="mdl-button mdl-js-button mdl-button--raised" onclick="getRefMoneyCount('today')">今天</button>
                                     <button class="mdl-button mdl-js-button mdl-button--raised" onclick="getRefMoneyCount('yesterday')">昨天</button>
-                                    <button class="mdl-button mdl-js-button mdl-button--raised" onclick="getRefMoneyCount('week')">这周</button>
-                                    <button class="mdl-button mdl-js-button mdl-button--raised" onclick="getRefMoneyCount('month')">这月</button>
+                                    <button class="mdl-button mdl-js-button mdl-button--raised" onclick="getRefMoneyCount('week')">本周</button>
+                                    <button class="mdl-button mdl-js-button mdl-button--raised" onclick="getRefMoneyCount('month')">本月</button>
                                     <table>
                                         <thead>
                                         <tr>
