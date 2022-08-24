@@ -349,8 +349,9 @@ $_ENV['mgate_api_url'] = '';
 $_ENV['mgate_app_id'] = '';
 $_ENV['mgate_app_secret'] = '';
 
-#pycloudspay
-$_ENV['pycloudspay'] = [
+#epay
+$_ENV['epay'] = [
+    'epay_api_url' => '',
     'epay_pid' => '',
     'epay_key' => '',
     'transport' => 'https',

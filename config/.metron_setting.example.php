@@ -185,7 +185,7 @@ $_MT['shared_account'] = [
 # 使用哪种支付方式需要在 Config 中设置好参数
 # 目前支持的支付方式: 不使用请设置为 none
 # 支付方式后面带 _qr 为使用站内二维码方式, 无需离开网站即可支付, _url 为跳转到支付链接进行支付, 不带的默认使用原支付的方式
-# 支付宝: codepay |stripe | paytaro | wolfpay_ur | wolfpay_qr | yftpay | pycloudspay | f2fpay | pcexpay
+# 支付宝: codepay |stripe | paytaro | wolfpay_ur | wolfpay_qr | yftpay | epay | f2fpay | pcexpay
 # 微信  : codepay | stripe | paytaro | wolfpay_ur | payjs
 # QQ钱包: codepay |
 

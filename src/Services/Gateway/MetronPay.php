@@ -116,16 +116,15 @@ class MetronPay extends AbstractPayment
                         );
                     }
                     return json_encode($return);
-                case ('pycloudspay'):
-                    $pycloudspay = new Epay();
-                    $result = $pycloudspay->MetronPay($type, $price, $shopinfo, $paylist_id);
+                case ('epay'):
+                    $epay = new Epay();
+                    $result = $epay->MetronPay($type, $price, $shopinfo, $paylist_id);
                     if ($result['errcode'] === 0) {
                         $return = array(
                             'ret' => 1,
                             'type' => 'url',
                             'tradeno' => $result['tradeno'],
-                            'url' => $result['code'],
-                            'errmsg' => $result['msg']
+                            'url' => $result['code']
                         );
                     } else {
                         $return = array(
@@ -493,9 +492,9 @@ class MetronPay extends AbstractPayment
                 $done = $this->postPayment($request->getParam('out_trade_no'), 'PayTaro');
                 die('SUCCESS');
                 return;
-            case ('pycloudspay'):
-                $pycloudspay = new Epay();
-                $pycloudspay->notify($request, $response, $args);
+            case ('epay'):
+                $epay = new Epay();
+                $epay->notify($request, $response, $args);
                 return;
             case ('f2fpay'):
                 $gateway = Omnipay::create('Alipay_AopF2F');

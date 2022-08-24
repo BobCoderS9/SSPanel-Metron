@@ -54,10 +54,7 @@ class Epay_tool
         }
         //去掉最后一个&字符
         $arg = rtrim($arg,'&');
-        
-        //如果存在转义字符，那么去掉转义
-        if(get_magic_quotes_gpc()){$arg = stripslashes($arg);}
-        
+
         return $arg;
     }
     /**
@@ -72,10 +69,7 @@ class Epay_tool
         }
         //去掉最后一个&字符
         $arg = rtrim($arg,'&');
-        
-        //如果存在转义字符，那么去掉转义
-        if(get_magic_quotes_gpc()){$arg = stripslashes($arg);}
-        
+
         return $arg;
     }
     /**
