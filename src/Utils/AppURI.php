@@ -115,7 +115,7 @@ class AppURI
                 $return = $node . '#' . $item['remark'];
                 break;
             case 'trojan':
-                $return = 'trojan://' . $item['passwd'] . '@' . $item['address'] . ':' . $item['port'].'?sni=' . $item['host'].'#'.$item['remark'];
+                $return = 'trojan://' . $item['passwd'] . '@' . $item['address'] . ':' . $item['port'] . '?sni=' . $item['host'] . '#' . $item['remark'];
                 break;
             case 'ss':
                 $return = self::getItemUrl($item, 2);
@@ -287,16 +287,33 @@ class AppURI
                 if (!in_array($item['net'], ['ws', 'tcp'])) {
                     break;
                 }
-                $tls = ($item['tls'] == 'tls'
-                    ? ', tls=true'
-                    : '');
-                $ws = ($item['net'] == 'ws'
-                    ? ', ws=true, ws-path=' . $item['path'] . ', ws-headers=host:' . $item['host']
-                    : '');
-                $return = $item['remark'] . ' = vmess, ' . $item['add'] . ', ' . $item['port'] . ', username = ' . $item['id'] . $ws . $tls;
+                $return = $item['remark'] . ' = vmess, '
+                    . $item['add'] . ', '
+                    . $item['port']
+                    . ', username = ' . $item['id']
+                    . ', vmess-aead = true, tfo = true, udp-relay = true';
+
+                if ($item['tls'] == 'tls') {
+                    $return .= ', tls=true';
+                    if ($item['verify_cert'] == false) {
+                        $return .= ', skip-cert-verify=true';
+                    }
+                    if (isset($item['sni']) && $item['sni']) {
+                        $return .= ', sni=' . $item['sni'];
+                    }
+                }
+                if ($item['net'] == 'ws'){
+                    $return .= ', ws=true' ;
+                    if (isset($item['path']) && $item['path']){
+                        $return .= ', ws-path=' . $item['path'];
+                    }
+                    if (isset($item['host']) && $item['host']){
+                        $return .= ', ws-headers=host:' . $item['host'];
+                    }
+                }
                 break;
             case 'trojan':
-                $return = $item['remark'] . ' = trojan,' . $item['address'] . ', ' . $item['port'] . ', password='.$item['passwd'].',sni='. $item['host'];
+                $return = $item['remark'] . ' = trojan,' . $item['address'] . ', ' . $item['port'] . ', password=' . $item['passwd'] . ',sni=' . $item['host'];
                 break;
         }
         return $return;
@@ -357,7 +374,7 @@ class AppURI
                 if (
                     in_array($item['method'], ['chacha20', 'camellia-128-cfb', 'camellia-192-cfb', 'camellia-256-cfb', 'rc4-md5-6', 'bf-cfb', 'cast5-cfb', 'des-cfb', 'des-ede3-cfb', 'idea-cfb', 'rc2-cfb', 'seed-cfb', 'salsa20', 'xsalsa20', 'none'])
                     ||
-                    in_array($item['protocol'], ['auth_chain_c', 'auth_chain_d', 'auth_chain_e', 'auth_chain_f','verify_deflate'])
+                    in_array($item['protocol'], ['auth_chain_c', 'auth_chain_d', 'auth_chain_e', 'auth_chain_f', 'verify_deflate'])
                 ) {
                     // 不支持的
                     break;
