@@ -366,6 +366,23 @@ class MetronPay extends AbstractPayment
                         );
                     }
                     return json_encode($return);
+                case ('epay'):
+                    $epay = new Epay();
+                    $result = $epay->MetronPay($type, $price, $shopinfo, $paylist_id);
+                    if ($result['errcode'] === 0) {
+                        $return = array(
+                            'ret' => 1,
+                            'type' => 'url',
+                            'tradeno' => $result['tradeno'],
+                            'url' => $result['code']
+                        );
+                    } else {
+                        $return = array(
+                            'ret' => 0,
+                            'msg' => $result['errmsg']
+                        );
+                    }
+                    return json_encode($return);
                 default:
                     $return = array(
                         'ret' => 0,

@@ -56,7 +56,7 @@ class Epay extends AbstractPayment
             "type" => $type,
             "out_trade_no" => $pl->tradeno,
             "notify_url" => $_ENV['baseUrl'] . "/payment/notify/epay",
-            "return_url" => $_ENV['baseUrl'] . "/user/payment/return",
+            "return_url" => $_ENV['baseUrl'] . "/user/code",
             "name" => $_ENV['appName'] . "充值" . $pl->total . "元",
             "money" => $pl->total,
             "sitename" => $_ENV['appName']
