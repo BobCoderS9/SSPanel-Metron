@@ -34,8 +34,8 @@ class SendGrid extends Base
         $this->email->setFrom($this->sender, $this->name);
         $this->email->setSubject($subject_raw);
         $this->email->addTo($to_address,null);
-        $this->email->addContent('text/html', $text);	
-		
+        $this->email->addContent('text/html', $text);
+
         foreach ($files as $file) {
             $this->email->addAttachment(
                 base64_encode(file_get_contents($file)),
@@ -47,6 +47,9 @@ class SendGrid extends Base
         }
 
         $response = $this->sg->send($this->email);
-        echo $response->body();
+        if($response->statusCode() == 200){
+            return true;
+        }
+        return false;
     }
 }

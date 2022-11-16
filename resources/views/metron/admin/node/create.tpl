@@ -10,6 +10,8 @@
 'aes-128-cfb8',
 'aes-192-cfb8',
 'aes-256-cfb8',
+'aes-128-gcm',
+'aes-256-gcm',
 'rc4',
 'rc4-md5',
 'rc4-md5-6',

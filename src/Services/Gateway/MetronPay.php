@@ -209,6 +209,23 @@ class MetronPay extends AbstractPayment
                         );
                     }
                     return json_encode($return);
+                case ('alpha'):
+                    $alpha = new AlphaPay();
+                    $result = $alpha->MetronPay($type, $price, $shopinfo, $paylist_id);
+                    if ($result['errcode'] == 0) {
+                        $return = array(
+                            'ret' => 1,
+                            'type' => 'url',
+                            'tradeno' => $result['pid'],
+                            'url' => $result['url']
+                        );
+                    } else {
+                        $return = array(
+                            'ret' => 0,
+                            'msg' => $result['errmsg']
+                        );
+                    }
+                    return json_encode($return);
                 default:
                     $return = array(
                         'ret' => 0,
@@ -383,6 +400,24 @@ class MetronPay extends AbstractPayment
                         );
                     }
                     return json_encode($return);
+                case ('alpha'):
+                    $type = 'wechat';
+                    $alpha = new AlphaPay();
+                    $result = $alpha->MetronPay($type, $price, $shopinfo, $paylist_id);
+                    if ($result['errcode'] == 0) {
+                        $return = array(
+                            'ret' => 1,
+                            'type' => 'url',
+                            'tradeno' => $result['pid'],
+                            'url' => $result['url']
+                        );
+                    } else {
+                        $return = array(
+                            'ret' => 0,
+                            'msg' => $result['errmsg']
+                        );
+                    }
+                    return json_encode($return);
                 default:
                     $return = array(
                         'ret' => 0,
@@ -436,6 +471,23 @@ class MetronPay extends AbstractPayment
                         );
                     }
                     return json_encode($return);
+                case ('alpha'):
+                    $alpha = new AlphaPay();
+                    $result = $alpha->MetronPay($type, $price, $shopinfo, $paylist_id);
+                    if ($result['errcode'] == 0) {
+                        $return = array(
+                            'ret' => 1,
+                            'type' => 'url',
+                            'tradeno' => $result['pid'],
+                            'url' => $result['url']
+                        );
+                    } else {
+                        $return = array(
+                            'ret' => 0,
+                            'msg' => $result['errmsg']
+                        );
+                    }
+                    return json_encode($return);
                 default:
                     $return = array(
                         'ret' => 0,
@@ -450,6 +502,23 @@ class MetronPay extends AbstractPayment
                 case ('bobpay'):
                     $tron = new BobTronPay();
                     $result = $tron->MetronPay($type, $price, $shopinfo, $paylist_id);
+                    if ($result['errcode'] == 0) {
+                        $return = array(
+                            'ret' => 1,
+                            'type' => 'url',
+                            'tradeno' => $result['pid'],
+                            'url' => $result['url']
+                        );
+                    } else {
+                        $return = array(
+                            'ret' => 0,
+                            'msg' => $result['errmsg']
+                        );
+                    }
+                    return json_encode($return);
+                case ('alpha'):
+                    $alpha = new AlphaPay();
+                    $result = $alpha->MetronPay('USDT', $price, $shopinfo, $paylist_id);
                     if ($result['errcode'] == 0) {
                         $return = array(
                             'ret' => 1,
@@ -603,6 +672,10 @@ class MetronPay extends AbstractPayment
                 return;
             case ('bobpay'):
                 $tron = new BobTronPay();
+                $tron->notify($request, $response, $args);
+                return;
+            case ('alpha'):
+                $tron = new AlphaPay();
                 $tron->notify($request, $response, $args);
                 return;
             default:

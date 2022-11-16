@@ -345,7 +345,7 @@ class AuthController extends BaseController
                 ]);
             } catch (Exception $e) {
                 $res['ret'] = 1;
-                $res['msg'] = '邮件发送失败，请联系网站管理员。';
+                $res['msg'] = "邮件发送失败，请联系网站管理员。[{$e->getMessage()}]";
                 return $response->getBody()->write(json_encode($res));
             }
 
