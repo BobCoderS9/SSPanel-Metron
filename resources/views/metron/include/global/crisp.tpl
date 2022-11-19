@@ -24,6 +24,7 @@
                             ["ID", "{$user->id}"],
                             ["VIP", "{$user->class}"],
                             ["VIP_Time", "{$user->class_expire}"],
+                            ["Online", "{$user->online_ip_count()}"],
                             ["Money", "¥ "+"{$user->money}"],
                             ["Traffic", '{$user->unusedTraffic()}'],
                             ["Last_Time", '{$user->lastSsTime()}'],
