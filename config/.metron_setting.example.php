@@ -300,7 +300,7 @@ $_MT['Telegram_Payment'] = true;    // 用户充值提醒
 $_MT['client_windows'] = [
     'clash' => array(           // 一个array为一个客户端, 可以自行增加或删除
         'name'  => 'Bob加速器',      // 客户端名称
-        'img'   => 'https://img-youpai.weixiaoi.com/tu/2021/0406/1617693954210406.png',        // 图标, 使用png透明文件
+        'img'   => 'https://cdn.jsdelivr.net/gh/BobCoderS9/metron-assets@3.0.2/metron/media/client-logos/clashr-ico.png',        // 图标, 使用png透明文件
         'url'   => '/user/tutorial?os=Windows&client=Clash',      // 安装教程的url地址
         'down'  => 'https://www.google.com',              // 教程页里的客户端下载地址
         'vs'    => 'v3.2.4',     // 版本号
@@ -313,7 +313,7 @@ $_MT['client_windows'] = [
 $_MT['client_android'] = [
     'clash' => array(
         'name'  => 'Bob加速器',
-        'img'   => 'https://img-youpai.weixiaoi.com/tu/2021/0406/1617693954210406.png',
+        'img'   => 'https://cdn.jsdelivr.net/gh/BobCoderS9/metron-assets@3.0.2/metron/media/client-logos/clashr-ico.png',
         'url'   => '/user/tutorial?os=Android&client=Clash',
         'down'  => 'https://www.google.com',
         'vs'    => 'v2.0.0',
@@ -327,7 +327,7 @@ $_MT['client_android'] = [
 $_MT['client_macos'] = [
     'clash' => array(
         'name'  => 'Bob加速器',
-        'img'   => 'https://img-youpai.weixiaoi.com/tu/2021/0406/1617693954210406.png',
+        'img'   => 'https://cdn.jsdelivr.net/gh/BobCoderS9/metron-assets@3.0.2/metron/media/client-logos/clashr-ico.png',
         'url'   => '/user/tutorial?os=MacOS&client=Clash',
         'down'  => 'https://www.google.com',
         'vs'    => 'v3.2.4',
@@ -340,13 +340,13 @@ $_MT['client_macos'] = [
 $_MT['client_ios'] = [
     'Shadowrocket' => array(
         'name'  => 'Shadowrocket',
-        'img'   => $_MT['assets_url'].'/media/client-logos/shadowrocket-ico.png',
+        'img'   => 'https://cdn.jsdelivr.net/gh/BobCoderS9/metron-assets@3.0.2/metron/media/client-logos/shadowrocket-ico.png',
         'url'   => '/user/tutorial?os=iOS&client=Shadowrocket',
         'vs'    => 'v0.10.0',
     ),
     'Quantumult' => array(
         'name'  => 'Quantumult',
-        'img'   => $_MT['assets_url'].'/media/client-logos/quantumult-ico.png',
+        'img'   => 'https://cdn.jsdelivr.net/gh/BobCoderS9/metron-assets@3.0.2/metron/media/client-logos/quantumult-ico.png',
         'url'   => '/user/tutorial?os=iOS&client=Quantumult',
         'vs'    => 'v1.1.0.1',
     ),
