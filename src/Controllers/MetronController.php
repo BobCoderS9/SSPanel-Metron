@@ -390,11 +390,6 @@ class MetronController extends BaseController
      */
     public function PackageConversion($request, $response, $args)
     {
-        $mt = MtAuth::Auth();
-        if (!$mt['ret']) {
-            return $response->getBody()->write(json_encode($mt, JSON_UNESCAPED_UNICODE));
-        }
-
         if (!MetronSetting::get('shop_conversion')) {
             $res = ['ret' => 0, 'msg' => '管理员设置不允许折算'];
             return $response->getBody()->write(json_encode($res, JSON_UNESCAPED_UNICODE));

@@ -117,10 +117,10 @@ class Metron
                 ],
             ];
         } else {                                    /* 是常规套餐 */
-            /*if ($bought->usedd === 0 ){
+            if ($bought->usedd === 0 ){
                 $res = ['ret' => 0, 'msg' => '该套餐已失效, 不能折算余额'];
                 return $res;
-            }*/
+            }
             /* 用户等级和套餐的不一样, 可能被管理修改过 */
             if ( $shopinfo['class'] != $user->class) {
                 $res = ['ret' => 0, 'msg' => '您的等级和套餐等级不符,请联系管理处理'];

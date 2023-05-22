@@ -120,9 +120,9 @@ class Epay extends AbstractPayment
             $trade_status = $_GET['trade_status'];
             if ($trade_status == 'TRADE_SUCCESS') {
                 $this->postPayment($out_trade_no, $type);
-                return json_encode(['state' => 'success', 'msg' => '支付成功']);
+                die('SUCCESS');
             }else{
-                return json_encode(['state' => 'fail', 'msg' => '支付失败']);
+                die('FAIL');
             }
         } else {
             return '非法请求';

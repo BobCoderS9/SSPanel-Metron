@@ -927,6 +927,10 @@ class LinkController extends BaseController
             case 3: // V2
                 $Rule['type'] = 'vmess';
                 $return_url .= URL::get_NewAllUrl($user, $Rule);
+                $Rule['type'] = 'ss';
+                $return_url .= URL::get_NewAllUrl($user, $Rule);
+                $Rule['type'] = 'trojan';
+                $return_url .= URL::get_NewAllUrl($user, $Rule);
                 $getListExtend = $Rule['extend'] ? self::getListExtend($user, 'v2rayn') : [];
                 break;
             case 4: // Trojan
