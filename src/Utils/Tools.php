@@ -945,7 +945,7 @@ class Tools
      */
     public static function generateInviteCode()
     {
-        $temp_code = self::genRandomChar(4);
+        $temp_code = self::genRandomChar(6);
         if(InviteCode::where('code', $temp_code)->first()){
             self::generateInviteCode();
         }
