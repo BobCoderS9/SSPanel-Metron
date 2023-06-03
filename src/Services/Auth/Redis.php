@@ -30,8 +30,8 @@ class Redis extends Base
             'sid' => $sid
         ], $time + time());
         $value = $uid;
-        $this->client->setex($sid, $time, $value);
-        $this->client->setex($sid . 'ip', $time, $_SERVER['REMOTE_ADDR']);
+        $this->client->set($sid, $value, $time);
+        $this->client->set($sid . 'ip', $_SERVER['REMOTE_ADDR'], $time);
     }
 
     public function logout()

@@ -3,6 +3,7 @@
 
 namespace App\Services;
 
+use App\Utils\Tools;
 use Predis\Client;
 
 class RedisClient
@@ -28,21 +29,43 @@ class RedisClient
 
     public function get($key)
     {
-        return $this->client->get($key);
+        $value = $this->client->get($key);
+
+        return Tools::isJson($value) ? json_decode($value, true) : $value;
     }
 
-    public function set($key, $value)
+    public function forever($key, $value)
     {
+        $value = $this->checkValueToString($value);
         $this->client->set($key, $value);
     }
 
-    public function setex($key, $time, $value)
+    public function set($key, $value, $time)
     {
+        $value = $this->checkValueToString($value);
         $this->client->setex($key, $time, $value);
+    }
+
+    public function has($key)
+    {
+        $value = $this->client->type($key);
+
+        return $value === 'none' ? false : true;
     }
 
     public function del($key)
     {
         $this->client->del($key);
+    }
+
+    public function checkValueToString($value)
+    {
+        if (is_array($value)){
+            return json_encode($value);
+        } elseif (is_object($value)){
+            return json_encode($value);
+        }
+
+        return $value;
     }
 }
