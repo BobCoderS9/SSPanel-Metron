@@ -521,6 +521,34 @@ class AppURI
                 }
                 $return = ('vmess://' . Tools::base64_url_encode('chacha20-poly1305:' . $item['id'] . '@' . $item['add'] . ':' . $item['port']) . '?remarks=' . rawurlencode($item['remark']) . $obfs . $tls . '&alterId=' . $item['aid']);
                 break;
+            
+            case 'vless':
+                $node = 'vless://' . $item['id'] . '@' . $item['add'] . ':' . $item['port']
+                    . '?encryption=none&type=' . $item['net'] . '&headerType=none';
+                if (isset($item['host']) && $item['host']) {
+                    $node .= '&host=' . $item['host'];
+                    $node .= '&sni=' . $item['host'];
+                }
+                if (isset($item['path']) && $item['path']) {
+                    $node .= '&path=' . $item['path'];
+                }
+                if (isset($item['security']) && $item['security']) {
+                    $node .= '&security=' . $item['security'];
+                    if ($item['security'] == "reality" && isset($item['publicKey']) && isset($item['shortId'])) {
+                        $node .= "&pbk={$item['publicKey']}&sid={$item['shortId']}";
+                    }
+                }
+                if (isset($item['flow']) && $item['flow']) {
+                    $node .= '&flow=' . $item['flow'];
+                }
+                if ($item['net'] == "grpc") {
+                    $node .= "&mode=multi&serviceName=" . $item['servicename'];
+                } else {
+                    if ($item['headerType'] != "") $node .= "&headerType=" . $item['headerType'];
+                }
+                $return = $node . '#' . $item['remark'];
+                break;
+
             case 'trojan':
                 $return = ('trojan://' . $item['passwd'] . '@' . $item['address'] . ':' . $item['port']);
                 $return .= ('?peer=' . $item['host'] . '#' . rawurlencode($item['remark']));
