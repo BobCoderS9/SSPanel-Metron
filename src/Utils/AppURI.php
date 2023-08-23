@@ -75,6 +75,7 @@ class AppURI
                             json_encode($node, 320)
                         ));
                 } else {
+                    //这段似乎不起作用?，不修改
                     $return = 'vless://' . $item['id'] . "@" . (string)$item['add'] . ":" . $item['port'] . "?encryption=none";
                     $return .= "&type=" . $item['net'];
                     $return .= "&security=" . $item['tls'];
@@ -97,12 +98,16 @@ class AppURI
                     . '?encryption=none&type=' . $item['net'] . '&headerType=none';
                 if (isset($item['host']) && $item['host']) {
                     $node .= '&host=' . $item['host'];
+                    $node .= '&sni=' . $item['host'];
                 }
                 if (isset($item['path']) && $item['path']) {
                     $node .= '&path=' . $item['path'];
                 }
                 if (isset($item['security']) && $item['security']) {
                     $node .= '&security=' . $item['security'];
+                    if ($item['security'] == "reality" && isset($item['publicKey']) && isset($item['shortId'])) {
+                        $node .= "&pbk={$item['publicKey']}&sid={$item['shortId']}";
+                    }
                 }
                 if (isset($item['flow']) && $item['flow']) {
                     $node .= '&flow=' . $item['flow'];
