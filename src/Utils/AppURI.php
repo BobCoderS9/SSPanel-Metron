@@ -75,12 +75,13 @@ class AppURI
                             json_encode($node, 320)
                         ));
                 } else {
-                    //这段似乎不起作用?，不修改
                     $return = 'vless://' . $item['id'] . "@" . (string)$item['add'] . ":" . $item['port'] . "?encryption=none";
                     $return .= "&type=" . $item['net'];
                     $return .= "&security=" . $item['tls'];
-                    if ($item['tls'] == "xtls") {
-                        $return .= "&flow=" . $item['flow'];
+                    if ($item['tls'] == "tls" || $item['tls'] == "reality") {
+                        if (isset($item['flow'])) $return .= "&flow=" . $item['flow'];
+                        if (isset($item['publicKey'])) $return .= "&pbk=" . $item['publicKey'];
+                        if (isset($item['shortId'])) $return .= "&sid=" . $item['shortId'];
                     }
                     if ($item['host'] != "") $return = $return . "&host=" . rawurlencode($item['host']);
                     if ($item['host'] != "") $return = $return . "&sni=" . $item['host'];
@@ -103,10 +104,11 @@ class AppURI
                 if (isset($item['path']) && $item['path']) {
                     $node .= '&path=' . $item['path'];
                 }
-                if (isset($item['security']) && $item['security']) {
-                    $node .= '&security=' . $item['security'];
-                    if ($item['security'] == "reality" && isset($item['publicKey']) && isset($item['shortId'])) {
-                        $node .= "&pbk={$item['publicKey']}&sid={$item['shortId']}";
+                if (isset($item['tls']) && $item['tls']) {
+                    $node .= '&security=' . $item['tls'];
+                    if ($item['tls'] == "reality") {
+                        if (isset($item['publicKey'])) $node .="&pbk=" . $item['publicKey'];
+                        if (isset($item['shortId'])) $node .="&sid=" . $item['shortId'];
                     }
                 }
                 if (isset($item['flow']) && $item['flow']) {
@@ -117,6 +119,7 @@ class AppURI
                 } else {
                     if ($item['headerType'] != "") $node .= "&headerType=" . $item['headerType'];
                 }
+                $node .= "&fp=chrome";
                 $return = $node . '#' . $item['remark'];
                 break;
             case 'trojan':
@@ -521,7 +524,7 @@ class AppURI
                 }
                 $return = ('vmess://' . Tools::base64_url_encode('chacha20-poly1305:' . $item['id'] . '@' . $item['add'] . ':' . $item['port']) . '?remarks=' . rawurlencode($item['remark']) . $obfs . $tls . '&alterId=' . $item['aid']);
                 break;
-            
+
             case 'vless':
                 $node = 'vless://' . $item['id'] . '@' . $item['add'] . ':' . $item['port']
                     . '?encryption=none&type=' . $item['net'] . '&headerType=none';
@@ -532,10 +535,11 @@ class AppURI
                 if (isset($item['path']) && $item['path']) {
                     $node .= '&path=' . $item['path'];
                 }
-                if (isset($item['security']) && $item['security']) {
-                    $node .= '&security=' . $item['security'];
-                    if ($item['security'] == "reality" && isset($item['publicKey']) && isset($item['shortId'])) {
-                        $node .= "&pbk={$item['publicKey']}&sid={$item['shortId']}";
+                if (isset($item['tls']) && $item['tls']) {
+                    $node .= '&security=' . $item['tls'];
+                    if ($item['tls'] == "reality") {
+                        if (isset($item['publicKey'])) $node .="&pbk=" . $item['publicKey'];
+                        if (isset($item['shortId'])) $node .="&sid=" . $item['shortId'];
                     }
                 }
                 if (isset($item['flow']) && $item['flow']) {
@@ -546,6 +550,7 @@ class AppURI
                 } else {
                     if ($item['headerType'] != "") $node .= "&headerType=" . $item['headerType'];
                 }
+                $node .= "&fp=chrome";
                 $return = $node . '#' . $item['remark'];
                 break;
 

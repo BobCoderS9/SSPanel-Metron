@@ -511,6 +511,7 @@ class Tools
         $item['aid'] = (int)$server[2];
         $item['net'] = 'tcp';
         $item['headerType'] = 'none';
+
         if (count($server) >= 4) {
             $item['net'] = $server[3];
             if ($item['net'] == 'ws') {
@@ -532,6 +533,8 @@ class Tools
                 $item['tls'] = 'tls';
             } elseif ($server[4] == 'xtls') {
                 $item['tls'] = 'xtls';
+            } elseif ($server[4] == 'reality') {
+                $item['tls'] = 'reality';
             }
         }
         if (count($server) >= 6 && $server[5] != '') {
