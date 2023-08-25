@@ -165,7 +165,7 @@ CREATE TABLE IF NOT EXISTS `ss_node` (
   `id` int(11) NOT NULL,
   `name` varchar(128) NOT NULL,
   `type` int(3) NOT NULL,
-  `server` varchar(128) NOT NULL,
+  `server` varchar(512) NOT NULL,
   `method` varchar(64) NOT NULL,
   `info` varchar(128) NOT NULL,
   `status` varchar(128) NOT NULL,
