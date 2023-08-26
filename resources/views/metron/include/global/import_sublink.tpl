@@ -6,6 +6,9 @@
             if (client == 'clash') {
                 index.oneclickImport('clash','{$subInfo["clash"]}')
             };
+            if (client == 'clashmeta') {
+                index.oneclickImport('clash','{$subInfo["clashmeta"]}')
+            };
             if (client == 'shadowrocket') {
                 index.oneclickImport('shadowrocket','{$subInfo["shadowrocket"]}')
             };

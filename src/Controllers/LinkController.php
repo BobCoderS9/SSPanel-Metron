@@ -459,6 +459,7 @@ class LinkController extends BaseController
             'ssd' => '?ssd=1',
             'anxray'=> '?anxray=1',
             'clash' => '?clash=1',
+            'clashmeta' => '?clashmeta=1',
             'clash_provider' => '?list=clash',
             'surge' => '?surge=' . $int,
             'surge_node' => '?list=surge',
