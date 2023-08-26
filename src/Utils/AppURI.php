@@ -77,11 +77,16 @@ class AppURI
                 } else {
                     $return = 'vless://' . $item['id'] . "@" . (string)$item['add'] . ":" . $item['port'] . "?encryption=none";
                     $return .= "&type=" . $item['net'];
-                    $return .= "&security=" . $item['tls'];
-                    if ($item['tls'] == "tls" || $item['tls'] == "reality") {
+                    if ($item['tls'] == "tls") {
                         if (isset($item['flow'])) $return .= "&flow=" . $item['flow'];
-                        if (isset($item['publicKey'])) $return .= "&pbk=" . $item['publicKey'];
-                        if (isset($item['shortId'])) $return .= "&sid=" . $item['shortId'];
+                        if (isset($item['security']) && $item['security'] == "reality") {
+                            $return .= "&security=" . $item['security'];
+                            if (isset($item['publicKey'])) $return .= "&pbk=" . $item['publicKey'];
+                            if (isset($item['shortId'])) $return .= "&sid=" . $item['shortId'];
+                        } else {
+                            $return .= "&security=" . $item['tls'];
+                        }
+                        $return .= "&fp=chrome";
                     }
                     if ($item['host'] != "") $return = $return . "&host=" . rawurlencode($item['host']);
                     if ($item['host'] != "") $return = $return . "&sni=" . $item['host'];
@@ -104,22 +109,24 @@ class AppURI
                 if (isset($item['path']) && $item['path']) {
                     $node .= '&path=' . $item['path'];
                 }
-                if (isset($item['tls']) && $item['tls']) {
-                    $node .= '&security=' . $item['tls'];
-                    if ($item['tls'] == "reality") {
+                if (isset($item['tls']) && $item['tls'] == "tls") {
+                    if (isset($item['flow'])) $node .= '&flow=' . $item['flow'];
+                    if (isset($item['security']) && $item['security'] == "reality") {
+                        $node .= "&security=" . $item['security'];
                         if (isset($item['publicKey'])) $node .="&pbk=" . $item['publicKey'];
                         if (isset($item['shortId'])) $node .="&sid=" . $item['shortId'];
+                    } else {
+                        $node .= "&security=" . $item['tls'];
                     }
+                    $node .= "&fp=chrome";
                 }
-                if (isset($item['flow']) && $item['flow']) {
-                    $node .= '&flow=' . $item['flow'];
-                }
+
                 if ($item['net'] == "grpc") {
                     $node .= "&mode=multi&serviceName=" . $item['servicename'];
                 } else {
                     if ($item['headerType'] != "") $node .= "&headerType=" . $item['headerType'];
                 }
-                $node .= "&fp=chrome";
+
                 $return = $node . '#' . $item['remark'];
                 break;
             case 'trojan':
@@ -523,7 +530,7 @@ class AppURI
                         : ('&peer=' . $item['host']));
                 }
                 $return = ('vmess://' . Tools::base64_url_encode('chacha20-poly1305:' . $item['id'] . '@' . $item['add'] . ':' . $item['port']) . '?remarks=' . rawurlencode($item['remark']) . $obfs . $tls . '&alterId=' . $item['aid']);
-                break;
+		break;
 
             case 'vless':
                 $node = 'vless://' . $item['id'] . '@' . $item['add'] . ':' . $item['port']
@@ -535,26 +542,28 @@ class AppURI
                 if (isset($item['path']) && $item['path']) {
                     $node .= '&path=' . $item['path'];
                 }
-                if (isset($item['tls']) && $item['tls']) {
-                    $node .= '&security=' . $item['tls'];
-                    if ($item['tls'] == "reality") {
+                if (isset($item['tls']) && $item['tls'] == "tls") {
+                    if (isset($item['flow'])) $node .= '&flow=' . $item['flow'];
+                    if (isset($item['security']) && $item['security'] == "reality") {
+                        $node .= "&security=" . $item['security'];
                         if (isset($item['publicKey'])) $node .="&pbk=" . $item['publicKey'];
                         if (isset($item['shortId'])) $node .="&sid=" . $item['shortId'];
+                    } else {
+                        $node .= "&security=" . $item['tls'];
                     }
+                    $node .= "&fp=chrome";
                 }
-                if (isset($item['flow']) && $item['flow']) {
-                    $node .= '&flow=' . $item['flow'];
-                }
+
                 if ($item['net'] == "grpc") {
                     $node .= "&mode=multi&serviceName=" . $item['servicename'];
                 } else {
                     if ($item['headerType'] != "") $node .= "&headerType=" . $item['headerType'];
                 }
-                $node .= "&fp=chrome";
+
                 $return = $node . '#' . $item['remark'];
                 break;
 
-            case 'trojan':
+	    case 'trojan':
                 $return = ('trojan://' . $item['passwd'] . '@' . $item['address'] . ':' . $item['port']);
                 $return .= ('?peer=' . $item['host'] . '#' . rawurlencode($item['remark']));
                 break;
