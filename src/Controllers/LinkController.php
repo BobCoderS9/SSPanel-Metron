@@ -148,7 +148,14 @@ class LinkController extends BaseController
         $subscribe_type = '';
 
         $getBody = '';
-        $sub_type_array = ['list', 'ssd', 'clash', 'surge', 'surfboard', 'anxray', 'quantumult', 'quantumultx', 'stash', 'sub', 'vless'];
+        $user_agent = strtolower($_SERVER['HTTP_USER_AGENT']);
+        if (isset($opts['clash'])) {
+            if (strpos($user_agent, 'clashmeta') !==false) {
+                unset($opts['clash']);
+                $opts['clashmeta'] = 1;
+            }
+        }
+        $sub_type_array = ['list', 'ssd', 'clash', 'clashmeta' ,'surge', 'surfboard', 'anxray', 'quantumult', 'quantumultx', 'stash', 'sub', 'vless'];
         foreach ($sub_type_array as $key) {
             if (isset($opts[$key])) {
                 // 新增vless
@@ -242,6 +249,13 @@ class LinkController extends BaseController
             case 'clash':
                 $return = [
                     'filename' => 'Clash',
+                    'suffix' => 'yaml',
+                    'class' => 'Clash'
+                ];
+                break;
+            case 'clashmeta':
+                $return = [
+                    'filename' => 'ClashMeta',
                     'suffix' => 'yaml',
                     'class' => 'Clash'
                 ];
@@ -491,6 +505,9 @@ class LinkController extends BaseController
                 break;
             case 'clash':
                 $return = AppURI::getClashURI($item);
+                break;
+            case 'clashmeta':
+                $return = AppURI::getClashMetaURI($item);
                 break;
             case 'v2rayn':
                 $return = AppURI::getV2RayNURI($item);
@@ -832,7 +849,11 @@ class LinkController extends BaseController
         $items = URL::getNew_AllItems($user, $Rule);
         $Proxys = [];
         foreach ($items as $item) {
-            $Proxy = AppURI::getClashURI($item);
+            if (isset($opts['clashmeta'])) {
+                $Proxy = AppURI::getClashMetaURI($item);
+            } else {
+                $Proxy = AppURI::getClashURI($item);
+            }
             if ($Proxy !== null) {
                 $Proxys[] = $Proxy;
             }
