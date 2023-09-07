@@ -360,13 +360,14 @@
                     <div class="pt-4 pl-10">
                         <p>地址：<code id="nodeinfo-v2ray-vless-modal-add"></code></p>
                         <p>端口：<code id="nodeinfo-v2ray-vless-modal-port"></code></p>
-                        <p>Alter Id：<code id="nodeinfo-v2ray-vless-modal-aid"></code></p>
                         <p>用户 UUID：<code id="nodeinfo-v2ray-vless-modal-id"></code></p>
                         <p>传输协议：<code id="nodeinfo-v2ray-vless-modal-net"></code></p>
-                        <p>路径：<code id="nodeinfo-v2ray-modal-vless-path"></code></p>
+                        <p>路径(path)：<code id="nodeinfo-v2ray-modal-vless-path"></code></p>
                         <p>伪装方式：<code id="nodeinfo-v2ray-vless-modal-type"></code></p>
                         <p>TLS：<code id="nodeinfo-v2ray-vless-modal-tls"></code></p>
                         <p>流控(flow)：<code id="nodeinfo-v2ray-vless-modal-flow"></code></p>
+                        <p>公钥(publicKey)：<code id="nodeinfo-v2ray-vless-modal-publicKey"></code></p>
+                        <p>短ID(shortId)：<code id="nodeinfo-v2ray-vless-modal-shortId"></code></p>
                         <p>VLESS 链接：<code class="cursor_onclick copy-modal" id="nodeinfo-v2ray-vless-modal-url"
                                           data-clipboard-text="#">点击复制</code></p>
                     </div>
@@ -611,6 +612,8 @@
                 $("#nodeinfo-v2ray-vless-modal-path").text(data.info.path)
                 $("#nodeinfo-v2ray-vless-modal-tls").text(data.info.security)
                 $("#nodeinfo-v2ray-vless-modal-flow").text(data.info.flow)
+                $("#nodeinfo-v2ray-vless-modal-publicKey").text(data.info.publicKey)
+                $("#nodeinfo-v2ray-vless-modal-shortId").text(data.info.shortId)
                 $("#nodeinfo-v2ray-vless-modal-url").attr('data-clipboard-text', data.url)
             });
 

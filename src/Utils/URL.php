@@ -497,16 +497,30 @@ class URL
             . '?encryption=none&type=' . $item['net'] . '&headerType=none';
         if (isset($item['host']) && $item['host']){
             $node .= '&host='.$item['host'];
+            $node .= '&sni=' . $item['host'];
         }
         if (isset($item['path']) && $item['path']){
             $node .= '&path='.$item['path'];
         }
+        if (isset($item['tls']) && $item['tls'] && ! isset($item['security'])){
+                $node .= '&security=' . $item['tls'];
+        }
         if (isset($item['security']) && $item['security']){
-            $node .= '&security='.$item['security'];
+            if ($item['security'] == "reality") {
+                $node .= '&security=' . $item['security'];
+                if (isset($item['publicKey'])) $node .="&pbk=" . $item['publicKey'];
+                if (isset($item['shortId'])) $node .="&sid=" . $item['shortId'];
+            }
         }
         if (isset($item['flow']) && $item['flow']){
             $node .= '&flow='.$item['flow'];
         }
+        if ($item['net'] == "grpc") {
+            $node .= "&mode=multi&serviceName=" . $item['servicename'];
+        } else {
+            if ($item['headerType'] != "") $node .= "&headerType=" . $item['headerType'];
+        }
+        $node .= "&fp=chrome";
         $node .= '#' . $item['remark'];
         if (!$arrout) {
             return $node;
