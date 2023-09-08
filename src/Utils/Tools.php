@@ -187,8 +187,7 @@ class Tools
         //检索User数据表现有port
         if ($_ENV['min_port'] > 65535 || $_ENV['min_port'] <= 0 || $_ENV['max_port'] > 65535 || $_ENV['max_port'] <= 0) {
             return 0;
-        }
-        else {
+        } else {
             $det = User::pluck('port')->toArray();
             $port = array_diff(range($_ENV['min_port'], $_ENV['max_port']), $det);
             shuffle($port);
