@@ -173,7 +173,7 @@ class Job extends Command
             }
         }
 
-        $users = User::select(['id', 'u', 'd', 'last_day_t', 'auto_reset_day', 'transfer_enable', 'auto_reset_bandwidth'])->get();
+        $users = User::select(['id', 'u', 'd', 'last_day_t', 'auto_reset_day', 'transfer_enable', 'auto_reset_bandwidth'], 'email')->get();
         foreach ($users as $user) {
             $user->last_day_t = ($user->u + $user->d);
             $user->save();
