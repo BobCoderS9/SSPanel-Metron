@@ -81,7 +81,7 @@ class MtAgent extends \App\Controllers\BaseController
         }
 
         $edituser_config = $edituser->config;
-        if ($edituser_config['form_agent_create'] !== true) {
+        if (isset($edituser_config['form_agent_create']) && $edituser_config['form_agent_create'] !== true) {
             return '您无权操作通过邀请链接或邀请码注册的用户';
         }
 
@@ -113,7 +113,7 @@ class MtAgent extends \App\Controllers\BaseController
         }
 
         $edituser_config = $edituser->config;
-        if ($edituser_config['form_agent_create'] !== true) {
+        if (isset($edituser_config['form_agent_create']) && $edituser_config['form_agent_create'] !== true) {
             $res['ret'] = 0;
             $res['msg'] = '您无权操作通过邀请链接或邀请码注册的用户';
             return $response->getBody()->write(json_encode($res));
@@ -283,6 +283,7 @@ class MtAgent extends \App\Controllers\BaseController
         }
 
         $email     = trim($request->getParam('email'));
+        $shop_id     = $request->getParam('shop_id');
         $email     = strtolower($email);
         $suffix    = trim($request->getParam('email_suffix'));
 
@@ -309,7 +310,7 @@ class MtAgent extends \App\Controllers\BaseController
             $res['msg'] = '邮箱已经被注册了';
             return $response->getBody()->write(json_encode($res));
         }
-        
+
         $current_timestamp             = time();
         $newuser                       = new User();
         $pass                          = Tools::genRandomChar();
@@ -318,7 +319,7 @@ class MtAgent extends \App\Controllers\BaseController
         $newuser->pass                 = Hash::passwordHash($pass);
         $newuser->passwd               = Tools::genRandomChar(16);
         $newuser->uuid                 = Uuid::uuid3(Uuid::NAMESPACE_DNS, $email . '|' . $current_timestamp);
-        $newuser->port                 = Tools::getAvPort();
+        $newuser->port                 = 0;
         $newuser->t                    = 0;
         $newuser->u                    = 0;
         $newuser->d                    = 0;
