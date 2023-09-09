@@ -107,7 +107,6 @@
                         {include file='include/auth/scripts.tpl'}
 
 <script>
-
     function sendMail() {
         var email = $("#email").val();
         var postfix = $("#email_postfix").val();

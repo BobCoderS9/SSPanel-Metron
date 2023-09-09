@@ -115,6 +115,7 @@
                         <li><a href="/admin/subscribe"><i class="icon icon-lg">dialer_sip</i>&nbsp;订阅记录</a></li>
                         <li><a href="/admin/login"><i class="icon icon-lg">text_fields</i>&nbsp;登录记录</a></li>
                         <li><a href="/admin/alive"><i class="icon icon-lg">important_devices</i>&nbsp;在线IP</a></li>
+                        <li><a href="/admin/paylist"><i class="icon icon-lg">shopping_cart</i>&nbsp;订单记录</a></li>
                     </ul>
 
                     <a class="waves-attach" data-toggle="collapse" href="#ui_menu_agent">代理</a>
