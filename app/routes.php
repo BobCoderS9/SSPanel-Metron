@@ -225,6 +225,9 @@ return function (SlimApp $app) {
         $this->get('/relay/path_search/{id}',   App\Controllers\Admin\RelayController::class . ':path_search');
         $this->post('/relay/ajax',              App\Controllers\Admin\RelayController::class . ':ajax_relay');
 
+        $this->get('/paylist',                   App\Controllers\Admin\PayListController::class . ':index');
+        $this->post('/paylist/ajax',             App\Controllers\Admin\PayListController::class . ':ajax_paylist');
+
         // Shop Mange
         $this->get('/shop',                     App\Controllers\Admin\ShopController::class . ':index');
         $this->post('/shop/ajax',               App\Controllers\Admin\ShopController::class . ':ajax_shop');
