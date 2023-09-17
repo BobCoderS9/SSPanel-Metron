@@ -299,7 +299,11 @@ return function (SlimApp $app) {
 
 
         $this->get('/coupon',                   App\Controllers\AdminController::class . ':coupon');
+        $this->get('/coupon/create',            App\Controllers\AdminController::class . ':createCoupon');
+        $this->get('/coupon/{id}/edit',         App\Controllers\AdminController::class . ':editCoupon');
+        $this->put('/coupon/{id}',              App\Controllers\AdminController::class . ':updateCoupon');
         $this->post('/coupon',                  App\Controllers\AdminController::class . ':addCoupon');
+        $this->delete('/coupon',                App\Controllers\AdminController::class . ':deleteCoupon');
         $this->post('/coupon/ajax',             App\Controllers\AdminController::class . ':ajax_coupon');
 
         $this->get('/profile',                  App\Controllers\AdminController::class . ':profile');

@@ -3,7 +3,7 @@
 namespace App\Controllers;
 
 use Illuminate\Database\Capsule\Manager;
-use App\Models\{Node, Paylist, Ticket, TrafficLog, User, Coupon};
+use App\Models\{Node, Paylist, Ticket, User, Coupon};
 use App\Utils\{
     Tools,
     DatatablesHelper
@@ -125,7 +125,7 @@ class AdminController extends UserController
     public function coupon($request, $response, $args)
     {
         $table_config['total_column'] = array(
-            'id' => 'ID', 'code' => '优惠码',
+            'op' => '操作','id' => 'ID', 'code' => '优惠码',
             'expire' => '过期时间', 'shop' => '限定商品ID',
             'credit' => '额度', 'onetime' => '次数'
         );
@@ -134,7 +134,19 @@ class AdminController extends UserController
             $table_config['default_show_column'][] = $column;
         }
         $table_config['ajax_url'] = 'coupon/ajax';
-        return $this->view()->assign('table_config', $table_config)->display('admin/coupon.tpl');
+        return $this->view()->assign('table_config', $table_config)->display('admin/coupon/coupon.tpl');
+    }
+
+    public function createCoupon()
+    {
+        return $this->view()->display('admin/coupon/add.tpl');
+    }
+
+    public function editCoupon($request, $response, $args)
+    {
+        $id = $args['id'];
+        $coupon = Coupon::find($id);
+        return $this->view()->assign('coupon', $coupon)->display('admin/coupon/edit.tpl');
     }
 
     public function addCoupon($request, $response, $args)
@@ -170,9 +182,9 @@ class AdminController extends UserController
                 }
             }
         }
-
+        $expire = $request->getParam('expire');
         $code->code = $final_code;
-        $code->expire = time() + $request->getParam('expire') * 3600;
+        $code->expire = strtotime($expire);
         $code->shop = $request->getParam('shop');
         $code->credit = $request->getParam('credit');
 
@@ -180,6 +192,31 @@ class AdminController extends UserController
 
         $res['ret'] = 1;
         $res['msg'] = '优惠码添加成功';
+        return $response->getBody()->write(json_encode($res));
+    }
+
+    public function updateCoupon($request, $response, $args)
+    {
+        $id = $args['id'];
+        $code = Coupon::find($id);
+        $code->onetime = $request->getParam('onetime');
+        $final_code = $request->getParam('code');
+
+        if (empty($final_code)) {
+            $res['ret'] = 0;
+            $res['msg'] = '优惠码不能为空';
+            return $response->getBody()->write(json_encode($res));
+        }
+        $expire = $request->getParam('expire');
+
+        $code->code = $final_code;
+        $code->expire = strtotime($expire);
+        $code->shop = $request->getParam('shop');
+        $code->credit = $request->getParam('credit');
+        $code->save();
+
+        $res['ret'] = 1;
+        $res['msg'] = '优惠码修改成功';
         return $response->getBody()->write(json_encode($res));
     }
 
@@ -236,6 +273,10 @@ class AdminController extends UserController
     {
         $datatables = new Datatables(new DatatablesHelper());
         $datatables->query('Select id,code,expire,shop,credit,onetime from coupon');
+        $datatables->edit('op', static function ($data) {
+            return '<a class="btn btn-brand" href="/admin/coupon/' . $data['id'] . '/edit">编辑</a>
+            <a class="btn btn-brand-accent" href="javascript:void(0);" value="' . $data['id'] . '" id="delete" onClick="delete_modal_show(\'' . $data['id'] . '\')">删除</a>';
+        });
 
         $datatables->edit('expire', static function ($data) {
             return date('Y-m-d H:i:s', $data['expire']);
@@ -244,6 +285,21 @@ class AdminController extends UserController
         $body = $response->getBody();
         $body->write($datatables->generate());
     }
+
+    public function deleteCoupon($request, $response, $args)
+    {
+        $id = $request->getParam('id');
+        $ann = Coupon::find($id);
+        if (!$ann->delete()) {
+            $rs['ret'] = 0;
+            $rs['msg'] = '删除失败';
+            return $response->getBody()->write(json_encode($rs));
+        }
+        $rs['ret'] = 1;
+        $rs['msg'] = '删除成功';
+        return $response->getBody()->write(json_encode($rs));
+    }
+
     // admin增加收入统计
     public function getIncome($request, $response, $args)
     {
