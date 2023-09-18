@@ -63,14 +63,16 @@ class MtTelegram
             }
         }
 
-        $messageText = '交易提醒' . PHP_EOL .
+        $messageText = '交易提醒 - '.$pl->tradeno . PHP_EOL .
             '------------------------------' . PHP_EOL .
             '用户名：' . $user->user_name . '  #' . $user->id . PHP_EOL .
+            '用户邮箱：' . $user->email . PHP_EOL .
             '交易类型：' . $type . PHP_EOL .
             '充值金额：' . $pl->total . PHP_EOL .
             '钱包余额：' . $user->money . PHP_EOL .
             '发起时间：' . date('Y-m-d H:i:s', $pl->datetime) . PHP_EOL .
-            '到账时间：' . $codeq->usedatetime;
+            '到账时间：' . $codeq->usedatetime . PHP_EOL .
+            '支付类型：' . $codeq->code;
 
         $sendAdmins = MetronSetting::get('Telegram_Admin');
         foreach ($sendAdmins as $sendAdmin) {
