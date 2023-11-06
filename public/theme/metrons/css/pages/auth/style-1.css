@@ -1,0 +1,149 @@
+.login.login-1 .login-signin,
+.login.login-1 .login-signup,
+.login.login-1 .login-forgot {
+  display: none; }
+
+.login.login-1.login-signin-on .login-signup {
+  display: none; }
+
+.login.login-1.login-signin-on .login-signin {
+  display: block; }
+
+.login.login-1.login-signin-on .login-forgot {
+  display: none; }
+
+.login.login-1.login-signup-on .login-signup {
+  display: block; }
+
+.login.login-1.login-signup-on .login-signin {
+  display: none; }
+
+.login.login-1.login-signup-on .login-forgot {
+  display: none; }
+
+.login.login-1.login-forgot-on .login-signup {
+  display: none; }
+
+.login.login-1.login-forgot-on .login-signin {
+  display: none; }
+
+.login.login-1.login-forgot-on .login-forgot {
+  display: block; }
+
+.login.login-1 .login-form {
+  width: 100%;
+  max-width: 450px; }
+
+.rounded-l-0 {
+  border-top-left-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
+}
+.rounded-l-50 {
+  border-top-left-radius: 50rem;
+  border-bottom-left-radius: 50rem;
+}
+
+input:-webkit-autofill{
+	background: none !important;
+	-webkit-text-fill-color: #fff !important;
+	transition: background-color 99999s ease-in-out 0s;
+}
+
+.fv-plugins-message-container .fv-help-block {
+  color: #fbff00 !important; 
+}
+
+@media (max-width: 575.98px) {
+  .login.login-1 .login-form {
+    width: 100%;
+    max-width: 100%; } }
+
+.embed-captcha .geetest_btn .geetest_radar_btn,
+.embed-captcha .geetest_btn .geetest_success_btn{
+    border-radius: 50rem !important;
+}
+.embed-captcha .geetest_holder.geetest_wind .geetest_radar_btn {
+  left: 0;
+  background-image: linear-gradient(180deg, #ffffff00 0%,#f3f3f300 100%) !important;
+}
+.embed-captcha .geetest_holder.geetest_wind .geetest_radar_tip, .geetest_holder.geetest_wind .geetest_success_radar_tip {
+  color: #fff;
+}
+.embed-captcha .geetest_holder.geetest_wind.geetest_radar_click_ready .geetest_radar_btn {
+  background: #ffffff00 !important;
+}
+.embed-captcha .geetest_holder.geetest_wind .geetest_logo,
+.embed-captcha .geetest_holder.geetest_wind .geetest_success_logo {
+  display: none !important;
+}
+
+.btn.btn-outline-code {
+  color: #ffffff;
+  background-color: transparent;
+  border-color: #ffffff00; }
+  .btn.btn-outline-code i {
+    color: #ffffff; }
+  .btn.btn-outline-code .svg-icon svg g [fill] {
+    -webkit-transition: fill 0.3s ease;
+    transition: fill 0.3s ease;
+    fill: #ffffff; }
+  .btn.btn-outline-code .svg-icon svg:hover g [fill] {
+    -webkit-transition: fill 0.3s ease;
+    transition: fill 0.3s ease; }
+  .btn.btn-outline-code.dropdown-toggle:after {
+    color: #ffffff; }
+  .btn.btn-outline-code:hover:not(.btn-text), .btn.btn-outline-code:focus:not(.btn-text), .btn.btn-outline-code.focus:not(.btn-text) {
+    color: #FFFFFF;
+    background-color: #ffffff;
+    border-color: #ffffff; }
+    .btn.btn-outline-code:hover:not(.btn-text) i, .btn.btn-outline-code:focus:not(.btn-text) i, .btn.btn-outline-code.focus:not(.btn-text) i {
+      color: #FFFFFF; }
+    .btn.btn-outline-code:hover:not(.btn-text) .svg-icon svg g [fill], .btn.btn-outline-code:focus:not(.btn-text) .svg-icon svg g [fill], .btn.btn-outline-code.focus:not(.btn-text) .svg-icon svg g [fill] {
+      -webkit-transition: fill 0.3s ease;
+      transition: fill 0.3s ease;
+      fill: #FFFFFF; }
+    .btn.btn-outline-code:hover:not(.btn-text) .svg-icon svg:hover g [fill], .btn.btn-outline-code:focus:not(.btn-text) .svg-icon svg:hover g [fill], .btn.btn-outline-code.focus:not(.btn-text) .svg-icon svg:hover g [fill] {
+      -webkit-transition: fill 0.3s ease;
+      transition: fill 0.3s ease; }
+    .btn.btn-outline-code:hover:not(.btn-text).dropdown-toggle:after, .btn.btn-outline-code:focus:not(.btn-text).dropdown-toggle:after, .btn.btn-outline-code.focus:not(.btn-text).dropdown-toggle:after {
+      color: #FFFFFF; }
+  .btn.btn-outline-code.disabled, .btn.btn-outline-code:disabled {
+    color: #bcb7c3;
+    background-color: transparent;
+    border-color: #ffffff00; }
+    .btn.btn-outline-code.disabled i, .btn.btn-outline-code:disabled i {
+      color: #ffffff; }
+    .btn.btn-outline-code.disabled .svg-icon svg g [fill], .btn.btn-outline-code:disabled .svg-icon svg g [fill] {
+      -webkit-transition: fill 0.3s ease;
+      transition: fill 0.3s ease;
+      fill: #ffffff; }
+    .btn.btn-outline-code.disabled .svg-icon svg:hover g [fill], .btn.btn-outline-code:disabled .svg-icon svg:hover g [fill] {
+      -webkit-transition: fill 0.3s ease;
+      transition: fill 0.3s ease; }
+    .btn.btn-outline-code.disabled.dropdown-toggle:after, .btn.btn-outline-code:disabled.dropdown-toggle:after {
+      color: #ffffff; }
+  .btn.btn-outline-code:not(:disabled):not(.disabled):active:not(.btn-text), .btn.btn-outline-code:not(:disabled):not(.disabled).active,
+  .show > .btn.btn-outline-code.dropdown-toggle,
+  .show .btn.btn-outline-code.btn-dropdown {
+    color: #FFFFFF;
+    background-color: #ffffff;
+    border-color: #ffffff; }
+    .btn.btn-outline-code:not(:disabled):not(.disabled):active:not(.btn-text) i, .btn.btn-outline-code:not(:disabled):not(.disabled).active i,
+    .show > .btn.btn-outline-code.dropdown-toggle i,
+    .show .btn.btn-outline-code.btn-dropdown i {
+      color: #FFFFFF; }
+    .btn.btn-outline-code:not(:disabled):not(.disabled):active:not(.btn-text) .svg-icon svg g [fill], .btn.btn-outline-code:not(:disabled):not(.disabled).active .svg-icon svg g [fill],
+    .show > .btn.btn-outline-code.dropdown-toggle .svg-icon svg g [fill],
+    .show .btn.btn-outline-code.btn-dropdown .svg-icon svg g [fill] {
+      -webkit-transition: fill 0.3s ease;
+      transition: fill 0.3s ease;
+      fill: #FFFFFF; }
+    .btn.btn-outline-code:not(:disabled):not(.disabled):active:not(.btn-text) .svg-icon svg:hover g [fill], .btn.btn-outline-code:not(:disabled):not(.disabled).active .svg-icon svg:hover g [fill],
+    .show > .btn.btn-outline-code.dropdown-toggle .svg-icon svg:hover g [fill],
+    .show .btn.btn-outline-code.btn-dropdown .svg-icon svg:hover g [fill] {
+      -webkit-transition: fill 0.3s ease;
+      transition: fill 0.3s ease; }
+    .btn.btn-outline-code:not(:disabled):not(.disabled):active:not(.btn-text).dropdown-toggle:after, .btn.btn-outline-code:not(:disabled):not(.disabled).active.dropdown-toggle:after,
+    .show > .btn.btn-outline-code.dropdown-toggle.dropdown-toggle:after,
+    .show .btn.btn-outline-code.btn-dropdown.dropdown-toggle:after {
+      color: #FFFFFF; }

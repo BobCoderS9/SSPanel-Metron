@@ -1,0 +1,287 @@
+.card-header i {
+    vertical-align: 1px;
+    font-size: 1rem;
+    }
+
+    .section .section-header .section-header-breadcrumb {
+    flex-basis: 0;
+    }
+
+    .wizard-step-active {
+    cursor: pointer;
+    }
+    .btn-yellow {
+    background: linear-gradient(to right, #ffb822, #ffb822) !important;
+    color: white !important;
+    border-color: transparent;
+    border: none;
+    box-shadow: 0 1px 6px #ffb8229a;
+    /*margin-bottom: 16px;*/
+    }
+    .btn-weixin {
+    background: linear-gradient(to right, #00ae47, #00ae47) !important;
+    color: white !important;
+    border-color: transparent;
+    border: none;
+    box-shadow: 0 1px 6px #00ae479a;
+    /*margin-bottom: 16px;*/
+    }
+    .btn-alipay {
+    background: linear-gradient(to right, #029de3, #029de3) !important;
+    color: white !important;
+    border-color: transparent;
+    border: none;
+    box-shadow: 0 1px 6px #029de39a;
+    /*margin-bottom: 16px;*/
+    }
+    .btn-qqpay {
+      background: linear-gradient(to right, #e8343d, #e8343d) !important;
+      color: white !important;
+      border-color: transparent;
+      border: none;
+      box-shadow: 0 1px 6px #e8343d9a;
+      /*margin-bottom: 16px;*/
+    }
+    .btn-sstap,.btn-SSTap {
+    background: linear-gradient(to right,#00545b,#149fa0) !important;
+    color: white !important;
+    border-color: transparent;
+    border: none;
+    box-shadow: 0 1px 6px rgb(1, 154, 166);
+    /*margin-bottom: 16px;*/
+    }
+    .btn-quantumult,.btn-Quantumult {
+    background: linear-gradient(to right, black, black) !important;
+    color: white !important;
+    border-color: transparent;
+    border: none;
+    box-shadow: 0 1px 6px rgb(0, 0, 0);
+    /*margin-bottom: 16px;*/
+    }
+    .btn-quantumultx,.btn-QuantumultX {
+    background: linear-gradient(to right, #1c2452, #1c2452) !important;
+    color: white !important;
+    border-color: transparent;
+    border: none;
+    box-shadow: 0 1px 6px rgb(41, 48, 92);
+    /*margin-bottom: 16px;*/
+    }
+    .btn-shadowrocket,.btn-Shadowrocket {
+    background: linear-gradient(to right, #7c99ec, #5aadee) !important;
+    color: white !important;
+    border-color: transparent;
+    border: none;
+    box-shadow: 0 1px 6px rgb(106, 163, 237);
+    /*margin-bottom: 16px;*/
+    }
+    .btn-kitsunebi {
+    background: linear-gradient(to right, #f2885b, #f2885b) !important;
+    color: white !important;
+    border-color: transparent;
+    border: none;
+    box-shadow: 0 1px 6px rgb(242, 136, 91);
+    /*margin-bottom: 16px;*/
+    }
+    .btn-ssr,.btn-SSR {
+    background: linear-gradient(to right, #bf197d, #bf197db8) !important;
+    color: white !important;
+    border-color: transparent;
+    border: none;
+    box-shadow: 0 1px 6px rgb(191, 25, 125);
+    /*margin-bottom: 16px;*/
+    }
+    .btn-v2ray {
+    background: linear-gradient(to right, #df268f, #a73178) !important;
+    color: white !important;
+    border-color: transparent;
+    border: none;
+    box-shadow: 0 1px 6px #aa3079;
+    /*margin-bottom: 16px;*/
+    }
+    .btn-ss,.btn-SS {
+    background: linear-gradient(to right, #187abb, #187abb) !important;
+    color: white !important;
+    border-color: transparent;
+    border: none;
+    box-shadow: 0 1px 6px #3671b99a;
+    /*margin-bottom: 16px;*/
+    }
+    .btn-surge,.btn-Surge {
+    background: linear-gradient(to right, #907cf1, #907cf1) !important;
+    color: white !important;
+    border-color: transparent;
+    border: none;
+    box-shadow: 0 1px 6px rgb(144, 124, 241);
+    /*margin-bottom: 16px;*/
+    }
+    .btn-clash,.btn-Clash,.btn-ClashR,.btn-clashR {
+    background: linear-gradient(to right, #152e52, #152e52) !important;
+    color: white !important;
+    border-color: transparent;
+    border: none;
+    box-shadow: 0 1px 6px rgb(14, 31, 57);
+    /*margin-bottom: 16px;*/
+    }
+    .btn-surfboard {
+    background: linear-gradient(to right, #303030, #303030) !important;
+    color: white !important;
+    border-color: transparent;
+    border: none;
+    box-shadow: 0 1px 6px rgb(48, 48, 48);
+    /*margin-bottom: 16px;*/
+    }
+    .btn-uucloud {
+      background: linear-gradient(to right, #d52c8b, #ed5c45) !important;
+      color: white !important;
+      border-color: transparent;
+      border: none;
+      box-shadow: 0 1px 6px #ec2e7f;
+      /*margin-bottom: 16px;*/
+      }
+
+.pagination-render a {
+  color: #6574f7;
+  background: #f9fafe;
+  border-radius: 3px;
+  margin: 0 3px;
+  font-weight: 600;
+  border-color: transparent;
+  position: relative;
+  display: block;
+  padding: .5rem .75rem;
+  line-height: 1.25;
+  border: 1px solid #f9fafe;
+}
+
+.pagination-render a:hover {
+  background-color: #6777ef;
+  color: #fff;
+  border-color: transparent;
+  text-decoration: none;
+}
+
+.pagination-render span {
+  color: #6574f7;
+  background: #f9fafe;
+  border-radius: 3px;
+  margin: 0 3px;
+  font-weight: 600;
+  border-color: transparent;
+  position: relative;
+  display: block;
+  padding: .5rem .75rem;
+  line-height: 1.25;
+  cursor: pointer;
+  border: 1px solid #f9fafe;
+}
+
+.pagination-render .disabled {
+  cursor: auto;
+  pointer-events: none;
+}
+
+.pagination-render .active span {
+  background-color: #6777ef;
+  color: white;
+  border-color: #6777ef;
+}
+
+@font-face {
+  font-family: 'metron';
+  src:  url('./metron.eot?o9xrwe');
+  src:  url('./metron.eot?o9xrwe#iefix') format('embedded-opentype'),
+    url('./metron.ttf?o9xrwe') format('truetype'),
+    url('./metron.woff?o9xrwe') format('woff'),
+    url('./metron.svg?o9xrwe#metron') format('svg');
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  [class^="metron-"], [class*=" metron-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'metron' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  
+  /* Enable Ligatures ================ */
+  letter-spacing: 0;
+  -webkit-font-feature-settings: "liga";
+  -moz-font-feature-settings: "liga=1";
+  -moz-font-feature-settings: "liga";
+  -ms-font-feature-settings: "liga" 1;
+  font-feature-settings: "liga";
+  -webkit-font-variant-ligatures: discretionary-ligatures;
+  font-variant-ligatures: discretionary-ligatures;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  }
+  
+.metron-quantumultx:before {
+  content: "\e900";
+}
+.metron-surge:before {
+  content: "\e901";
+}
+.metron-quantumult:before {
+  content: "\e902";
+}
+.metron-surfboard:before {
+  content: "\e903";
+}
+.metron-shadowrocket:before {
+  content: "\e904";
+}
+.metron-Finder:before {
+  content: "\e905";
+}
+.metron-clash:before {
+  content: "\e906";
+}
+.metron-crisp:before {
+  content: "\e907";
+}
+.metron-mac:before {
+  content: "\e908";
+}
+.metron-qrcode:before {
+  content: "\e909";
+}
+.metron-wechatPay:before {
+  content: "\e90a";
+}
+.metron-alipay:before {
+  content: "\e90b";
+}
+.metron-linux:before {
+  content: "\e90c";
+}
+.metron-atom:before {
+  content: "\e90d";
+}
+.metron-v2rayng:before {
+  content: "\e90e";
+}
+.metron-kitsunebi:before {
+  content: "\e90f";
+}
+.metron-ssr1:before {
+  content: "\e910";
+}
+.metron-sstap:before {
+  content: "\e911";
+}
+.metron-ssr:before {
+  content: "\e912";
+}
+.metron-uucloud:before {
+  content: "\e913";
+}
+.metron-finder:before {
+  content: "\eabf";
+}
