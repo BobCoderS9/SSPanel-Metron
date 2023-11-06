@@ -68,7 +68,7 @@
                                                                     {/if}
                                                                     <div class="h6 pt-3" style="font-size: 0.8em">剩余 &nbsp;<code>{$user->invite_num}</code>&nbsp; 次邀请次数</div>
                                                                     <div class="pt-2">
-                                                                        <button type="button" class="btn btn-primary btn-shadow btn-lg copy-text" data-clipboard-text="{$config["baseUrl"]}/auth/register?code={$code->code}">复制邀请链接</button>
+                                                                        <button type="button" class="btn btn-primary btn-shadow btn-lg copy-text" data-clipboard-text="{$metron['invite_url']}/auth/register?code={$code->code}">复制邀请链接</button>
                                                                         <button type="button" class="btn btn-primary btn-shadow btn-lg copy-text" data-clipboard-text="{$code->code}">复制邀请码</button>
                                                                     </div>
                                                                 </div>
