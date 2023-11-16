@@ -244,6 +244,72 @@
                 </div>
             </div>
         </div>
+		<div class="modal fade" id="qrcode-sublink-modal" data-backdrop="static" tabindex="-1" role="dialog"
+			 aria-labelledby="qrcode-sublink-modal-title" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content shadow-lg">
+					<div class="modal-header">
+						<h4 class="modal-title {$style[$theme_style]['modal']['text_title']}"
+							id="qrcode-sublink-modal-title"><strong>扫码二维码添加订阅</strong></h4>
+					</div>
+					<div class="modal-body" id="qrcode-sublink-content">
+
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn {$style[$theme_style]['modal']['btn_close']} font-weight-bold"
+								data-dismiss="modal">关闭
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
         {include file='include/global/scripts.tpl'}
     </body>
+		<script src="{$metron['assets_url']}/plugins/jQuery-qrcode/jquery.qrcode.min.js"></script>
+		<script>
+			function importSublink(client) {
+				if (client == 'ssr') {
+					index.oneclickImport('ssr', '{$subInfo["ssr"]}');
+				};
+				if (client == 'clash') {
+					index.oneclickImport('clash','{$subInfo["clash"]}')
+				};
+				if (client == 'shadowrocket') {
+					index.oneclickImport('shadowrocket','{$subInfo["shadowrocket"]}')
+				};
+				if (client == 'quantumult') {
+					index.oneclickImport('quantumult','{$subInfo["ssr"]}')
+				};
+				if (client == 'quantumult_v2') {
+					index.oneclickImport('quantumult_v2','{$subInfo["quantumult_v2"]}')
+				};
+				if (client == 'stash') {
+					location.href = "stash://install-config?url=" + encodeURIComponent('{$subInfo["stash"]}') + "&name=" + '{$config["appName"]}'
+				};
+			}
+			function qrcodeSublink(client) {
+				if (client == 'shadowrocket') {
+					qrcodeImport2('shadowrocket', '{$subInfo["shadowrocket"]}');
+				}
+			}
+
+			function qrcodeImport2(client, url){
+				var _0x1b99c7 = window.btoa(url);
+				console.log(_0x1b99c7)
+			}
+
+			function geneCode(client, url) {
+				var _0x1b99c7 = window.btoa(url);
+
+				switch (client) {
+					case "shadowrocket":
+						$("#qrcode-sublink-content").html("<div class=\"text-center\"><p>使用 " + client + " 客户端扫码</p><div align=\"center\" id=\"qrcode\" style=\"padding-top:10px;\"></div></div>");
+						$("#qrcode").qrcode({
+							'text': "sub://" + _0x1b99c7
+						});
+						$("#qrcode-sublink-modal").modal();
+						break;
+				}
+			};
+		</script>
 </html>
