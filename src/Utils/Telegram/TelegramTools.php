@@ -37,7 +37,7 @@ class TelegramTools
         curl_setopt($C, CURLOPT_POST, 1);
         curl_setopt($C, CURLOPT_HTTPHEADER, ['Content-Type:application/json; charset=utf-8']);
         curl_setopt($C, CURLOPT_POSTFIELDS, $POSTData);
-        curl_setopt($C, CURLOPT_TIMEOUT, 1);
+        curl_setopt($C, CURLOPT_TIMEOUT, 10);
         curl_exec($C);
         curl_close($C);
     }
