@@ -1,4 +1,4 @@
-## SSPanel-Metron主题，目前由@BobS9维护开发中。
+## SSPanel-Metron主题，目前由@BobS9维护开发中。本项目仅做小部分改动
 
 交流群：[https://t.me/BobShareGroup](https://t.me/BobShareGroup)
 
