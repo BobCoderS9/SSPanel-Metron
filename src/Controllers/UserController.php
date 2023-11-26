@@ -77,6 +77,22 @@ class UserController extends BaseController
 
         $Ann = Ann::orderBy('date', 'desc')->first();
 
+        # 对超长的公告进行隐藏
+        if (MetronSetting::get('index_ann_fold') === true) {
+            $juzi = preg_split('/<\/p>/', $Ann->content, -1, PREG_SPLIT_NO_EMPTY|PREG_SPLIT_DELIM_CAPTURE);
+            if (count($juzi) > MetronSetting::get('index_ann_row')) {
+                $count = 1;
+                foreach ($juzi as $ju) {
+                    if ($count === MetronSetting::get('index_ann_row')){
+                        $Ann->content_exp .= $ju.' ... ...</p>';
+                        break;
+                    }
+                    $Ann->content_exp .= $ju.'</p>';
+                    $count++;
+                }
+            }
+        }
+
         if ($_ENV['subscribe_client_url'] != '') {
             $getClient = new Token();
             for ($i = 0; $i < 10; $i++) {
