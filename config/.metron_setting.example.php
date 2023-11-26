@@ -26,6 +26,10 @@ $_MT['index_background_logo'] = "https://cdn.jsdelivr.net/gh/BobCoderS9/metron-a
 // 用户中心顶部背景图
 $_MT['user_background_top'] = "https://cdn.jsdelivr.net/gh/BobCoderS9/metron-assets@3.0.2/metron/media/bg/bg-01-450.jpg";
 
+# 主页公告
+$_MT['index_ann_fold'] = true;      // 对主页公告超出内容进行隐藏, 使用弹窗详细显示
+$_MT['index_ann_row']  = 2;         // 公告内容保留前多少段句,超出的隐藏 (admin界面编写公告, 段落中回车两下以空行分隔的句子算一句
+
 
 #####  重要通知弹窗  --------------------------------------------------------------------------------------------
 $_MT['domain_info']  = true;                     // 当用户访问网站的地址不是config设置的, 提示用户转到 config 地址
