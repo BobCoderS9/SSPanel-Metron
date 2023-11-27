@@ -58,30 +58,45 @@
                                                     </span>
                                                     <div class="d-flex flex-column ml-3 mr-5">
                                                         <div class="font-size-h4 {$style[$theme_style]['index']['text']} mb-2">
-                                                            <strong>{if $user->class_expire!="1989-06-04 00:05:00" && $user->class >= 1}
-                                                                    <span class="counter">{$class_left_days}</span>
-                                                                    天{elseif $user->class <= 0}
+                                                            <strong>
+                                                            {if $user->class_expire != "1989-06-04 00:05:00" && $user->class >= 1}
+                                                                {if $class_left_days > 30000}
+                                                                <span class="counter">永久</span>
+                                                                 {else}
+                                                                   <span class="counter">{$class_left_days}</span> 天
+                                                            {/if}
+                                                                  {elseif $user->class <= 0}
                                                                     <span class="counter">已过期</span>
-                                                                {else}未知{/if}</strong></div>
+                                                                    {else}
+                                                                   未知
+                                                            {/if}</strong>
+                                                                    </div>
                                                         <p class="text-dark-50">会员时长</p>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="card-body pt-2 pl-5 pr-3 pb-1">
-                                                <p class="text-dark-50">
-                                                    {foreach $metron['user_level'] as $user_level_class => $user_level_name}
-                                                        {if $user->class == $user_level_class}{$user_level_name}{/if}
-                                                    {/foreach}
-                                                    :
-                                                    {if $user->class_expire != "1989-06-04 00:05:00" && $user->class >= 1}
-                                                        {substr($user->class_expire, 0, 10)} 到期
-                                                    {elseif $user->class == 0}
-                                                        已过期
-                                                    {elseif $user->class == -1}
-                                                        请购买套餐激活账号
-                                                    {else}永久{/if}
-                                                </p>
-                                            </div>
+                                        <div class="card-body pt-2 pl-5 pr-3 pb-1">
+                                            <p class="text-dark-50">
+                                               {foreach $metron['user_level'] as $user_level_class => $user_level_name}
+                                               {if $user->class == $user_level_class}{$user_level_name}{/if}
+                                               {/foreach}
+                                               :
+                                               {if $user->class_expire != "1989-06-04 00:05:00" && $user->class >= 1}
+                                               {if strtotime($user->class_expire) > strtotime('2060-06-04 00:05:00')}
+                                                   永久
+                                                   {else}
+                                                   {substr($user->class_expire, 0, 10)} 到期
+                                               {/if}
+                                                   {elseif $user->class == 0}
+                                                   已过期
+                                                   {elseif $user->class == -1}
+                                                   请购买套餐激活账号
+                                                   {else}
+                                                   永久
+                                               {/if}
+                                            </p>
+                                        </div>
+
                                         </div>
                                     </div>
                                     <div class="col-sm-6 col-lg-6 col-xl-3 ">
