@@ -81,13 +81,19 @@
                                                                 </div>
                                                             </div>
                                                             <div class="row text-center {$style[$theme_style]['shop']['card_text']}">
-                                                                <div class="col pl-6 pt-6 pb-0">
-                                                                    <div class="font-size-sm text-muted font-weight-bold">会员等级</div>
-                                                                    <div class="font-size-h4 font-weight-bolder">{$metron['user_level'][$shop->user_class()]}</div>
-                                                                </div>
-                                                                <div class="col pl-6 pt-6 pb-0">
-                                                                    <div class="font-size-sm text-muted font-weight-bold">等级时长</div>
-                                                                    <div class="font-size-h4 font-weight-bolder">{$shop->class_expire()} 天</div>
+                                                            <div class="col pl-6 pt-6 pb-0">
+                                                               <div class="font-size-sm text-muted font-weight-bold">会员等级</div>
+                                                                  <div class="font-size-h4 font-weight-bolder">{$metron['user_level'][$shop->user_class()]}</div>
+                                                                  </div>
+                                                            <div class="col pl-6 pt-6 pb-0">
+                                                                <div class="font-size-sm text-muted font-weight-bold">等级时长</div>
+                                                                    <div class="font-size-h4 font-weight-bolder">
+                                                              {if ($shop->class_expire() > 30000)}
+                                                                           不限时
+                                                                       {else}
+                                                                      {$shop->class_expire()} 天
+                                                              {/if}
+                                                                   </div>
                                                                 </div>
                                                             </div>
                                                             <div class="row text-center {$style[$theme_style]['shop']['card_text']}">
@@ -193,16 +199,23 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="row text-center {$style[$theme_style]['shop']['card_text']}">
-                                                                <div class="col pl-6 pt-6 pb-0">
-                                                                    <div class="font-size-sm text-muted font-weight-bold">会员等级</div>
-                                                                    <div class="font-size-h4 font-weight-bolder">{$metron['user_level'][$shop->user_class()]}</div>
-                                                                </div>
-                                                                <div class="col pl-6 pt-6 pb-0">
-                                                                    <div class="font-size-sm text-muted font-weight-bold">等级时长</div>
-                                                                    <div class="font-size-h4 font-weight-bolder">{$shop->class_expire()} 天</div>
+                                                        <div class="row text-center {$style[$theme_style]['shop']['card_text']}">
+                                                            <div class="col pl-6 pt-6 pb-0">
+                                                               <div class="font-size-sm text-muted font-weight-bold">会员等级</div>
+                                                                  <div class="font-size-h4 font-weight-bolder">{$metron['user_level'][$shop->user_class()]}</div>
+                                                                  </div>
+                                                            <div class="col pl-6 pt-6 pb-0">
+                                                                <div class="font-size-sm text-muted font-weight-bold">等级时长</div>
+                                                                    <div class="font-size-h4 font-weight-bolder">
+                                                              {if ($shop->class_expire() > 30000)}
+                                                                           永久
+                                                                       {else}
+                                                                      {$shop->class_expire()} 天
+                                                              {/if}
+                                                                   </div>
                                                                 </div>
                                                             </div>
+
                                                             <div class="row text-center {$style[$theme_style]['shop']['card_text']}">
                                                                 <div class="col pl-6 pt-6 pb-0">
                                                                     <div class="font-size-sm text-muted font-weight-bold">添加流量</div>
@@ -315,7 +328,7 @@
                                     <span class="nav-icon py-2 w-auto">
                                         <i class="fab fa-alipay icon-2x"></i>
                                     </span>
-                                        <span class="nav-text font-size-lg py-2 font-weight-bold text-center">支付宝</span>
+                                        <span class="nav-text font-size-lg py-2 font-weight-bold text-center">支付宝2</span>
                                     </a>
                                 </li>
                             {/if}
@@ -325,7 +338,7 @@
                                     <span class="nav-icon py-2 w-auto">
                                         <i class="fab fa-alipay icon-2x"></i>
                                     </span>
-                                        <span class="nav-text font-size-lg py-2 font-weight-bold text-center">支付宝</span>
+                                        <span class="nav-text font-size-lg py-2 font-weight-bold text-center">支付宝3</span>
                                     </a>
                                 </li>
                             {/if}
@@ -345,7 +358,7 @@
                                     <span class="nav-icon py-2 w-auto">
                                         <i class="fab fa-weixin icon-2x"></i>
                                     </span>
-                                        <span class="nav-text font-size-lg py-2 font-weight-bold text-center">微信支付</span>
+                                        <span class="nav-text font-size-lg py-2 font-weight-bold text-center">微信支付2</span>
                                     </a>
                                 </li>
                             {/if}
@@ -355,7 +368,7 @@
                                     <span class="nav-icon py-2 w-auto">
                                         <i class="fab fa-weixin icon-2x"></i>
                                     </span>
-                                        <span class="nav-text font-size-lg py-2 font-weight-bold text-center">微信支付</span>
+                                        <span class="nav-text font-size-lg py-2 font-weight-bold text-center">微信支付3</span>
                                     </a>
                                 </li>
                             {/if}
@@ -383,6 +396,13 @@
                         </ul>
                     </div>
                 </div>
+                <div class="col-12">
+                                        <div class="card card-custom gutter-b {$metron['style_shadow']}">
+                                            <div class="card-body mt-4">
+                                                <p class="text-danger font-weight-bold">第三方支付平台收款，(₱)单位为平台兑换率，请放心支付。</p>
+                                            </div>
+                                        </div>
+                                    </div>
 
                 <div class="pt-3" style="display: none" id="input_coupon_code">
                     <div class="input-group input-group-lg input-group-solid" >
