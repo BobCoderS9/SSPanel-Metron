@@ -227,17 +227,31 @@ $_MT['shop_formalities']       = 2;                      // 套餐折算时扣�
 $_MT['advanceResetFlow']       = false;                  // 提前重置流量
 $_MT['resetFlow_maxValue']     = 5;                     // 用户流量低于多少(GB)时,才允许重置, -1为不限制
 
-$_MT['shop_pop_enable']         = true;                 // 商店套餐顶部显示信息, 可用于显示给用户促销,优惠等
-$_MT['shop_pop_info']           = '
-<p>向用户显示可用的优惠码</p>
-<p>或者编写相关套餐的优惠等待</p>
-';                   // 套餐顶部显示的内容 使用 html 编写
+$_MT['shop_pop_enable']         = false;                 // 商店套餐顶部显示信息, 可用于显示给用户促销,优惠等
+$_MT['coupons_time']            = '2024/01/01 23:58:00';     //折扣券时间到期自动隐藏
 
-$_MT['shop_activity_true']     = false;                     //是否显示活动套餐
-$_MT['shop_activity_name']     = '活动限定';                 //活动套餐商品名称
+$_MT['m_coupon_enable']         = false;                      // 商店套餐顶部是否显示月付优惠码
+$_MT['m_name']                  = '本期9折优惠码';               
+$_MT['m_text']                  = '优惠码如';                 // 优惠码内容
+
+$_MT['q_coupon_enable']         = false;                      // 商店套餐顶部是否显示季付优惠码
+$_MT['q_name']                  = '月付优惠码';               
+$_MT['q_text']                  = '优惠码如';                 // 优惠码内容
+
+$_MT['h_coupon_enable']         = false;                      // 商店套餐顶部是否显示半年优惠码
+$_MT['h_name']                  = '半年优惠码';               
+$_MT['h_text']                  = '优惠码如';                 // 优惠码内容
+
+$_MT['y_coupon_enable']         = false;                      // 商店套餐顶部是否显示年付优惠码
+$_MT['y_name']                  = '年付优惠码';               
+$_MT['y_text']                  = '优惠码如';                 // 优惠码内容
+
+$_MT['text']                    = '注：1.同等级叠加时长并重置流量;2.跨等级覆盖所有;3.更换套餐先钱包进行套餐折算.';                 // 文本内容
+$_MT['shop_activity_true']     = true;                     //是否显示活动套餐
+$_MT['shop_activity_name']     = '元旦活动';                 //活动套餐商品名称
 $_MT['shop_activity_text']     = '限时购买套餐, 过时不候';    //活动套餐商品描述
-$_MT['shop_activity_id']       = 1;                         //活动套餐商品id
-$_MT['shop_activity_buy_time'] = '2020/03/15 00:00:00';     //活动截止购买时间, 到时间后套餐自动隐藏
+$_MT['shop_activity_id']       = 8;                         //活动套餐商品id
+$_MT['shop_activity_buy_time'] = '2024/01/01 23:59:00';     //活动截止购买时间, 到时间后套餐自动隐藏
 
 $_MT['shop_Experience_true']   = true;    // 是否显示试用套餐
 $_MT['shop_Experience_pos']    = 'top';    // 试用套餐卡片位置 top : 放于常规套餐前面, bottom : 放于常规套餐后面
