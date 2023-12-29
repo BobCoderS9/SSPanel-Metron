@@ -25,15 +25,65 @@
                             <div class="container">
 
                                 <div class="row">
-
-                                    {if $metron['shop_pop_enable'] === true}
+                                    {if $metron['shop_pop_enable'] === true && strtotime({$metron['coupons_time']}) > time()}
                                     <div class="col-12">
                                         <div class="card card-custom gutter-b {$metron['style_shadow']}">
                                             <div class="card-body mt-4">
-                                                {$metron['shop_pop_info']}
+
+                                    {if $metron['m_coupon_enable'] === true}
+                                        <p> <a style="color: #1bc5bd; font-weight: bold">{$metron['m_name']}：</a><a style="color: #ff0000; font-weight: bold" class="copy-text" data-clipboard-text="{$metron['m_text']}">{$metron['m_text']}</a>&nbsp;
+                                        <span style="color: #1bc5bd; font-weight: bold">有效期仅剩：
+                                        <span style="color: #ff0000; font-weight: bold">
+                                        <span id="_d1"></span>
+                                        <span id="_h1"></span>
+                                        <span id="_m1"></span>
+                                        <span id="_s1"></span>
+                                        </span>
+                                        </p>
+                                        {/if}
+
+                                    {if $metron['q_coupon_enable'] === true}
+                                        <p> <a style="color: #1bc5bd; font-weight: bold">{$metron['q_name']}：</a><a style="color: #ff0000; font-weight: bold" class="copy-text" data-clipboard-text="{$metron['q_text']}">{$metron['q_text']}</a>&nbsp;
+                                        <span style="color: #1bc5bd; font-weight: bold">有效期仅剩：
+                                        <span style="color: #ff0000; font-weight: bold">
+                                        <span id="_d2"></span>
+                                        <span id="_h2"></span>
+                                        <span id="_m2"></span>
+                                        <span id="_s2"></span>
+                                        </span>
+                                        </p>
+                                        {/if}
+
+                                    {if $metron['h_coupon_enable'] === true}
+                                        <p> <a style="color: #1bc5bd; font-weight: bold">{$metron['h_name']}：</a><a style="color: #ff0000; font-weight: bold" class="copy-text" data-clipboard-text="{$metron['h_text']}">{$metron['h_text']}</a>&nbsp;
+                                        <span style="color: #1bc5bd; font-weight: bold">有效期仅剩：
+                                        <span style="color: #ff0000; font-weight: bold">
+                                        <span id="_d3"></span>
+                                        <span id="_h3"></span>
+                                        <span id="_m3"></span>
+                                        <span id="_s3"></span>
+                                        </span>
+                                        </p>
+                                        {/if}
+
+                                    {if $metron['y_coupon_enable'] === true}
+                                        <p> <a style="color: #1bc5bd; font-weight: bold">{$metron['y_name']}：</a><a style="color: #ff0000; font-weight: bold" class="copy-text" data-clipboard-text="{$metron['y_text']}">{$metron['y_text']}</a>&nbsp;
+                                        <span style="color: #1bc5bd; font-weight: bold">有效期仅剩：
+                                        <span style="color: #ff0000; font-weight: bold">
+                                        <span id="_d4"></span>
+                                        <span id="_h4"></span>
+                                        <span id="_m4"></span>
+                                        <span id="_s4"></span>
+                                        </span>
+                                        </p>
+                                        {/if}
+                                        <p><a style="color: #ff0000; font-weight: bold" > 
+                                        {$metron['text']} 
+                                        </a></p> 
                                             </div>
                                         </div>
                                     </div>
+                                  <script> var coupons_time = "{$metron['coupons_time']}"; </script> 
                                     {/if}
 
                                     {if $metron['shop_activity_true'] === true && strtotime({$metron['shop_activity_buy_time']}) > time()}
@@ -71,6 +121,7 @@
                                                             {$shopLt = $shop->limitamount()}
                                                             {$shopBi = $shop->limitamount('bi')}
                                                             {$shopCan = $shop->limitamount('can')}
+                                                            
                                                             <div class="d-flex flex-column w-100 pl-2 pt-3">
                                                                 <span class="font-size-sm text-muted font-weight-bold pb-3">
                                                                     {if $shopLt == 0}此商品无限制购买{else}<span class="{if $shopBi < 5}text-danger{else}text-primary{/if}">{if $shopCan === 0}此商品已售空, 可尝试购买其它时长{else}此商品限购剩余 {$shopCan} 份{/if}{/if}</span>
@@ -89,7 +140,7 @@
                                                                 <div class="font-size-sm text-muted font-weight-bold">等级时长</div>
                                                                     <div class="font-size-h4 font-weight-bolder">
                                                               {if ($shop->class_expire() > 30000)}
-                                                                           不限时
+                                                                           不限期
                                                                        {else}
                                                                       {$shop->class_expire()} 天
                                                               {/if}
@@ -190,6 +241,7 @@
                                                             {$shopLt = $shop->limitamount()}
                                                             {$shopBi = $shop->limitamount('bi')}
                                                             {$shopCan = $shop->limitamount('can')}
+                                                            {include file='user/Countdown.tpl'}
                                                             <div class="d-flex flex-column w-100 pl-2 pt-3">
                                                                 <span class="font-size-sm text-muted font-weight-bold pb-3">
                                                                     {if $shopLt == 0}此商品无限制购买{else}<span class="{if $shopBi < 5}text-danger{else}text-primary{/if}">{if $shopCan === 0}此商品已售空, 可尝试购买其它时长{else}此商品限购剩余 {$shopCan} 份{/if}{/if}</span>
@@ -208,7 +260,7 @@
                                                                 <div class="font-size-sm text-muted font-weight-bold">等级时长</div>
                                                                     <div class="font-size-h4 font-weight-bolder">
                                                               {if ($shop->class_expire() > 30000)}
-                                                                           永久
+                                                                           不限期
                                                                        {else}
                                                                       {$shop->class_expire()} 天
                                                               {/if}
