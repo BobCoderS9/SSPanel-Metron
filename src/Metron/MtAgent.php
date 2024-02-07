@@ -154,7 +154,7 @@ class MtAgent extends \App\Controllers\BaseController
                 }
 
                 # 检测邮箱
-                if ($edituser->email != $email) {
+                if ($edituser->email != $email.$suffix) {
                     if (MetronSetting::get('change_usermail') !== true) {
                         return $response->getBody()->write(json_encode(['ret' => 0, 'msg' => '管理员设置禁止修改邮箱']));
                     }
