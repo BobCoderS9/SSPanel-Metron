@@ -545,4 +545,35 @@ class Metron
             }
         }
     }
+
+    public static function recharge($pay, $user)
+    {
+        $shop  = json_decode($pay->shop, true);
+        $config = MetronSetting::get('recharge_shop');
+        if ($config['type'] == 1) {
+            $shop_flow_ids = array_keys($config['shop_flow']);
+            if (in_array($shop['id'], $shop_flow_ids)){
+                $flow = $config['shop_flow'][$shop['id']];
+                $user->transfer_enable += $flow * 1024 * 1024 * 1024;
+            }
+        } elseif ($config['type'] == 2) {
+            $shop_time_ids = array_keys($config['shop_time']);
+            if (in_array($shop['id'], $shop_time_ids)){
+                $day = $config['shop_time'][$shop['id']];
+                $user->class_expire = date('Y-m-d H:i:s', strtotime($user->class_expire) + $day * 86400);
+            }
+        } elseif ($config['type'] == 3) {
+            $shop_flow_ids = array_keys($config['shop_flow']);
+            if (in_array($shop['id'], $shop_flow_ids)){
+                $flow = $config['shop_flow'][$shop['id']];
+                $user->transfer_enable += $flow * 1024 * 1024 * 1024;
+            }
+            $shop_time_ids = array_keys($config['shop_time']);
+            if (in_array($shop['id'], $shop_time_ids)){
+                $day = $config['shop_time'][$shop['id']];
+                $user->class_expire = date('Y-m-d H:i:s', strtotime($user->class_expire) + $day * 86400);
+            }
+        }
+        $user->save();
+    }
 }
