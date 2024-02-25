@@ -19,7 +19,10 @@
 'chacha20',
 'xsalsa20',
 'xchacha20',
-'chacha20-ietf'
+'chacha20-ietf',
+'2022-blake3-aes-128-gcm',
+'2022-blake3-aes-256-gcm',
+'2022-blake3-chacha20-poly1305'
 ]}
 {$protocols = [
 'origin',
@@ -67,6 +70,12 @@
                                         <div class="form-group form-group-label">
                                             <label class="floating-label" for="server">节点地址</label>
                                             <input class="form-control maxwidth-edit" id="server" type="text" name="server">
+                                            <p class="form-control-guide">
+                                                <i class="material-icons">info</i>Shadowsocks2022 格式：8.8.8.8;10086;in.nodeserver.com;443
+                                            </p>
+                                            <p class="form-control-guide">
+                                                <i class="material-icons">info</i>落地IP或域名;落地端口;订阅下发地址;订阅下发端口
+                                            </p>
                                         </div>
                                         <div class="form-group form-group-label">
                                             <label class="floating-label" for="server">节点IP</label>
@@ -192,14 +201,9 @@
                                                 <label class="floating-label" for="sort">节点类型</label>
                                                 <select id="sort" class="form-control maxwidth-edit" name="sort">
                                                     <option value="0">Shadowsocks</option>
-                                                    <option value="1">VPN/Radius基础</option>
-                                                    <option value="2">SSH</option>
-                                                    <option value="5">Anyconnect</option>
+                                                    <option value="1">Shadowsocks 2022</option>
                                                     <option value="9">Shadowsocks 单端口多用户</option>
-                                                    <option value="10">Shadowsocks 中转</option>
                                                     <option value="11">V2Ray</option>
-                                                    <option value="12">V2Ray 中转</option>
-                                                    <option value="13">Shadowsocks V2Ray-Plugin&Obfs</option>
                                                     <option value="14">Trojan</option>
                                                     <option value="15">V2Ray-VLESS</option>
                                                 </select>

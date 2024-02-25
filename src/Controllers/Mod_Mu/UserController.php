@@ -122,6 +122,9 @@ class UserController extends BaseController
             if ($node->sort == 14) {
                 $user_raw->sha224uuid = hash('sha224', $user_raw->uuid);
             }
+            if ($node->sort === 1){
+                $user_raw->passwd = $user_raw->uuid;
+            }
             $users[] = $user_raw;
         }
 

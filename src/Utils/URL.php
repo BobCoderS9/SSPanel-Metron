@@ -240,7 +240,7 @@ class URL
                 $sort = [0, 10];
                 break;
             case 'vmess':
-                $sort = [11, 12, 14];
+                $sort = [1, 11, 12, 14];
                 break;
             case 'vless':
                 $sort = [15];
@@ -250,7 +250,7 @@ class URL
                 break;
             default:
                 $Rule['type'] = 'all';
-                $sort = [0, 10, 11, 12, 13, 14, 15];
+                $sort = [0, 1, 10, 11, 12, 13, 14, 15];
                 $is_ss = [0, 1];
                 break;
         }
@@ -299,8 +299,9 @@ class URL
             // 筛选 End
 
             // 其他类型单端口节点
-            if (in_array($node->sort, [11, 12, 13, 14, 15])) {
+            if (in_array($node->sort, [1, 11, 12, 13, 14, 15])) {
                 $node_class = [
+                    1 => 'getSS2022Item',          // Shadowsocks 2022
                     11 => 'getV2RayItem',           // V2Ray
                     12 => 'getV2RayItem',           // V2Ray
                     13 => 'getV2RayPluginItem',     // Rico SS (V2RayPlugin && obfs)

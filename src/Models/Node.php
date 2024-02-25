@@ -321,6 +321,22 @@ class Node extends Model
         return $item;
     }
 
+    public function getSS2022Item(User $user)
+    {
+        $server = explode(';', $this->server);
+        $item = [
+            'id' => $this->id,
+            'remark' => $this->name,
+            'type' => 'ss',
+            'address' => $server[2],
+            'port' => (int) $server[3],
+            'passwd' => $user->getUuid(),
+            'method' => $this->method
+        ];
+
+        return $item;
+    }
+
     /**
      * 获取 V2RayPlugin | obfs 节点
      *
