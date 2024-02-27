@@ -4,6 +4,7 @@
 namespace App\Controllers\Mod_Mu;
 
 use App\Controllers\BaseController;
+use App\Utils\URL;
 use App\Models\{Node, NodeInfoLog, StreamMedia};
 use App\Services\Config;
 
@@ -57,6 +58,7 @@ class NodeController extends BaseController
         } else {
             $node_server = $node->server;
         }
+
         $res = [
             'ret' => 1,
             'data' => [
@@ -70,6 +72,26 @@ class NodeController extends BaseController
                 'type' => 'ss-panel-v3-mod_Uim'
             ],
         ];
+
+        if ($node->sort === 1){
+            $server = explode(';', $node->server);
+            if ($node->method === '2022-blake3-aes-128-gcm'){
+                $password = base64_encode(substr(md5($node->id), 0, 16));
+            } else {
+                $password = base64_encode(substr(md5($node->id), 0, 32));
+            }
+            $custom_config = [
+                'offset_port_user' => $server[3],
+                'offset_port_node' => $server[1],
+                'host' => $server[0],
+                'password' => $password,
+                'server_key' => $password,
+                'method' => $node->method,
+            ];
+            $res['data']['custom_config'] = $custom_config;
+            $res['data']['version'] = '2023.7';
+        }
+
         return $this->echoJson($response, $res);
     }
 

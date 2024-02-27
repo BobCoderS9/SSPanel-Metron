@@ -389,28 +389,13 @@ class NodeController extends AdminController
                     $sort = 'Shadowsocks';
                     break;
                 case 1:
-                    $sort = 'VPN/Radius基础';
-                    break;
-                case 2:
-                    $sort = 'SSH';
-                    break;
-                case 5:
-                    $sort = 'Anyconnect';
+                    $sort = 'Shadowsocks 2022';
                     break;
                 case 9:
                     $sort = 'Shadowsocks - 单端口多用户';
                     break;
-                case 10:
-                    $sort = 'Shadowsocks - 中转';
-                    break;
                 case 11:
                     $sort = 'V2Ray 节点';
-                    break;
-                case 12:
-                    $sort = 'V2Ray - 中转';
-                    break;
-                case 13:
-                    $sort = 'Shadowsocks - V2Ray-Plugin&Obfs';
                     break;
                 case 14:
                     $sort = 'Trojan';

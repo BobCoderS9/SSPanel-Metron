@@ -338,6 +338,20 @@ class AppURI
                     'password' => $item['passwd'],
                     'udp' => true
                 ];
+                if (in_array($item['method'], [
+                    '2022-blake3-aes-128-gcm','2022-blake3-aes-256-gcm','2022-blake3-chacha20-poly1305'
+                ])){
+                    if ($item['method'] === '2022-blake3-aes-128-gcm'){
+                        $serverKey = base64_encode(substr(md5($item['id']), 0, 16));
+                        $userKey = base64_encode(substr($item['passwd'], 0, 16));
+                    } else {
+                        $serverKey = base64_encode(substr(md5($item['id']), 0, 32));
+                        $userKey = base64_encode(substr($item['passwd'], 0, 32));
+                    }
+                    $return['password'] = "{$serverKey}:{$userKey}";
+                    break;
+                }
+
                 if ($item['obfs'] != 'plain') {
                     switch ($item['obfs']) {
                         case 'simple_obfs_http':

@@ -80,6 +80,10 @@ abstract class AbstractPayment
             Metron::add_payback( User::find($user->ref_by), $user, $codeq->number);
         }
 
+        if ($p->shop != null && MetronSetting::get('recharge_enable')){
+            Metron::recharge($p, $user);
+        }
+
         if ($_ENV['enable_donate'] == true) {
             if ($user->is_hide == 1) {
                 Telegram::Send('一位不愿透露姓名的大老爷给我们捐了 ' . $codeq->number . ' 元!');
