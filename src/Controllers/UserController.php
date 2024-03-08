@@ -660,7 +660,31 @@ class UserController extends BaseController
     public function shop($request, $response, $args)
     {
         $shops = Shop::where('status', 1)->orderBy('name')->get();
-        return $this->view()->assign('shops', $shops)->display('user/shop.tpl');
+        $shop_activity = null;
+        $shop_info = null;
+        foreach ($shops as $shop){
+            if(MetronSetting::get("shop_activity_true") && strtotime(MetronSetting::get("shop_activity_buy_time")) > time()){
+                if ($shop->id == MetronSetting::get('shop_activity_id')){
+                    $shop_activity = $shop;
+                }
+            }
+        }
+        foreach (MetronSetting::get("shop_plan") as  $shop_class_name => $shop_info_time_id){
+            $shop_info[$shop_class_name] = [];
+            foreach ($shop_info_time_id['描述'] as $key => $value){
+                foreach ($shops as $shop) {
+                    if ($shop->id === $value){
+                        $shop_info[$shop_class_name][$key] = $shop;
+                    }
+                }
+            }
+        }
+
+        return $this->view()
+            ->assign('shops', $shops)
+            ->assign('shop_info', $shop_info)
+            ->assign('shop_activity', $shop_activity)
+            ->display('user/shop.tpl');
     }
 
     public function CouponCheck($request, $response, $args)
