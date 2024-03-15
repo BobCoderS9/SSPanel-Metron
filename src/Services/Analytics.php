@@ -97,6 +97,7 @@ class Analytics
         return Node::where('node_heartbeat', '>', 0)->where(
             static function ($query) {
                 $query->Where('sort', '=', 0)
+                    ->orWhere('sort', '=', 1)
                     ->orWhere('sort', '=', 10)
                     ->orWhere('sort', '=', 11)
                     ->orWhere('sort', '=', 12)
@@ -111,6 +112,7 @@ class Analytics
         return Node::where(
             static function ($query) {
                 $query->Where('sort', '=', 0)
+                    ->orWhere('sort', '=', 1)
                     ->orWhere('sort', '=', 10)
                     ->orWhere('sort', '=', 11)
                     ->orWhere('sort', '=', 12)
