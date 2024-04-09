@@ -31,11 +31,8 @@ class FinanceMail extends Command
 
     public function day()
     {
-        $datatables = new Datatables(new DatatablesHelper());
-        $datatables->query('select code.number, code.userid, code.usedatetime from code where TO_DAYS(NOW()) - TO_DAYS(code.usedatetime) = 1 and code.type = -1 and code.isused = 1');
-        $text_json = $datatables->generate();
-        $text_array = json_decode($text_json, true);
-        $codes = $text_array['data'];
+        $db = new DatatablesHelper();
+        $codes = $db->query('select code.number, code.userid, code.usedatetime from code where TO_DAYS(NOW()) - TO_DAYS(code.usedatetime) = 1 and code.type = -1 and code.isused = 1');
         $text_html = '<table border=1><tr><td>金额</td><td>用户ID</td><td>用户名</td><td>充值时间</td>';
         $income_count = 0;
         $income_total = 0.00;
@@ -51,14 +48,9 @@ class FinanceMail extends Command
             $income_total += $code['number'];
         }
         //易付通的单独表
-        $datatables2 = new Datatables(new DatatablesHelper());
-        $datatables2->query('select COUNT(*) as "count_yft" from INFORMATION_SCHEMA.TABLES where TABLE_NAME = "yft_order_info"');
-        $count_yft = $datatables2->generate();
-        if (strpos($count_yft, '"count_yft":1')) {
-            $datatables2->query('select yft_order_info.price, yft_order_info.user_id, yft_order_info.create_time from yft_order_info where TO_DAYS(NOW()) - TO_DAYS(yft_order_info.create_time) = 1 and yft_order_info.state = 1');
-            $text_json2 = $datatables2->generate();
-            $text_array2 = json_decode($text_json2, true);
-            $codes2 = $text_array2['data'];
+        $count_yft = $db->query('select COUNT(*) as "count_yft" from INFORMATION_SCHEMA.TABLES where TABLE_NAME = "yft_order_info"');
+        if (isset($count_yft[0]['count_yft']) && $count_yft[0]['count_yft'] > 0) {
+            $codes2 = $db->query('select yft_order_info.price, yft_order_info.user_id, yft_order_info.create_time from yft_order_info where TO_DAYS(NOW()) - TO_DAYS(yft_order_info.create_time) = 1 and yft_order_info.state = 1');
             foreach ($codes2 as $code2) {
                 $text_html .= '<tr>';
                 $text_html .= '<td>' . $code2['price'] . '</td>';
@@ -100,15 +92,11 @@ class FinanceMail extends Command
 
     public function week()
     {
-        $datatables = new Datatables(new DatatablesHelper());
-        $datatables->query(
+        $datatables = new DatatablesHelper();
+        $codes = $datatables->query(
             'SELECT code.number FROM code
 		WHERE DATEDIFF(NOW(),code.usedatetime) <=7 AND DATEDIFF(NOW(),code.usedatetime) >=1 AND code.isused = 1'
         );
-        //每周的第一天是周日，因此统计周日～周六的七天
-        $text_json = $datatables->generate();
-        $text_array = json_decode($text_json, true);
-        $codes = $text_array['data'];
         $text_html = '';
         $income_count = 0;
         $income_total = 0.00;
@@ -116,19 +104,13 @@ class FinanceMail extends Command
             ++$income_count;
             $income_total += $code['number'];
         }
-        //易付通的单独表
-        $datatables2 = new Datatables(new DatatablesHelper());
-        $datatables2->query('select COUNT(*) as "count_yft" from INFORMATION_SCHEMA.TABLES where TABLE_NAME = "yft_order_info"');
-        $count_yft = $datatables2->generate();
-        if (strpos($count_yft, '"count_yft":1')) {
-            $datatables2->query(
+        $count_yft = $datatables->query('select COUNT(*) as "count_yft" from INFORMATION_SCHEMA.TABLES where TABLE_NAME = "yft_order_info"');
+        if (isset($count_yft[0]['count_yft']) && $count_yft[0]['count_yft'] > 0) {
+            $codes2 = $datatables->query(
                 'select yft_order_info.price from yft_order_info
 				where yearweek(date_format(yft_order_info.create_time,\'%Y-%m-%d\')) = yearweek(now())-1 and yft_order_info.state= 1'
             );
             //每周的第一天是周日，因此统计周日～周六的七天
-            $text_json2 = $datatables2->generate();
-            $text_array2 = json_decode($text_json2, true);
-            $codes2 = $text_array2['data'];
             foreach ($codes2 as $code2) {
                 ++$income_count;
                 $income_total += $code2['price'];
@@ -163,14 +145,11 @@ class FinanceMail extends Command
 
     public function month()
     {
-        $datatables = new Datatables(new DatatablesHelper());
-        $datatables->query(
+        $datatables = new DatatablesHelper();
+        $codes = $datatables->query(
             'select code.number from code
 		where date_format(code.usedatetime,\'%Y-%m\')=date_format(date_sub(curdate(), interval 1 month),\'%Y-%m\') and code.type = -1 and code.isused= 1'
         );
-        $text_json = $datatables->generate();
-        $text_array = json_decode($text_json, true);
-        $codes = $text_array['data'];
         $text_html = '';
         $income_count = 0;
         $income_total = 0.00;
