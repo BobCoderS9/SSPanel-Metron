@@ -6,6 +6,9 @@
             if (client == 'clash') {
                 index.oneclickImport('clash','{$subInfo["clash"]}')
             };
+            if (client == 'singbox') {
+                window.location.href = 'sing-box://import-remote-profile?url=' + encodeURIComponent('{$subInfo["singbox"]}') + "#" + '{$config["appName"]}';
+            };
             if (client == 'shadowrocket') {
                 index.oneclickImport('shadowrocket','{$subInfo["shadowrocket"]}')
             };

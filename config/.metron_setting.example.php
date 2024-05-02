@@ -143,6 +143,7 @@ $_MT['index_sub'] = [
     'v2ray',
     'surge',
     'clash',
+    'sing-box',
     'surfboard',
     'kitsunebi',
     'quantumult',

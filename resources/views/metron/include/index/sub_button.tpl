@@ -22,6 +22,19 @@
                                                             </div>
                                                         </div>
                                                         {/if}
+                                                        {if in_array('sing-box',$metron['index_sub'])}
+                                                        <!-- SingBox订阅 -->
+                                                        <div class="btn-group mb-3 mr-3">
+                                                            <button type="button" class="btn btn-pill btn-clash dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                <i class="metron-surfboard text-white"></i>&nbsp;&nbsp;SingBox 订阅&nbsp;&nbsp;</button>
+                                                            <div class="dropdown-menu">
+                                                                <button type="button" class="dropdown-item copy-text" data-clipboard-text="{$subInfo["singbox"]}">复制 SingBox 订阅</button>
+                                                                <div class="dropdown-divider">
+                                                                </div>
+                                                                <button type="button" class="dropdown-item" href="##" onclick="importSublink('singbox')">一键导入 SingBox</button>
+                                                            </div>
+                                                        </div>
+                                                        {/if}
                                                         {if in_array('surge',$metron['index_sub'])}
                                                         <!-- Surge订阅 -->
                                                         <div class="btn-group mb-3 mr-3">

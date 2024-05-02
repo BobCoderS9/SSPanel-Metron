@@ -733,4 +733,90 @@ class AppURI
         }
         return $return;
     }
+
+    public static function getSingBoxURI(array $item)
+    {
+        $return = null;
+        switch ($item['type']) {
+            case 'ss':
+                $password = $item['passwd'];
+                if (in_array($item['method'], [
+                    '2022-blake3-aes-128-gcm','2022-blake3-aes-256-gcm','2022-blake3-chacha20-poly1305'
+                ])){
+                    if ($item['method'] === '2022-blake3-aes-128-gcm'){
+                        $serverKey = base64_encode(substr(md5($item['id']), 0, 16));
+                        $userKey = base64_encode(substr($item['passwd'], 0, 16));
+                    } else {
+                        $serverKey = base64_encode(substr(md5($item['id']), 0, 32));
+                        $userKey = base64_encode(substr($item['passwd'], 0, 32));
+                    }
+                    $password = "{$serverKey}:{$userKey}";
+                }
+                $return['tag'] = $item['remark'];
+                $return['type'] = 'shadowsocks';
+                $return['server'] = $item['add'];
+                $return['server_port'] = $item['port'];
+                $return['method'] = $item['method'];
+                $return['password'] = $password;
+                break;
+            case 'vmess':
+                $return['tag'] = $item['remark'];
+                $return['type'] = 'vmess';
+                $return['server'] = $item['add'];
+                $return['server_port'] = $item['port'];
+                $return['uuid'] = $item['id'];
+                $return['security'] = 'auto';
+                $return['alter_id'] = 0;
+                $return['transport']= [];
+                if ($item['tls'] == 'tls') {
+                    $tlsConfig = [];
+                    $tlsConfig['enabled'] = true;
+                    $tlsConfig['insecure'] = $item['verify_cert'] ? false : true;
+                    $tlsConfig['server_name'] = ($item['host'] != '' ? $item['host'] : $item['add']);
+                    $return['tls'] = $tlsConfig;
+                }
+                if ($item['net'] == 'tcp' && $item['path']){
+                    $return['transport']['type'] ='http';
+                    $return['transport']['path'] = $item['path'];
+                    $return['transport']['host'] = ($item['host'] != '' ? $item['host'] : $item['add']);
+                }
+                if ($item['net'] === 'ws' && $item['path']) {
+                    $return['transport']['type'] ='ws';
+                    $return['transport']['max_early_data'] = 2048;
+                    $return['transport']['path'] = $item['path'];
+                    $return['transport']['headers'] = ['Host' => [($item['host'] != '' ? $item['host'] : $item['add'])]];
+                    $return['transport']['early_data_header_name'] = 'Sec-WebSocket-Protocol';
+                }
+                if ($item['net'] === 'grpc') {
+                    $return['transport']['type'] ='grpc';
+                    $return['transport']['service_name'] = ($item['host'] != '' ? $item['host'] : $item['add']);
+                }
+                break;
+            case 'trojan':
+                $return = [
+                    'tag' => $item['remark'],
+                    'type' => 'trojan',
+                    'server' => $item['address'],
+                    'server_port' => $item['port'],
+                    'password' => $item['passwd']
+                ];
+                if (in_array($item['net'], ["grpc", "ws"])) {
+                    $return['network'] = $item['net'];
+                    // grpc配置
+                    if($item['net'] === "grpc") {
+                        $return['transport']['service_name'] = ($item['host'] != '' ? $item['host'] : $item['add']);
+                    }
+                    // ws配置
+                    if($item['net'] === "ws") {
+                        $return['transport']['max_early_data'] = 2048;
+                        $return['transport']['path'] = $item['path'];
+                        $return['transport']['headers'] = ['Host' => [($item['host'] != '' ? $item['host'] : $item['add'])]];
+                        $return['transport']['early_data_header_name'] = 'Sec-WebSocket-Protocol';
+                    }
+                }
+                break;
+        }
+
+        return $return;
+    }
 }
