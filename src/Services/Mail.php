@@ -8,6 +8,7 @@ namespace App\Services;
 
 use App\Services\Mail\Aliyun;
 use App\Services\Mail\Mailgun;
+use App\Services\Mail\Postal;
 use App\Services\Mail\Ses;
 use App\Services\Mail\Smtp;
 use App\Services\Mail\SendGrid;
@@ -17,7 +18,7 @@ use Smarty;
 class Mail
 {
     /**
-     * @return Mailgun|NullMail|SendGrid|Ses|Smtp|null
+     * @return Mailgun|NullMail|SendGrid|Ses|Smtp|Aliyun|Postal|null
      */
     public static function getClient()
     {
@@ -33,6 +34,8 @@ class Mail
                 return new SendGrid();
             case 'aliyunweb':
                 return new Aliyun();
+            case 'postal':
+                return new Postal();
             default:
                 return new NullMail();
         }

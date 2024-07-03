@@ -26,7 +26,8 @@
         "irazasyed/telegram-bot-sdk": "^2.0",
         "endroid/qr-code": "^3.7",
         "stripe/stripe-php": "7.0.0",
-        "geerlingguy/ping": "^1.2"
+        "geerlingguy/ping": "^1.2",
+        "postal/postal": "^v2.0.1"
     },
     "autoload": {
         "psr-4": {
