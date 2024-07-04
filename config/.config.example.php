@@ -40,7 +40,7 @@ $_ENV['db_prefix'] = '';
 
 
 //邮件设置--------------------------------------------------------------------------------------------
-$_ENV['mailDriver'] = 'none';      //发送邮件方式：none / mailgun / smtp / sendgrid / aliyunweb
+$_ENV['mailDriver'] = 'none';      //发送邮件方式：none / mailgun / smtp / sendgrid / aliyunweb / postal
 $_ENV['sendPageLimit'] = 50;          //发信分页 解决大站发公告超时问题
 $_ENV['email_queue']     = true;        //如题，自动计划任务邮件使用队列 需要每分钟执行 php xcat Job SendMail
 
@@ -77,6 +77,12 @@ $_ENV['aliyun_AccountName'] = '';    // 发信地址
 $_ENV['aliyun_FromAlias'] = '';    // 发信昵称
 $_ENV['aliyun_TagName'] = '';    // 标签
 $_ENV['aliyun_ReplyToAddress'] = true;  // 使用管理控制台中配置的回信地址
+
+# Postal
+$_ENV['postal_host']    = ''; // Postal API地址
+$_ENV['postal_key']     = ''; // Postal API密钥
+$_ENV['postal_sender'] = ''; // 发件人邮箱
+$_ENV['postal_name']   = ''; // 发件人名称
 
 //备份设置--------------------------------------------------------------------------------------------
 $_ENV['auto_backup_email'] = '';                               //接收备份的邮箱
