@@ -40,7 +40,7 @@ class NodeController extends BaseController
 
     public function get_info($request, $response, $args)
     {
-        $node_id = $args['id'];
+        $node_id = $request->getParam('node_id');
         if ($node_id == '0') {
             $node = Node::where('node_ip', $_SERVER['REMOTE_ADDR'])->first();
             $node_id = $node->id;
