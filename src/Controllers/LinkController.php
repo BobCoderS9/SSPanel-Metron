@@ -438,7 +438,15 @@ class LinkController extends BaseController
         if ($int == 0) {
             $int = '';
         }
-        $userapiUrl = $_ENV['subUrl'] . self::GenerateSSRSubCode($user->id, 0);
+
+    // 存储所有可能的URL
+    $urlArray = $_ENV['subUrlArray'];
+
+    // 使用随机函数随机获取URL索引
+    $urlIndex = rand(0, count($urlArray) - 1);
+    
+    // 获取随机选定的URL
+    $userapiUrl = $urlArray[$urlIndex] . self::GenerateSSRSubCode($user->id, 0);
         $return_info = [
             'link' => '',
             // sub
