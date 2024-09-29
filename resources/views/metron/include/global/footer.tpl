@@ -8,6 +8,26 @@
         </div>
     </div>
 </div>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var element = document.getElementById('theme_copyright');
+    if (element) {
+        element.remove();
+    }
+});
+const observer = new MutationObserver(function(mutationsList, observer) {
+    mutationsList.forEach(function(mutation) {
+        mutation.addedNodes.forEach(function(node) {
+            if (node.nodeType === 1 && node.classList.contains('swal2-container') &&
+                node.classList.contains('swal2-center') &&
+                node.classList.contains('swal2-backdrop-show')) {
+                node.remove();
+            }
+        });
+    });
+});
+observer.observe(document.body, { childList: true, subtree: true });
+</script>
 <style>
     #kt_subheader{
         min-height: 1px !important;
