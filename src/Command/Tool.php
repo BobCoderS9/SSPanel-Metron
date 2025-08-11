@@ -72,7 +72,7 @@ class Tool extends Command
     public function initQQWry()
     {
         echo ('开始下载纯真 IP 数据库....');
-        $qqwry = file_get_contents('https://raw.githubusercontent.com/out0fmemory/qqwry.dat/master/qqwry_lastest.dat');
+        $qqwry = file_get_contents('https://qqwry-mirror.cdn.skk.moe/QQWry.Dat?from=sspanel_uim');
         if ($qqwry != '') {
             $fp = fopen(BASE_PATH . '/storage/qqwry.dat', 'wb');
             if ($fp) {
@@ -83,7 +83,7 @@ class Tool extends Command
                 echo ('纯真 IP 数据库保存失败！');
             }
         } else {
-            echo ('下载失败！请重试，或在 https://github.com/SukkaW/qqwry-mirror/issues/new 反馈！');
+            echo ('下载失败！请重试，或在 https://github.com/SukkaLab/lab.skk.moe/issues/new 反馈！');
         }
     }
 
